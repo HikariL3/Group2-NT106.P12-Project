@@ -10,7 +10,7 @@
 
 23520617 - Lê Vĩnh Huy          - HikariL3
 
-23521823 - Nguyễn Quốc Vương    - 
+23521823 - Nguyễn Quốc Vương    - ngquocvuong23 
 
 ## KHÁC
 #### Đây là assignments môn học của nhóm:
