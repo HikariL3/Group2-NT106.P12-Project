@@ -1,0 +1,111 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\ASUS\\Desktop\\Saved\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{851EAB91-8F66-4E83-8415-45D4515B4BE7}|Shoot Out Game MOO ICT\\Shoot Out Game MOO ICT.csproj|c:\\users\\asus\\desktop\\saved\\shoot out game moo ict\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{851EAB91-8F66-4E83-8415-45D4515B4BE7}|Shoot Out Game MOO ICT\\Shoot Out Game MOO ICT.csproj|solutionrelative:shoot out game moo ict\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{851EAB91-8F66-4E83-8415-45D4515B4BE7}|Shoot Out Game MOO ICT\\Shoot Out Game MOO ICT.csproj|C:\\Users\\ASUS\\Desktop\\Saved\\shoot out game moo ict\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{851EAB91-8F66-4E83-8415-45D4515B4BE7}|Shoot Out Game MOO ICT\\Shoot Out Game MOO ICT.csproj|solutionrelative:shoot out game moo ict\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{851EAB91-8F66-4E83-8415-45D4515B4BE7}|Shoot Out Game MOO ICT\\Shoot Out Game MOO ICT.csproj|C:\\Users\\ASUS\\Desktop\\Saved\\shoot out game moo ict\\gun.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{851EAB91-8F66-4E83-8415-45D4515B4BE7}|Shoot Out Game MOO ICT\\Shoot Out Game MOO ICT.csproj|solutionrelative:shoot out game moo ict\\gun.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{851EAB91-8F66-4E83-8415-45D4515B4BE7}|Shoot Out Game MOO ICT\\Shoot Out Game MOO ICT.csproj|C:\\Users\\ASUS\\Desktop\\Saved\\shoot out game moo ict\\bullet.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{851EAB91-8F66-4E83-8415-45D4515B4BE7}|Shoot Out Game MOO ICT\\Shoot Out Game MOO ICT.csproj|solutionrelative:shoot out game moo ict\\bullet.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{851EAB91-8F66-4E83-8415-45D4515B4BE7}|Shoot Out Game MOO ICT\\Shoot Out Game MOO ICT.csproj|C:\\Users\\ASUS\\Desktop\\Saved\\shoot out game moo ict\\zombie.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{851EAB91-8F66-4E83-8415-45D4515B4BE7}|Shoot Out Game MOO ICT\\Shoot Out Game MOO ICT.csproj|solutionrelative:shoot out game moo ict\\zombie.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Gun.cs",
+              "DocumentMoniker": "C:\\Users\\ASUS\\Desktop\\Saved\\Shoot Out Game MOO ICT\\Gun.cs",
+              "RelativeDocumentMoniker": "Shoot Out Game MOO ICT\\Gun.cs",
+              "ToolTip": "C:\\Users\\ASUS\\Desktop\\Saved\\Shoot Out Game MOO ICT\\Gun.cs",
+              "RelativeToolTip": "Shoot Out Game MOO ICT\\Gun.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-04T01:11:32.414Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Form1.cs",
+              "DocumentMoniker": "C:\\Users\\ASUS\\Desktop\\Saved\\Shoot Out Game MOO ICT\\Form1.cs",
+              "RelativeDocumentMoniker": "Shoot Out Game MOO ICT\\Form1.cs",
+              "ToolTip": "C:\\Users\\ASUS\\Desktop\\Saved\\Shoot Out Game MOO ICT\\Form1.cs",
+              "RelativeToolTip": "Shoot Out Game MOO ICT\\Form1.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-02T14:44:43.176Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Form1.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\ASUS\\Desktop\\Saved\\Shoot Out Game MOO ICT\\Form1.cs",
+              "RelativeDocumentMoniker": "Shoot Out Game MOO ICT\\Form1.cs",
+              "ToolTip": "C:\\Users\\ASUS\\Desktop\\Saved\\Shoot Out Game MOO ICT\\Form1.cs [Design]",
+              "RelativeToolTip": "Shoot Out Game MOO ICT\\Form1.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-04T04:41:11.889Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Zombie.cs",
+              "DocumentMoniker": "C:\\Users\\ASUS\\Desktop\\Saved\\Shoot Out Game MOO ICT\\Zombie.cs",
+              "RelativeDocumentMoniker": "Shoot Out Game MOO ICT\\Zombie.cs",
+              "ToolTip": "C:\\Users\\ASUS\\Desktop\\Saved\\Shoot Out Game MOO ICT\\Zombie.cs",
+              "RelativeToolTip": "Shoot Out Game MOO ICT\\Zombie.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-03T04:35:55.672Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Bullet.cs",
+              "DocumentMoniker": "C:\\Users\\ASUS\\Desktop\\Saved\\Shoot Out Game MOO ICT\\Bullet.cs",
+              "RelativeDocumentMoniker": "Shoot Out Game MOO ICT\\Bullet.cs",
+              "ToolTip": "C:\\Users\\ASUS\\Desktop\\Saved\\Shoot Out Game MOO ICT\\Bullet.cs",
+              "RelativeToolTip": "Shoot Out Game MOO ICT\\Bullet.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-02T14:44:13.241Z"
+            }
+          ]
+        },
+        {
+          "DockedWidth": 55,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
