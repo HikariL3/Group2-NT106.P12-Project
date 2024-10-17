@@ -4,8 +4,12 @@ Currently, we are using the old namespace from the source code. Stop doubting ._
 
 
 -------Division-------
-Game logic, sounds, pictures: Lê Vĩnh Huy
-
+- Game logic: Lê Vĩnh Huy
+- Sounds & Picture: Lê Vĩnh Huy
+- Room feature: 
+- Scoreboard feature: 
+- Clients:
+- Servers: 
 
 --To be continue
 

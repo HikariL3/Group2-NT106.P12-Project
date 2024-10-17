@@ -9,40 +9,42 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Media;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Rebar;
+using System.Net.Sockets;
 
 namespace Shoot_Out_Game_MOO_ICT
 {
     public partial class Form1 : Form
     {
-
         bool goLeft, goRight, goUp, goDown, gameOver;
-        string facing = "up";
-        double wallHealth = 20000;
+        string facing = "right";
+        double wallHealth = 250;
         int speed = 10;
         Random randNum = new Random();
-        int score;
+        int kill, score;
         List<Zombie> zombiesList = new List<Zombie>();
         private List<Gun> guns = new List<Gun>();
         private Gun currentGun;
         private bool canFire = true;
         int offset = 20;
+        Random ranSpawn = new Random();
+        int timeLeft = 120; 
         public Form1()
         {
             InitializeComponent();
             InitializeGuns();
             RestartGame();
-        }
 
+        }
         private void InitializeGuns()
         {
             // Load images for the guns
             Gun pistol = new Gun("Pistol", 40, 12, 20, 300, 350, 1000,
                                 Properties.Resources.pistolup, Properties.Resources.pistoldown,
                                 Properties.Resources.pistolleft, Properties.Resources.pistolright);
-            Gun shotgun = new Gun("Shotgun", 40, 2, 10, 200, 700, 2000,
+            Gun shotgun = new Gun("Shotgun", 25, 2, 10, 200, 700, 1400,
                                 Properties.Resources.shotgunup, Properties.Resources.shotgundown,
                                 Properties.Resources.shotgunleft, Properties.Resources.shotgunright);
-            Gun sniper = new Gun("Sniper", 100, 5, 30, 500, 1000, 2000,
+            Gun sniper = new Gun("Sniper", 120, 5, 30, 500, 1000, 1600,
                                 Properties.Resources.sniperup, Properties.Resources.sniperdown,
                                 Properties.Resources.sniperleft, Properties.Resources.sniperright);
 
@@ -54,8 +56,60 @@ namespace Shoot_Out_Game_MOO_ICT
             txtAmmo.Text = "Ammo: " + currentGun.CurrentAmmo;
         }
 
+        //BEGIN OF-----------------------------------------------------------------------
+        //------------------THESE LINES OF CODE ARE HANDLING GAME EVENT------------------
+        //-------------------------------------------------------------------------------
+
+        private void ActualTime_Tick(object sender, EventArgs e)
+        {
+            if (timeLeft > 0)
+            {
+                timeLeft--;
+                txtTimer.Text = "Time: " + timeLeft.ToString();
+            }
+
+            if (timeLeft == 0)
+            {
+                FinalWave();
+            }
+
+            else if (timeLeft <= 30)
+            {
+                if (timeLeft % 2 == 0)
+                    MakeZombies4();
+            }
+
+            else if (timeLeft <= 60)
+            {
+                if (timeLeft % 2 == 0)
+                    MakeZombies3();
+            }
+
+            else if (timeLeft <= 90)
+            {
+                if (timeLeft % 3 == 0)
+                    MakeZombies2();
+            }
+
+            else if (timeLeft <= 120)
+            {
+                if (timeLeft % 3 == 0)
+                    MakeZombies1();
+            }
+        }
+
         private void MainTimerEvent(object sender, EventArgs e)
         {
+
+            if (timeLeft <= 0)
+            {
+                if (zombiesList.Count == 0)
+                {
+                    gameOver = true;
+                    YouWin();
+                }
+            }
+
             if (wallHealth > 1)
             {
                 healthBar.Value = (int)wallHealth;
@@ -64,9 +118,11 @@ namespace Shoot_Out_Game_MOO_ICT
             {
                 gameOver = true;
                 GameTimer.Stop();
+                YouLose();
             }
 
-            txtKill.Text = "Kills: " + score;
+            txtKill.Text = "Kills: " + kill;
+            txtScore.Text = "Score: " + score;
 
             if (goLeft == true && player.Left > 0)
             {
@@ -106,10 +162,10 @@ namespace Shoot_Out_Game_MOO_ICT
                             zombie.Health -= currentGun.Damage;
                             if (zombie.Health <= 0)
                             {
-                                score++;
+                                kill++;
+                                score += zombie.Score;
                                 this.Controls.Remove(zombie.ZombiePictureBox);
                                 zombiesList.Remove(zombie);
-                                MakeZombies();
                             }
                         }
                     }
@@ -128,10 +184,9 @@ namespace Shoot_Out_Game_MOO_ICT
 
         private void DamageWall(Zombie zombie)
         {
-            wallHealth -= zombie.Damage * 0.005;
+            wallHealth -= zombie.Damage * 0.01;
             if (wallHealth <= 0)
             {
-                // Handle game over or wall destruction
                 gameOver = true;
                 GameTimer.Stop();
             }
@@ -172,9 +227,6 @@ namespace Shoot_Out_Game_MOO_ICT
                 facing = "down";
                 player.Image = currentGun.ImageDown;
             }
-
-
-
         }
 
         private void KeyIsUp(object sender, KeyEventArgs e)
@@ -256,6 +308,73 @@ namespace Shoot_Out_Game_MOO_ICT
 
         }
 
+        //END OF-------------------------------------------------------------------------
+        //------------------THESE LINES OF CODE ARE HANDLING GAME EVENT------------------
+        //-------------------------------------------------------------------------------
+
+
+
+        //BEGIN OF-----------------------------------------------------------------------
+        //------------------THESE LINES OF CODE ARE FOR GUN'S MECHANICS------------------
+        //-------------------------------------------------------------------------------
+
+
+        private void SwitchGun()
+        {
+            int currentGunIndex = guns.IndexOf(currentGun);
+            currentGunIndex = (currentGunIndex + 1) % guns.Count;
+            currentGun = guns[currentGunIndex];
+            txtGun.Text = "Current Gun: " + currentGun.Name;
+
+            if (currentGun.CurrentAmmo > 0)
+                txtAmmo.Text = "Ammo: " + currentGun.CurrentAmmo;
+            else if (currentGun.CurrentAmmo < 1)
+            {
+                txtAmmo.Text = "Ammo: Out of ammo!";
+                txtState.Text = "Press R to reload!";
+            }
+
+            switch (facing)
+            {
+                case "up":
+                    player.Image = currentGun.ImageUp;
+                    break;
+                case "down":
+                    player.Image = currentGun.ImageDown;
+                    break;
+                case "left":
+                    player.Image = currentGun.ImageLeft;
+                    break;
+                case "right":
+                    player.Image = currentGun.ImageRight;
+                    break;
+            }
+        }
+
+        private void ReloadGun()
+        {
+            using (SoundPlayer player = new SoundPlayer(Properties.Resources.gunload))
+            {
+                player.Play();
+            }
+            txtGun.Text = "Reloading...";
+            txtState.Text = "";
+
+            canFire = false;
+
+            Timer reloadTimer = new Timer();
+            reloadTimer.Interval = currentGun.ReloadTime;
+            reloadTimer.Tick += (s, evt) =>
+            {
+                currentGun.Reload();
+                txtAmmo.Text = "Ammo: " + currentGun.CurrentAmmo;
+                txtGun.Text = "Current Gun: " + currentGun.Name;
+                canFire = true;
+                reloadTimer.Stop();
+            };
+            reloadTimer.Start();
+        }
+
         private void ShootBullet(string direction)
         {
             int bulletSpeed;
@@ -280,7 +399,7 @@ namespace Shoot_Out_Game_MOO_ICT
                     shootPistolBullet.MakeBullet(this);
                     break;
                 case "Shotgun":
-                    bulletSpeed = 30;
+                    bulletSpeed = 25;
                     bulletRange = 350;
                     Random rand = new Random();
                     using (SoundPlayer player = new SoundPlayer(Properties.Resources.shotgunshoot))
@@ -288,7 +407,7 @@ namespace Shoot_Out_Game_MOO_ICT
                         player.Play();
                     }
 
-                    for (int i = 0; i < 7; i++)
+                    for (int i = 0; i < 8; i++)
                     {
                         Bullet shootShotgunPellet = new Bullet(bulletSpeed, bulletRange);
                         shootShotgunPellet.direction = direction;
@@ -344,6 +463,11 @@ namespace Shoot_Out_Game_MOO_ICT
                     break;
             }
         }
+
+        //END OF-------------------------------------------------------------------------
+        //------------------THESE LINES OF CODE ARE FOR GUN'S MECHANICS------------------
+        //-------------------------------------------------------------------------------
+
         //scrap
         private void wall_Click(object sender, EventArgs e)
         {
@@ -356,80 +480,273 @@ namespace Shoot_Out_Game_MOO_ICT
         }
         //scrap
 
-        private void MakeZombies()
+        //BEGIN OF-----------------------------------------------------------------------
+        //---------------THESE LINES OF CODE ARE FOR MAKING ZOMBIES SPAWN----------------
+        //-------------------------------------------------------------------------------
+
+        private void MakeZombies1()
+        {
+            int spawnChance = ranSpawn.Next(1, 101);
+            Random rand = new Random();
+            if (spawnChance <= 60)
+            {
+                Zombie zombie = Zombie.CreateZombie(4);
+                int minSpawnHeight = 100; 
+                int maxSpawnHeight = this.ClientSize.Height - zombie.ZombiePictureBox.Height - 100; 
+                zombie.ZombiePictureBox.Left = this.ClientSize.Width + 50;
+
+                zombie.ZombiePictureBox.Top = rand.Next(minSpawnHeight, maxSpawnHeight);
+                zombie.ZombiePictureBox.Image = zombie.ImageLeft;
+
+                zombiesList.Add(zombie);
+                this.Controls.Add(zombie.ZombiePictureBox);
+            }
+            else if (spawnChance <= 100)
+            {
+                Zombie zombie = Zombie.CreateZombie(3);
+                int minSpawnHeight = 100; 
+                int maxSpawnHeight = this.ClientSize.Height - zombie.ZombiePictureBox.Height - 100; 
+                zombie.ZombiePictureBox.Left = this.ClientSize.Width + 50;
+
+                zombie.ZombiePictureBox.Top = rand.Next(minSpawnHeight, maxSpawnHeight);
+                zombie.ZombiePictureBox.Image = zombie.ImageLeft;
+
+                zombiesList.Add(zombie);
+                this.Controls.Add(zombie.ZombiePictureBox);
+            }
+        }
+
+        private void MakeZombies2()
+        {
+            int spawnChance = ranSpawn.Next(1, 101);
+            Random rand = new Random();
+            if (spawnChance <= 40)
+            {
+                Zombie zombie = Zombie.CreateZombie(4);
+                int minSpawnHeight = 100; 
+                int maxSpawnHeight = this.ClientSize.Height - zombie.ZombiePictureBox.Height - 100; 
+                zombie.ZombiePictureBox.Left = this.ClientSize.Width + 50;
+
+                zombie.ZombiePictureBox.Top = rand.Next(minSpawnHeight, maxSpawnHeight);
+                zombie.ZombiePictureBox.Image = zombie.ImageLeft;
+
+                zombiesList.Add(zombie);
+                this.Controls.Add(zombie.ZombiePictureBox);
+            }
+            else if (spawnChance <= 80)
+            {
+                Zombie zombie = Zombie.CreateZombie(3);
+                int minSpawnHeight = 100; 
+                int maxSpawnHeight = this.ClientSize.Height - zombie.ZombiePictureBox.Height - 100; 
+                zombie.ZombiePictureBox.Left = this.ClientSize.Width + 50;
+
+                zombie.ZombiePictureBox.Top = rand.Next(minSpawnHeight, maxSpawnHeight);
+                zombie.ZombiePictureBox.Image = zombie.ImageLeft;
+
+                zombiesList.Add(zombie);
+                this.Controls.Add(zombie.ZombiePictureBox);
+            }
+            else if (spawnChance <= 100)
+            {
+                Zombie zombie = Zombie.CreateZombie(2);
+                int minSpawnHeight = 100; 
+                int maxSpawnHeight = this.ClientSize.Height - zombie.ZombiePictureBox.Height - 100;
+                zombie.ZombiePictureBox.Left = this.ClientSize.Width + 50;
+
+                zombie.ZombiePictureBox.Top = rand.Next(minSpawnHeight, maxSpawnHeight);
+                zombie.ZombiePictureBox.Image = zombie.ImageLeft;
+
+                zombiesList.Add(zombie);
+                this.Controls.Add(zombie.ZombiePictureBox);
+            }
+        }
+
+        private void MakeZombies3()
+        {
+            int spawnChance = ranSpawn.Next(1, 101);
+            Random rand = new Random();
+            if (spawnChance <= 25)
+            {
+                Zombie zombie = Zombie.CreateZombie(4);
+                int minSpawnHeight = 100; 
+                int maxSpawnHeight = this.ClientSize.Height - zombie.ZombiePictureBox.Height - 100; 
+                zombie.ZombiePictureBox.Left = this.ClientSize.Width + 50;
+
+                zombie.ZombiePictureBox.Top = rand.Next(minSpawnHeight, maxSpawnHeight);
+                zombie.ZombiePictureBox.Image = zombie.ImageLeft;
+
+                zombiesList.Add(zombie);
+                this.Controls.Add(zombie.ZombiePictureBox);
+            }
+            else if (spawnChance <= 65)
+            {
+                Zombie zombie = Zombie.CreateZombie(3);
+                int minSpawnHeight = 100; 
+                int maxSpawnHeight = this.ClientSize.Height - zombie.ZombiePictureBox.Height - 100; 
+                zombie.ZombiePictureBox.Left = this.ClientSize.Width + 50;
+
+                zombie.ZombiePictureBox.Top = rand.Next(minSpawnHeight, maxSpawnHeight);
+                zombie.ZombiePictureBox.Image = zombie.ImageLeft;
+
+                zombiesList.Add(zombie);
+                this.Controls.Add(zombie.ZombiePictureBox);
+            }
+            else if (spawnChance <= 100)
+            {
+                Zombie zombie = Zombie.CreateZombie(2);
+                int minSpawnHeight = 100;
+                int maxSpawnHeight = this.ClientSize.Height - zombie.ZombiePictureBox.Height - 100; 
+                zombie.ZombiePictureBox.Left = this.ClientSize.Width + 50;
+
+                zombie.ZombiePictureBox.Top = rand.Next(minSpawnHeight, maxSpawnHeight);
+                zombie.ZombiePictureBox.Image = zombie.ImageLeft;
+
+                zombiesList.Add(zombie);
+                this.Controls.Add(zombie.ZombiePictureBox);
+            }
+        }
+
+
+        private void MakeZombies4()
+        {
+            int spawnChance = ranSpawn.Next(1, 101);
+            Random rand = new Random();
+
+            if (spawnChance <= 45)
+            {
+                Zombie zombie = Zombie.CreateZombie(3);
+                int minSpawnHeight = 100;
+                int maxSpawnHeight = this.ClientSize.Height - zombie.ZombiePictureBox.Height - 100; 
+                zombie.ZombiePictureBox.Left = this.ClientSize.Width + 50;
+
+                zombie.ZombiePictureBox.Top = rand.Next(minSpawnHeight, maxSpawnHeight);
+                zombie.ZombiePictureBox.Image = zombie.ImageLeft;
+
+                zombiesList.Add(zombie);
+                this.Controls.Add(zombie.ZombiePictureBox);
+            }
+            else if (spawnChance <= 85)
+            {
+                Zombie zombie = Zombie.CreateZombie(2);
+                int minSpawnHeight = 100;
+                int maxSpawnHeight = this.ClientSize.Height - zombie.ZombiePictureBox.Height - 100; 
+                zombie.ZombiePictureBox.Left = this.ClientSize.Width + 50;
+
+                zombie.ZombiePictureBox.Top = rand.Next(minSpawnHeight, maxSpawnHeight);
+                zombie.ZombiePictureBox.Image = zombie.ImageLeft;
+
+                zombiesList.Add(zombie);
+                this.Controls.Add(zombie.ZombiePictureBox);
+            }
+            else if (spawnChance <= 100)
+            {
+                Zombie zombie = Zombie.CreateZombie(1);
+                int minSpawnHeight = 100;
+                int maxSpawnHeight = this.ClientSize.Height - zombie.ZombiePictureBox.Height - 100; 
+                zombie.ZombiePictureBox.Left = this.ClientSize.Width + 50;
+
+                zombie.ZombiePictureBox.Top = rand.Next(minSpawnHeight, maxSpawnHeight);
+                zombie.ZombiePictureBox.Image = zombie.ImageLeft;
+
+                zombiesList.Add(zombie);
+                this.Controls.Add(zombie.ZombiePictureBox);
+            }
+        }
+
+        private async void FinalWave() //when timer reaches 0s
         {
             Random rand = new Random();
-            int zombieType = rand.Next(1, 5);
-            Zombie zombie = Zombie.CreateZombie(zombieType);
 
-
-            int minSpawnHeight = 100; //  top margin
-            int maxSpawnHeight = this.ClientSize.Height - zombie.ZombiePictureBox.Height - 100; //bottom margin
-            zombie.ZombiePictureBox.Left = this.ClientSize.Width + 50;
-
-            zombie.ZombiePictureBox.Top = rand.Next(minSpawnHeight, maxSpawnHeight);
-            zombie.ZombiePictureBox.Image = zombie.ImageLeft;
-
-            zombiesList.Add(zombie);
-            this.Controls.Add(zombie.ZombiePictureBox);
-        }
-
-        private void SwitchGun()
-        {
-            int currentGunIndex = guns.IndexOf(currentGun);
-            currentGunIndex = (currentGunIndex + 1) % guns.Count;
-            currentGun = guns[currentGunIndex];
-            txtGun.Text = "Current Gun: " + currentGun.Name;
-
-            if (currentGun.CurrentAmmo > 0)
-                txtAmmo.Text = "Ammo: " + currentGun.CurrentAmmo;
-
-            switch (facing)
+            for (int i = 0; i < 2; i++)
             {
-                case "up":
-                    player.Image = currentGun.ImageUp;
-                    break;
-                case "down":
-                    player.Image = currentGun.ImageDown;
-                    break;
-                case "left":
-                    player.Image = currentGun.ImageLeft;
-                    break;
-                case "right":
-                    player.Image = currentGun.ImageRight;
-                    break;
+                Zombie zombie = Zombie.CreateZombie(4);
+                int minSpawnHeight = 100;
+                int maxSpawnHeight = this.ClientSize.Height - zombie.ZombiePictureBox.Height - 100; 
+                zombie.ZombiePictureBox.Left = this.ClientSize.Width + 50;
+
+                zombie.ZombiePictureBox.Top = rand.Next(minSpawnHeight, maxSpawnHeight);
+                zombie.ZombiePictureBox.Image = zombie.ImageLeft;
+
+                zombiesList.Add(zombie);
+                this.Controls.Add(zombie.ZombiePictureBox);
+                
             }
-        }
 
-        private void ReloadGun()
-        {
-            using (SoundPlayer player = new SoundPlayer(Properties.Resources.gunload))
+            await Task.Delay(1000);
+
+            for (int i = 0; i < 3; i++)
             {
-                player.Play();
+                Zombie zombie = Zombie.CreateZombie(3);
+                int minSpawnHeight = 100;
+                int maxSpawnHeight = this.ClientSize.Height - zombie.ZombiePictureBox.Height - 100; 
+                zombie.ZombiePictureBox.Left = this.ClientSize.Width + 50;
+
+                zombie.ZombiePictureBox.Top = rand.Next(minSpawnHeight, maxSpawnHeight);
+                zombie.ZombiePictureBox.Image = zombie.ImageLeft;
+
+                zombiesList.Add(zombie);
+                this.Controls.Add(zombie.ZombiePictureBox);
+                await Task.Delay(300);
+
             }
-            txtGun.Text = "Reloading...";
-            txtState.Text = "";
 
-            canFire = false;
+            await Task.Delay(2000);
 
-            Timer reloadTimer = new Timer();
-            reloadTimer.Interval = currentGun.ReloadTime; 
-            reloadTimer.Tick += (s, evt) =>
+            for (int i = 0; i < 2; i++)
             {
-                currentGun.Reload();
-                txtAmmo.Text = "Ammo: " + currentGun.CurrentAmmo;
-                txtGun.Text = "Current Gun: " + currentGun.Name;
-                canFire = true;
-                reloadTimer.Stop();
-            };
-            reloadTimer.Start();
+                Zombie zombie = Zombie.CreateZombie(2);
+                int minSpawnHeight = 100;
+                int maxSpawnHeight = this.ClientSize.Height - zombie.ZombiePictureBox.Height - 100; 
+                zombie.ZombiePictureBox.Left = this.ClientSize.Width + 50;
+
+                zombie.ZombiePictureBox.Top = rand.Next(minSpawnHeight, maxSpawnHeight);
+                zombie.ZombiePictureBox.Image = zombie.ImageLeft;
+
+                zombiesList.Add(zombie);
+                this.Controls.Add(zombie.ZombiePictureBox);
+                await Task.Delay(500);
+            }
+
+            await Task.Delay(2000);
+
+            for (int i = 0; i < 2; i++)
+            {
+                Zombie zombie = Zombie.CreateZombie(1);
+                int minSpawnHeight = 100;
+                int maxSpawnHeight = this.ClientSize.Height - zombie.ZombiePictureBox.Height - 100; 
+                zombie.ZombiePictureBox.Left = this.ClientSize.Width + 50;
+
+                zombie.ZombiePictureBox.Top = rand.Next(minSpawnHeight, maxSpawnHeight);
+                zombie.ZombiePictureBox.Image = zombie.ImageLeft;
+
+                zombiesList.Add(zombie);
+                this.Controls.Add(zombie.ZombiePictureBox);
+                await Task.Delay(1000);
+            }
+            
         }
 
+        //END OF-------------------------------------------------------------------------
+        //---------------THESE LINES OF CODE ARE FOR MAKING ZOMBIES SPAWN----------------
+        //-------------------------------------------------------------------------------
+
+        private void YouWin()
+        {
+            GameTimer.Stop();
+            MessageBox.Show("Game Over! You defeated all the zombies!", "You win!", 
+                MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void YouLose()
+        {
+            GameTimer.Stop();
+            MessageBox.Show("Game Over! You are dead, the zombies destroyed your wall", "You lose!",
+                MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
 
         private void RestartGame()
         {
-            player.Image = currentGun.ImageUp;
-
+            player.Image = currentGun.ImageRight;
 
             foreach (Zombie zombie in zombiesList)
             {
@@ -438,10 +755,7 @@ namespace Shoot_Out_Game_MOO_ICT
             }
             zombiesList.Clear();
 
-            for (int i = 0; i < 3; i++)
-            {
-                MakeZombies();
-            }
+            timeLeft = 120;
 
             goUp = false;
             goDown = false;
@@ -449,7 +763,8 @@ namespace Shoot_Out_Game_MOO_ICT
             goRight = false;
             gameOver = false;
 
-            wallHealth = 100;
+            wallHealth = 250;
+            kill = 0;
             score = 0;
             currentGun.Reload();
 
@@ -463,6 +778,5 @@ namespace Shoot_Out_Game_MOO_ICT
 
             GameTimer.Start();
         }
-
     }
 }
