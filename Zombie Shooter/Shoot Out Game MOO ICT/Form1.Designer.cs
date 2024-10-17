@@ -41,6 +41,8 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.wall = new System.Windows.Forms.PictureBox();
             this.player = new System.Windows.Forms.PictureBox();
+            this.txtTimer = new System.Windows.Forms.Label();
+            this.ActualTime = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.wall)).BeginInit();
@@ -88,10 +90,11 @@
             // 
             this.healthBar.Location = new System.Drawing.Point(967, 9);
             this.healthBar.Margin = new System.Windows.Forms.Padding(4);
+            this.healthBar.Maximum = 250;
             this.healthBar.Name = "healthBar";
             this.healthBar.Size = new System.Drawing.Size(249, 28);
             this.healthBar.TabIndex = 1;
-            this.healthBar.Value = 100;
+            this.healthBar.Value = 250;
             // 
             // GameTimer
             // 
@@ -158,7 +161,7 @@
             // 
             this.wall.BackColor = System.Drawing.Color.Black;
             this.wall.Image = global::Shoot_Out_Game_MOO_ICT.Properties.Resources.wall2;
-            this.wall.Location = new System.Drawing.Point(393, 39);
+            this.wall.Location = new System.Drawing.Point(293, 40);
             this.wall.Name = "wall";
             this.wall.Size = new System.Drawing.Size(76, 674);
             this.wall.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -169,7 +172,7 @@
             // player
             // 
             this.player.Image = global::Shoot_Out_Game_MOO_ICT.Properties.Resources.pistolright;
-            this.player.Location = new System.Drawing.Point(69, 351);
+            this.player.Location = new System.Drawing.Point(78, 357);
             this.player.Margin = new System.Windows.Forms.Padding(4);
             this.player.Name = "player";
             this.player.Size = new System.Drawing.Size(75, 100);
@@ -177,12 +180,31 @@
             this.player.TabIndex = 2;
             this.player.TabStop = false;
             // 
+            // txtTimer
+            // 
+            this.txtTimer.AutoSize = true;
+            this.txtTimer.Font = new System.Drawing.Font("Courier New", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTimer.ForeColor = System.Drawing.Color.White;
+            this.txtTimer.Location = new System.Drawing.Point(1093, 677);
+            this.txtTimer.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.txtTimer.Name = "txtTimer";
+            this.txtTimer.Size = new System.Drawing.Size(110, 27);
+            this.txtTimer.TabIndex = 11;
+            this.txtTimer.Text = "Time: 0";
+            // 
+            // ActualTime
+            // 
+            this.ActualTime.Enabled = true;
+            this.ActualTime.Interval = 1000;
+            this.ActualTime.Tick += new System.EventHandler(this.ActualTime_Tick);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(28)))), ((int)(((byte)(32)))));
             this.ClientSize = new System.Drawing.Size(1232, 713);
+            this.Controls.Add(this.txtTimer);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.txtScore);
@@ -224,6 +246,8 @@
         private System.Windows.Forms.Label txtScore;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.Label txtTimer;
+        private System.Windows.Forms.Timer ActualTime;
     }
 }
 
