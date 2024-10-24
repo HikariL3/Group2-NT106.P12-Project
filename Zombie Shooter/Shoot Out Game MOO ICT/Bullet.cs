@@ -59,6 +59,8 @@ namespace Shoot_Out_Game_MOO_ICT
             bulletTimer.Start();
         }
 
+
+
         private void BulletTimerEvent(object sender, EventArgs e)
         {
 

@@ -1,6 +1,6 @@
 ﻿namespace Shoot_Out_Game_MOO_ICT
 {
-    partial class Form1
+    partial class MainGame
     {
         /// <summary>
         /// Required designer variable.
@@ -161,7 +161,7 @@
             // 
             this.wall.BackColor = System.Drawing.Color.Black;
             this.wall.Image = global::Shoot_Out_Game_MOO_ICT.Properties.Resources.wall2;
-            this.wall.Location = new System.Drawing.Point(293, 40);
+            this.wall.Location = new System.Drawing.Point(404, 40);
             this.wall.Name = "wall";
             this.wall.Size = new System.Drawing.Size(76, 674);
             this.wall.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -172,7 +172,7 @@
             // player
             // 
             this.player.Image = global::Shoot_Out_Game_MOO_ICT.Properties.Resources.pistolright;
-            this.player.Location = new System.Drawing.Point(78, 357);
+            this.player.Location = new System.Drawing.Point(216, 347);
             this.player.Margin = new System.Windows.Forms.Padding(4);
             this.player.Name = "player";
             this.player.Size = new System.Drawing.Size(75, 100);
@@ -198,7 +198,7 @@
             this.ActualTime.Interval = 1000;
             this.ActualTime.Tick += new System.EventHandler(this.ActualTime_Tick);
             // 
-            // Form1
+            // MainGame
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -218,8 +218,8 @@
             this.Controls.Add(this.txtAmmo);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Margin = new System.Windows.Forms.Padding(4);
-            this.Name = "Form1";
-            this.Text = "Zombie Shootout Game MOO ICT";
+            this.Name = "MainGame";
+            this.Text = "Zombie Shooter";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.KeyIsDown);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.KeyIsUp);

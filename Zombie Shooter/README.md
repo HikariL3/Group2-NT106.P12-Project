@@ -4,12 +4,16 @@ Currently, we are using the old namespace from the source code. Stop doubting ._
 
 
 -------Division-------
-- Game logic: Lê Vĩnh Huy
-- Sounds & Picture: Lê Vĩnh Huy
-- Room feature: 
-- Scoreboard feature: 
-- Clients:
-- Servers: 
+
+|   Work division   | Name | 
+|----------|-----------|
+| Game mechanics | Lê Vĩnh Huy    | 
+|  Sounds | Lê Vĩnh Huy   | 
+| Picture | Lê Vĩnh Huy & Nguyễn Quốc Vương |
+|  Form UI | Nguyễn Quốc Vương |
+| Client | Nguyễn Quốc Vương & Trần Thị Quỳnh Hương |  
+| Server | Trần Thị Quỳnh Hương | 
+
 
 --To be continue
 

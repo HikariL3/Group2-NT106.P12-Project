@@ -13,7 +13,7 @@ using System.Net.Sockets;
 
 namespace Shoot_Out_Game_MOO_ICT
 {
-    public partial class Form1 : Form
+    public partial class MainGame : Form
     {
         bool goLeft, goRight, goUp, goDown, gameOver;
         string facing = "right";
@@ -28,7 +28,7 @@ namespace Shoot_Out_Game_MOO_ICT
         int offset = 20;
         Random ranSpawn = new Random();
         int timeLeft = 120; 
-        public Form1()
+        public MainGame()
         {
             InitializeComponent();
             InitializeGuns();
