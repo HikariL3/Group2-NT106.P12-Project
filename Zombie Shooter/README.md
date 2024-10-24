@@ -6,8 +6,8 @@ Currently, we are using the old namespace from the source code. Stop doubting ._
 -------Division-------
 - Game logic: Lê Vĩnh Huy
 - Sounds & Picture: Lê Vĩnh Huy
-- Room feature: 
-- Scoreboard feature: 
+- Room feature: Nguyễn Quốc Vương
+- Scoreboard feature: Nguyễn Quốc Vương
 - Clients:
 - Servers: 
 

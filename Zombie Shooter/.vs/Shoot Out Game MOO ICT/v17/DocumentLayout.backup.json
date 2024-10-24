@@ -1,25 +1,57 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\ASUS\\Desktop\\Zombie Shooter\\",
+  "WorkspaceRootPath": "D:\\University Stuff\\3. HK1 2024 - 2025\\NT106\\Group2-NT106.P12-Project\\Zombie Shooter\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{851EAB91-8F66-4E83-8415-45D4515B4BE7}|Shoot Out Game MOO ICT\\Shoot Out Game MOO ICT.csproj|C:\\Users\\ASUS\\Desktop\\Zombie Shooter\\shoot out game moo ict\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{851EAB91-8F66-4E83-8415-45D4515B4BE7}|Shoot Out Game MOO ICT\\Shoot Out Game MOO ICT.csproj|solutionrelative:shoot out game moo ict\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{88726182-6EF2-4E5A-95B4-154B9E2BB329}|GameForm\\GameForm\\GameForm.csproj|d:\\university stuff\\3. hk1 2024 - 2025\\nt106\\group2-nt106.p12-project\\zombie shooter\\gameform\\gameform\\ranking.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{88726182-6EF2-4E5A-95B4-154B9E2BB329}|GameForm\\GameForm\\GameForm.csproj|solutionrelative:gameform\\gameform\\ranking.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{851EAB91-8F66-4E83-8415-45D4515B4BE7}|Shoot Out Game MOO ICT\\Shoot Out Game MOO ICT.csproj|c:\\users\\asus\\desktop\\zombie shooter\\shoot out game moo ict\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{88726182-6EF2-4E5A-95B4-154B9E2BB329}|GameForm\\GameForm\\GameForm.csproj|d:\\university stuff\\3. hk1 2024 - 2025\\nt106\\group2-nt106.p12-project\\zombie shooter\\gameform\\gameform\\win.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{88726182-6EF2-4E5A-95B4-154B9E2BB329}|GameForm\\GameForm\\GameForm.csproj|solutionrelative:gameform\\gameform\\win.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{49C1AFBF-DF53-4545-A60C-FDB7981D7783}|Socket\\Server_ShootOutGame\\Server_ShootOutGame\\Server_ShootOutGame.csproj|d:\\university stuff\\3. hk1 2024 - 2025\\nt106\\group2-nt106.p12-project\\zombie shooter\\socket\\server_shootoutgame\\server_shootoutgame\\socketserver.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{49C1AFBF-DF53-4545-A60C-FDB7981D7783}|Socket\\Server_ShootOutGame\\Server_ShootOutGame\\Server_ShootOutGame.csproj|solutionrelative:socket\\server_shootoutgame\\server_shootoutgame\\socketserver.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{851EAB91-8F66-4E83-8415-45D4515B4BE7}|Shoot Out Game MOO ICT\\Shoot Out Game MOO ICT.csproj|D:\\University Stuff\\3. HK1 2024 - 2025\\NT106\\Group2-NT106.P12-Project\\Zombie Shooter\\shoot out game moo ict\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{851EAB91-8F66-4E83-8415-45D4515B4BE7}|Shoot Out Game MOO ICT\\Shoot Out Game MOO ICT.csproj|solutionrelative:shoot out game moo ict\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{851EAB91-8F66-4E83-8415-45D4515B4BE7}|Shoot Out Game MOO ICT\\Shoot Out Game MOO ICT.csproj|C:\\Users\\ASUS\\Desktop\\Zombie Shooter\\shoot out game moo ict\\zombie.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{88726182-6EF2-4E5A-95B4-154B9E2BB329}|GameForm\\GameForm\\GameForm.csproj|d:\\university stuff\\3. hk1 2024 - 2025\\nt106\\group2-nt106.p12-project\\zombie shooter\\gameform\\gameform\\lose.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{88726182-6EF2-4E5A-95B4-154B9E2BB329}|GameForm\\GameForm\\GameForm.csproj|solutionrelative:gameform\\gameform\\lose.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{851EAB91-8F66-4E83-8415-45D4515B4BE7}|Shoot Out Game MOO ICT\\Shoot Out Game MOO ICT.csproj|D:\\University Stuff\\3. HK1 2024 - 2025\\NT106\\Group2-NT106.P12-Project\\Zombie Shooter\\shoot out game moo ict\\socketmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{851EAB91-8F66-4E83-8415-45D4515B4BE7}|Shoot Out Game MOO ICT\\Shoot Out Game MOO ICT.csproj|solutionrelative:shoot out game moo ict\\socketmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{851EAB91-8F66-4E83-8415-45D4515B4BE7}|Shoot Out Game MOO ICT\\Shoot Out Game MOO ICT.csproj|D:\\University Stuff\\3. HK1 2024 - 2025\\NT106\\Group2-NT106.P12-Project\\Zombie Shooter\\shoot out game moo ict\\socketdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{851EAB91-8F66-4E83-8415-45D4515B4BE7}|Shoot Out Game MOO ICT\\Shoot Out Game MOO ICT.csproj|solutionrelative:shoot out game moo ict\\socketdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{88726182-6EF2-4E5A-95B4-154B9E2BB329}|GameForm\\GameForm\\GameForm.csproj|d:\\university stuff\\3. hk1 2024 - 2025\\nt106\\group2-nt106.p12-project\\zombie shooter\\gameform\\gameform\\lobby.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{88726182-6EF2-4E5A-95B4-154B9E2BB329}|GameForm\\GameForm\\GameForm.csproj|solutionrelative:gameform\\gameform\\lobby.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{851EAB91-8F66-4E83-8415-45D4515B4BE7}|Shoot Out Game MOO ICT\\Shoot Out Game MOO ICT.csproj|D:\\University Stuff\\3. HK1 2024 - 2025\\NT106\\Group2-NT106.P12-Project\\Zombie Shooter\\shoot out game moo ict\\socketclient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{851EAB91-8F66-4E83-8415-45D4515B4BE7}|Shoot Out Game MOO ICT\\Shoot Out Game MOO ICT.csproj|solutionrelative:shoot out game moo ict\\socketclient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{88726182-6EF2-4E5A-95B4-154B9E2BB329}|GameForm\\GameForm\\GameForm.csproj|d:\\university stuff\\3. hk1 2024 - 2025\\nt106\\group2-nt106.p12-project\\zombie shooter\\gameform\\gameform\\newroom.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{88726182-6EF2-4E5A-95B4-154B9E2BB329}|GameForm\\GameForm\\GameForm.csproj|solutionrelative:gameform\\gameform\\newroom.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{851EAB91-8F66-4E83-8415-45D4515B4BE7}|Shoot Out Game MOO ICT\\Shoot Out Game MOO ICT.csproj|D:\\University Stuff\\3. HK1 2024 - 2025\\NT106\\Group2-NT106.P12-Project\\Zombie Shooter\\shoot out game moo ict\\zombie.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{851EAB91-8F66-4E83-8415-45D4515B4BE7}|Shoot Out Game MOO ICT\\Shoot Out Game MOO ICT.csproj|solutionrelative:shoot out game moo ict\\zombie.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{851EAB91-8F66-4E83-8415-45D4515B4BE7}|Shoot Out Game MOO ICT\\Shoot Out Game MOO ICT.csproj|C:\\Users\\ASUS\\Desktop\\Zombie Shooter\\shoot out game moo ict\\gun.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{851EAB91-8F66-4E83-8415-45D4515B4BE7}|Shoot Out Game MOO ICT\\Shoot Out Game MOO ICT.csproj|solutionrelative:shoot out game moo ict\\gun.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{851EAB91-8F66-4E83-8415-45D4515B4BE7}|Shoot Out Game MOO ICT\\Shoot Out Game MOO ICT.csproj|D:\\University Stuff\\3. HK1 2024 - 2025\\NT106\\Group2-NT106.P12-Project\\Zombie Shooter\\shoot out game moo ict\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{851EAB91-8F66-4E83-8415-45D4515B4BE7}|Shoot Out Game MOO ICT\\Shoot Out Game MOO ICT.csproj|solutionrelative:shoot out game moo ict\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{851EAB91-8F66-4E83-8415-45D4515B4BE7}|Shoot Out Game MOO ICT\\Shoot Out Game MOO ICT.csproj|C:\\Users\\ASUS\\Desktop\\Zombie Shooter\\shoot out game moo ict\\bullet.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{851EAB91-8F66-4E83-8415-45D4515B4BE7}|Shoot Out Game MOO ICT\\Shoot Out Game MOO ICT.csproj|D:\\University Stuff\\3. HK1 2024 - 2025\\NT106\\Group2-NT106.P12-Project\\Zombie Shooter\\shoot out game moo ict\\bullet.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{851EAB91-8F66-4E83-8415-45D4515B4BE7}|Shoot Out Game MOO ICT\\Shoot Out Game MOO ICT.csproj|solutionrelative:shoot out game moo ict\\bullet.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -30,41 +62,77 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Gun.cs",
-              "DocumentMoniker": "C:\\Users\\ASUS\\Desktop\\Zombie Shooter\\Shoot Out Game MOO ICT\\Gun.cs",
-              "RelativeDocumentMoniker": "Shoot Out Game MOO ICT\\Gun.cs",
-              "ToolTip": "C:\\Users\\ASUS\\Desktop\\Zombie Shooter\\Shoot Out Game MOO ICT\\Gun.cs",
-              "RelativeToolTip": "Shoot Out Game MOO ICT\\Gun.cs",
-              "ViewState": "AgIAABMAAAAAAAAAAAAuwAsAAAAFAAAAAAAAAA==",
+              "DocumentIndex": 4,
+              "Title": "Lose.cs [Design]",
+              "DocumentMoniker": "D:\\University Stuff\\3. HK1 2024 - 2025\\NT106\\Group2-NT106.P12-Project\\Zombie Shooter\\GameForm\\GameForm\\Lose.cs",
+              "RelativeDocumentMoniker": "GameForm\\GameForm\\Lose.cs",
+              "ToolTip": "D:\\University Stuff\\3. HK1 2024 - 2025\\NT106\\Group2-NT106.P12-Project\\Zombie Shooter\\GameForm\\GameForm\\Lose.cs [Design]",
+              "RelativeToolTip": "GameForm\\GameForm\\Lose.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-04T01:11:32.414Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Form1.cs",
-              "DocumentMoniker": "C:\\Users\\ASUS\\Desktop\\Zombie Shooter\\Shoot Out Game MOO ICT\\Form1.cs",
-              "RelativeDocumentMoniker": "Shoot Out Game MOO ICT\\Form1.cs",
-              "ToolTip": "C:\\Users\\ASUS\\Desktop\\Zombie Shooter\\Shoot Out Game MOO ICT\\Form1.cs",
-              "RelativeToolTip": "Shoot Out Game MOO ICT\\Form1.cs",
-              "ViewState": "AgIAANkCAAAAAAAAAAAuwKQCAAAhAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-02T14:44:43.176Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-24T10:32:42.934Z",
+              "EditorCaption": " [Design]"
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "Win.cs [Design]",
+              "DocumentMoniker": "D:\\University Stuff\\3. HK1 2024 - 2025\\NT106\\Group2-NT106.P12-Project\\Zombie Shooter\\GameForm\\GameForm\\Win.cs",
+              "RelativeDocumentMoniker": "GameForm\\GameForm\\Win.cs",
+              "ToolTip": "D:\\University Stuff\\3. HK1 2024 - 2025\\NT106\\Group2-NT106.P12-Project\\Zombie Shooter\\GameForm\\GameForm\\Win.cs [Design]",
+              "RelativeToolTip": "GameForm\\GameForm\\Win.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-24T10:32:38.107Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Ranking.cs [Design]",
+              "DocumentMoniker": "D:\\University Stuff\\3. HK1 2024 - 2025\\NT106\\Group2-NT106.P12-Project\\Zombie Shooter\\GameForm\\GameForm\\Ranking.cs",
+              "RelativeDocumentMoniker": "GameForm\\GameForm\\Ranking.cs",
+              "ToolTip": "D:\\University Stuff\\3. HK1 2024 - 2025\\NT106\\Group2-NT106.P12-Project\\Zombie Shooter\\GameForm\\GameForm\\Ranking.cs [Design]*",
+              "RelativeToolTip": "GameForm\\GameForm\\Ranking.cs [Design]*",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-24T10:32:16.973Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "NewRoom.cs [Design]",
+              "DocumentMoniker": "D:\\University Stuff\\3. HK1 2024 - 2025\\NT106\\Group2-NT106.P12-Project\\Zombie Shooter\\GameForm\\GameForm\\NewRoom.cs",
+              "RelativeDocumentMoniker": "GameForm\\GameForm\\NewRoom.cs",
+              "ToolTip": "D:\\University Stuff\\3. HK1 2024 - 2025\\NT106\\Group2-NT106.P12-Project\\Zombie Shooter\\GameForm\\GameForm\\NewRoom.cs [Design]*",
+              "RelativeToolTip": "GameForm\\GameForm\\NewRoom.cs [Design]*",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-24T10:23:05.811Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "SocketClient.cs",
+              "DocumentMoniker": "D:\\University Stuff\\3. HK1 2024 - 2025\\NT106\\Group2-NT106.P12-Project\\Zombie Shooter\\Shoot Out Game MOO ICT\\SocketClient.cs",
+              "RelativeDocumentMoniker": "Shoot Out Game MOO ICT\\SocketClient.cs",
+              "ToolTip": "D:\\University Stuff\\3. HK1 2024 - 2025\\NT106\\Group2-NT106.P12-Project\\Zombie Shooter\\Shoot Out Game MOO ICT\\SocketClient.cs",
+              "RelativeToolTip": "Shoot Out Game MOO ICT\\SocketClient.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-22T07:35:45.342Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "Form1.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\ASUS\\Desktop\\Zombie Shooter\\Shoot Out Game MOO ICT\\Form1.cs",
+              "DocumentMoniker": "D:\\University Stuff\\3. HK1 2024 - 2025\\NT106\\Group2-NT106.P12-Project\\Zombie Shooter\\Shoot Out Game MOO ICT\\Form1.cs",
               "RelativeDocumentMoniker": "Shoot Out Game MOO ICT\\Form1.cs",
-              "ToolTip": "C:\\Users\\ASUS\\Desktop\\Zombie Shooter\\Shoot Out Game MOO ICT\\Form1.cs [Design]",
-              "RelativeToolTip": "Shoot Out Game MOO ICT\\Form1.cs [Design]",
+              "ToolTip": "D:\\University Stuff\\3. HK1 2024 - 2025\\NT106\\Group2-NT106.P12-Project\\Zombie Shooter\\Shoot Out Game MOO ICT\\Form1.cs [Design]*",
+              "RelativeToolTip": "Shoot Out Game MOO ICT\\Form1.cs [Design]*",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-04T04:41:11.889Z",
               "EditorCaption": " [Design]"
@@ -72,25 +140,88 @@
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "Zombie.cs",
-              "DocumentMoniker": "C:\\Users\\ASUS\\Desktop\\Zombie Shooter\\Shoot Out Game MOO ICT\\Zombie.cs",
-              "RelativeDocumentMoniker": "Shoot Out Game MOO ICT\\Zombie.cs",
-              "ToolTip": "C:\\Users\\ASUS\\Desktop\\Zombie Shooter\\Shoot Out Game MOO ICT\\Zombie.cs",
-              "RelativeToolTip": "Shoot Out Game MOO ICT\\Zombie.cs",
-              "ViewState": "AgIAABwAAAAAAAAAAAAYwCwAAAApAAAAAAAAAA==",
+              "Title": "SocketServer.cs",
+              "DocumentMoniker": "D:\\University Stuff\\3. HK1 2024 - 2025\\NT106\\Group2-NT106.P12-Project\\Zombie Shooter\\Socket\\Server_ShootOutGame\\Server_ShootOutGame\\SocketServer.cs",
+              "RelativeDocumentMoniker": "Socket\\Server_ShootOutGame\\Server_ShootOutGame\\SocketServer.cs",
+              "ToolTip": "D:\\University Stuff\\3. HK1 2024 - 2025\\NT106\\Group2-NT106.P12-Project\\Zombie Shooter\\Socket\\Server_ShootOutGame\\Server_ShootOutGame\\SocketServer.cs*",
+              "RelativeToolTip": "Socket\\Server_ShootOutGame\\Server_ShootOutGame\\SocketServer.cs*",
+              "ViewState": "AgIAADAAAAAAAAAAAAAIwGEAAAAKAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-03T04:35:55.672Z",
+              "WhenOpened": "2024-10-24T09:44:53.238Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 7,
+              "Title": "Lobby.cs [Design]",
+              "DocumentMoniker": "D:\\University Stuff\\3. HK1 2024 - 2025\\NT106\\Group2-NT106.P12-Project\\Zombie Shooter\\GameForm\\GameForm\\Lobby.cs",
+              "RelativeDocumentMoniker": "GameForm\\GameForm\\Lobby.cs",
+              "ToolTip": "D:\\University Stuff\\3. HK1 2024 - 2025\\NT106\\Group2-NT106.P12-Project\\Zombie Shooter\\GameForm\\GameForm\\Lobby.cs [Design]",
+              "RelativeToolTip": "GameForm\\GameForm\\Lobby.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-24T09:37:53.816Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "SocketData.cs",
+              "DocumentMoniker": "D:\\University Stuff\\3. HK1 2024 - 2025\\NT106\\Group2-NT106.P12-Project\\Zombie Shooter\\Shoot Out Game MOO ICT\\SocketData.cs",
+              "RelativeDocumentMoniker": "Shoot Out Game MOO ICT\\SocketData.cs",
+              "ToolTip": "D:\\University Stuff\\3. HK1 2024 - 2025\\NT106\\Group2-NT106.P12-Project\\Zombie Shooter\\Shoot Out Game MOO ICT\\SocketData.cs",
+              "RelativeToolTip": "Shoot Out Game MOO ICT\\SocketData.cs",
+              "ViewState": "AgIAADoAAAAAAAAAAAAzwEcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-23T02:13:30.274Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "SocketManager.cs",
+              "DocumentMoniker": "D:\\University Stuff\\3. HK1 2024 - 2025\\NT106\\Group2-NT106.P12-Project\\Zombie Shooter\\Shoot Out Game MOO ICT\\SocketManager.cs",
+              "RelativeDocumentMoniker": "Shoot Out Game MOO ICT\\SocketManager.cs",
+              "ToolTip": "D:\\University Stuff\\3. HK1 2024 - 2025\\NT106\\Group2-NT106.P12-Project\\Zombie Shooter\\Shoot Out Game MOO ICT\\SocketManager.cs",
+              "RelativeToolTip": "Shoot Out Game MOO ICT\\SocketManager.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAMgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-23T02:26:07.002Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "Form1.cs",
+              "DocumentMoniker": "D:\\University Stuff\\3. HK1 2024 - 2025\\NT106\\Group2-NT106.P12-Project\\Zombie Shooter\\Shoot Out Game MOO ICT\\Form1.cs",
+              "RelativeDocumentMoniker": "Shoot Out Game MOO ICT\\Form1.cs",
+              "ToolTip": "D:\\University Stuff\\3. HK1 2024 - 2025\\NT106\\Group2-NT106.P12-Project\\Zombie Shooter\\Shoot Out Game MOO ICT\\Form1.cs*",
+              "RelativeToolTip": "Shoot Out Game MOO ICT\\Form1.cs*",
+              "ViewState": "AgIAACoAAAAAAAAAAAAYwLgBAAAlAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-02T14:44:43.176Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Zombie.cs",
+              "DocumentMoniker": "D:\\University Stuff\\3. HK1 2024 - 2025\\NT106\\Group2-NT106.P12-Project\\Zombie Shooter\\Shoot Out Game MOO ICT\\Zombie.cs",
+              "RelativeDocumentMoniker": "Shoot Out Game MOO ICT\\Zombie.cs",
+              "ToolTip": "D:\\University Stuff\\3. HK1 2024 - 2025\\NT106\\Group2-NT106.P12-Project\\Zombie Shooter\\Shoot Out Game MOO ICT\\Zombie.cs",
+              "RelativeToolTip": "Shoot Out Game MOO ICT\\Zombie.cs",
+              "ViewState": "AgIAAB4AAAAAAAAAAAAuwAkAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-03T04:35:55.672Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
               "Title": "Bullet.cs",
-              "DocumentMoniker": "C:\\Users\\ASUS\\Desktop\\Zombie Shooter\\Shoot Out Game MOO ICT\\Bullet.cs",
+              "DocumentMoniker": "D:\\University Stuff\\3. HK1 2024 - 2025\\NT106\\Group2-NT106.P12-Project\\Zombie Shooter\\Shoot Out Game MOO ICT\\Bullet.cs",
               "RelativeDocumentMoniker": "Shoot Out Game MOO ICT\\Bullet.cs",
-              "ToolTip": "C:\\Users\\ASUS\\Desktop\\Zombie Shooter\\Shoot Out Game MOO ICT\\Bullet.cs",
+              "ToolTip": "D:\\University Stuff\\3. HK1 2024 - 2025\\NT106\\Group2-NT106.P12-Project\\Zombie Shooter\\Shoot Out Game MOO ICT\\Bullet.cs",
               "RelativeToolTip": "Shoot Out Game MOO ICT\\Bullet.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAeAAAAAAAAAA==",
+              "ViewState": "AgIAADUAAAAAAAAAAAAQwD0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-02T14:44:13.241Z"
             }
