@@ -58,3 +58,13 @@ D:\Document\Năm 2\Lập trình mạng căn bản\Đồ án CK - Zoombie Project
 D:\Document\Năm 2\Lập trình mạng căn bản\Đồ án CK - Zoombie Project (Source)\Group2-NT106.P12-Project\Zombie Shooter\Shoot Out Game MOO ICT\bin\Debug\Shoot Out Game MOO ICT.exe.config
 D:\Document\Năm 2\Lập trình mạng căn bản\Đồ án CK - Zoombie Project (Source)\Group2-NT106.P12-Project\Zombie Shooter\Shoot Out Game MOO ICT\bin\Debug\Shoot Out Game MOO ICT.exe
 D:\Document\Năm 2\Lập trình mạng căn bản\Đồ án CK - Zoombie Project (Source)\Group2-NT106.P12-Project\Zombie Shooter\Shoot Out Game MOO ICT\bin\Debug\Shoot Out Game MOO ICT.pdb
+E:\NETFramework\Project\Group2-NT106.P12-Project\Zombie Shooter\Shoot Out Game MOO ICT\bin\Debug\Shoot Out Game MOO ICT.exe.config
+E:\NETFramework\Project\Group2-NT106.P12-Project\Zombie Shooter\Shoot Out Game MOO ICT\bin\Debug\Shoot Out Game MOO ICT.exe
+E:\NETFramework\Project\Group2-NT106.P12-Project\Zombie Shooter\Shoot Out Game MOO ICT\bin\Debug\Shoot Out Game MOO ICT.pdb
+E:\NETFramework\Project\Group2-NT106.P12-Project\Zombie Shooter\Shoot Out Game MOO ICT\obj\Debug\Shoot Out Game MOO ICT.csproj.AssemblyReference.cache
+E:\NETFramework\Project\Group2-NT106.P12-Project\Zombie Shooter\Shoot Out Game MOO ICT\obj\Debug\Shoot_Out_Game_MOO_ICT.MainGame.resources
+E:\NETFramework\Project\Group2-NT106.P12-Project\Zombie Shooter\Shoot Out Game MOO ICT\obj\Debug\Shoot_Out_Game_MOO_ICT.Properties.Resources.resources
+E:\NETFramework\Project\Group2-NT106.P12-Project\Zombie Shooter\Shoot Out Game MOO ICT\obj\Debug\Shoot Out Game MOO ICT.csproj.GenerateResource.cache
+E:\NETFramework\Project\Group2-NT106.P12-Project\Zombie Shooter\Shoot Out Game MOO ICT\obj\Debug\Shoot Out Game MOO ICT.csproj.CoreCompileInputs.cache
+E:\NETFramework\Project\Group2-NT106.P12-Project\Zombie Shooter\Shoot Out Game MOO ICT\obj\Debug\Shoot Out Game MOO ICT.exe
+E:\NETFramework\Project\Group2-NT106.P12-Project\Zombie Shooter\Shoot Out Game MOO ICT\obj\Debug\Shoot Out Game MOO ICT.pdb

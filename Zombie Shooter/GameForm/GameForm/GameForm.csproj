@@ -194,5 +194,15 @@
   <ItemGroup>
     <None Include="Resources\ogre.png" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Shoot Out Game MOO ICT\Shoot Out Game MOO ICT.csproj">
+      <Project>{851eab91-8f66-4e83-8415-45d4515b4be7}</Project>
+      <Name>Shoot Out Game MOO ICT</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Socket\Server_ShootOutGame\Server_ShootOutGame\Server_ShootOutGame.csproj">
+      <Project>{49c1afbf-df53-4545-a60c-fdb7981d7783}</Project>
+      <Name>Server_ShootOutGame</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

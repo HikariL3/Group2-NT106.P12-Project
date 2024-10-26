@@ -16,3 +16,12 @@ D:\University Stuff\3. HK1 2024 - 2025\NT106\Group2-NT106.P12-Project\Zombie Sho
 D:\University Stuff\3. HK1 2024 - 2025\NT106\Group2-NT106.P12-Project\Zombie Shooter\Socket\Server_ShootOutGame\Server_ShootOutGame\obj\Debug\Server_ShootOutGame.csproj.CoreCompileInputs.cache
 D:\University Stuff\3. HK1 2024 - 2025\NT106\Group2-NT106.P12-Project\Zombie Shooter\Socket\Server_ShootOutGame\Server_ShootOutGame\obj\Debug\Server_ShootOutGame.exe
 D:\University Stuff\3. HK1 2024 - 2025\NT106\Group2-NT106.P12-Project\Zombie Shooter\Socket\Server_ShootOutGame\Server_ShootOutGame\obj\Debug\Server_ShootOutGame.pdb
+E:\NETFramework\Project\Group2-NT106.P12-Project\Zombie Shooter\Socket\Server_ShootOutGame\Server_ShootOutGame\bin\Debug\Server_ShootOutGame.exe.config
+E:\NETFramework\Project\Group2-NT106.P12-Project\Zombie Shooter\Socket\Server_ShootOutGame\Server_ShootOutGame\bin\Debug\Server_ShootOutGame.exe
+E:\NETFramework\Project\Group2-NT106.P12-Project\Zombie Shooter\Socket\Server_ShootOutGame\Server_ShootOutGame\bin\Debug\Server_ShootOutGame.pdb
+E:\NETFramework\Project\Group2-NT106.P12-Project\Zombie Shooter\Socket\Server_ShootOutGame\Server_ShootOutGame\obj\Debug\Server_ShootOutGame.csproj.AssemblyReference.cache
+E:\NETFramework\Project\Group2-NT106.P12-Project\Zombie Shooter\Socket\Server_ShootOutGame\Server_ShootOutGame\obj\Debug\Server_ShootOutGame.Properties.Resources.resources
+E:\NETFramework\Project\Group2-NT106.P12-Project\Zombie Shooter\Socket\Server_ShootOutGame\Server_ShootOutGame\obj\Debug\Server_ShootOutGame.csproj.GenerateResource.cache
+E:\NETFramework\Project\Group2-NT106.P12-Project\Zombie Shooter\Socket\Server_ShootOutGame\Server_ShootOutGame\obj\Debug\Server_ShootOutGame.csproj.CoreCompileInputs.cache
+E:\NETFramework\Project\Group2-NT106.P12-Project\Zombie Shooter\Socket\Server_ShootOutGame\Server_ShootOutGame\obj\Debug\Server_ShootOutGame.exe
+E:\NETFramework\Project\Group2-NT106.P12-Project\Zombie Shooter\Socket\Server_ShootOutGame\Server_ShootOutGame\obj\Debug\Server_ShootOutGame.pdb
