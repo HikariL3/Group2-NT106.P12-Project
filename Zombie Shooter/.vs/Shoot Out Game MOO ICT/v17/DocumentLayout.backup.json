@@ -1,42 +1,30 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "E:\\NETFramework\\Project\\Group2-NT106.P12-Project\\Zombie Shooter\\",
+  "WorkspaceRootPath": "C:\\Users\\ASUS\\Desktop\\Group2-NT106.P12-Project-Network\\Group2-NT106.P12-Project-Network\\Zombie Shooter\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{851EAB91-8F66-4E83-8415-45D4515B4BE7}|Shoot Out Game MOO ICT\\Shoot Out Game MOO ICT.csproj|e:\\netframework\\project\\group2-nt106.p12-project\\zombie shooter\\shoot out game moo ict\\socketdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{851EAB91-8F66-4E83-8415-45D4515B4BE7}|Shoot Out Game MOO ICT\\Shoot Out Game MOO ICT.csproj|solutionrelative:shoot out game moo ict\\socketdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{49C1AFBF-DF53-4545-A60C-FDB7981D7783}|Socket\\Server_ShootOutGame\\Server_ShootOutGame\\Server_ShootOutGame.csproj|c:\\users\\asus\\desktop\\group2-nt106.p12-project-network\\group2-nt106.p12-project-network\\zombie shooter\\socket\\server_shootoutgame\\server_shootoutgame\\form2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{49C1AFBF-DF53-4545-A60C-FDB7981D7783}|Socket\\Server_ShootOutGame\\Server_ShootOutGame\\Server_ShootOutGame.csproj|solutionrelative:socket\\server_shootoutgame\\server_shootoutgame\\form2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{88726182-6EF2-4E5A-95B4-154B9E2BB329}|GameForm\\GameForm\\GameForm.csproj|E:\\NETFramework\\Project\\Group2-NT106.P12-Project\\Zombie Shooter\\gameform\\gameform\\lobby.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{88726182-6EF2-4E5A-95B4-154B9E2BB329}|GameForm\\GameForm\\GameForm.csproj|solutionrelative:gameform\\gameform\\lobby.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{49C1AFBF-DF53-4545-A60C-FDB7981D7783}|Socket\\Server_ShootOutGame\\Server_ShootOutGame\\Server_ShootOutGame.csproj|C:\\Users\\ASUS\\Desktop\\Group2-NT106.P12-Project-Network\\Group2-NT106.P12-Project-Network\\Zombie Shooter\\socket\\server_shootoutgame\\server_shootoutgame\\form2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{49C1AFBF-DF53-4545-A60C-FDB7981D7783}|Socket\\Server_ShootOutGame\\Server_ShootOutGame\\Server_ShootOutGame.csproj|solutionrelative:socket\\server_shootoutgame\\server_shootoutgame\\form2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{49C1AFBF-DF53-4545-A60C-FDB7981D7783}|Socket\\Server_ShootOutGame\\Server_ShootOutGame\\Server_ShootOutGame.csproj|E:\\NETFramework\\Project\\Group2-NT106.P12-Project\\Zombie Shooter\\socket\\server_shootoutgame\\server_shootoutgame\\socketserver.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{49C1AFBF-DF53-4545-A60C-FDB7981D7783}|Socket\\Server_ShootOutGame\\Server_ShootOutGame\\Server_ShootOutGame.csproj|solutionrelative:socket\\server_shootoutgame\\server_shootoutgame\\socketserver.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{88726182-6EF2-4E5A-95B4-154B9E2BB329}|GameForm\\GameForm\\GameForm.csproj|C:\\Users\\ASUS\\Desktop\\Group2-NT106.P12-Project-Network\\Group2-NT106.P12-Project-Network\\Zombie Shooter\\gameform\\gameform\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{88726182-6EF2-4E5A-95B4-154B9E2BB329}|GameForm\\GameForm\\GameForm.csproj|solutionrelative:gameform\\gameform\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{851EAB91-8F66-4E83-8415-45D4515B4BE7}|Shoot Out Game MOO ICT\\Shoot Out Game MOO ICT.csproj|E:\\NETFramework\\Project\\Group2-NT106.P12-Project\\Zombie Shooter\\shoot out game moo ict\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{851EAB91-8F66-4E83-8415-45D4515B4BE7}|Shoot Out Game MOO ICT\\Shoot Out Game MOO ICT.csproj|solutionrelative:shoot out game moo ict\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{88726182-6EF2-4E5A-95B4-154B9E2BB329}|GameForm\\GameForm\\GameForm.csproj|C:\\Users\\ASUS\\Desktop\\Group2-NT106.P12-Project-Network\\Group2-NT106.P12-Project-Network\\Zombie Shooter\\gameform\\gameform\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{88726182-6EF2-4E5A-95B4-154B9E2BB329}|GameForm\\GameForm\\GameForm.csproj|solutionrelative:gameform\\gameform\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{851EAB91-8F66-4E83-8415-45D4515B4BE7}|Shoot Out Game MOO ICT\\Shoot Out Game MOO ICT.csproj|E:\\NETFramework\\Project\\Group2-NT106.P12-Project\\Zombie Shooter\\shoot out game moo ict\\socketmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{851EAB91-8F66-4E83-8415-45D4515B4BE7}|Shoot Out Game MOO ICT\\Shoot Out Game MOO ICT.csproj|solutionrelative:shoot out game moo ict\\socketmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{49C1AFBF-DF53-4545-A60C-FDB7981D7783}|Socket\\Server_ShootOutGame\\Server_ShootOutGame\\Server_ShootOutGame.csproj|C:\\Users\\ASUS\\Desktop\\Group2-NT106.P12-Project-Network\\Group2-NT106.P12-Project-Network\\Zombie Shooter\\socket\\server_shootoutgame\\server_shootoutgame\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{49C1AFBF-DF53-4545-A60C-FDB7981D7783}|Socket\\Server_ShootOutGame\\Server_ShootOutGame\\Server_ShootOutGame.csproj|solutionrelative:socket\\server_shootoutgame\\server_shootoutgame\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{851EAB91-8F66-4E83-8415-45D4515B4BE7}|Shoot Out Game MOO ICT\\Shoot Out Game MOO ICT.csproj|E:\\NETFramework\\Project\\Group2-NT106.P12-Project\\Zombie Shooter\\shoot out game moo ict\\socketclient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{851EAB91-8F66-4E83-8415-45D4515B4BE7}|Shoot Out Game MOO ICT\\Shoot Out Game MOO ICT.csproj|C:\\Users\\ASUS\\Desktop\\Group2-NT106.P12-Project-Network\\Group2-NT106.P12-Project-Network\\Zombie Shooter\\shoot out game moo ict\\socketclient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{851EAB91-8F66-4E83-8415-45D4515B4BE7}|Shoot Out Game MOO ICT\\Shoot Out Game MOO ICT.csproj|solutionrelative:shoot out game moo ict\\socketclient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{851EAB91-8F66-4E83-8415-45D4515B4BE7}|Shoot Out Game MOO ICT\\Shoot Out Game MOO ICT.csproj|E:\\NETFramework\\Project\\Group2-NT106.P12-Project\\Zombie Shooter\\shoot out game moo ict\\zombie.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{851EAB91-8F66-4E83-8415-45D4515B4BE7}|Shoot Out Game MOO ICT\\Shoot Out Game MOO ICT.csproj|solutionrelative:shoot out game moo ict\\zombie.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{851EAB91-8F66-4E83-8415-45D4515B4BE7}|Shoot Out Game MOO ICT\\Shoot Out Game MOO ICT.csproj|E:\\NETFramework\\Project\\Group2-NT106.P12-Project\\Zombie Shooter\\shoot out game moo ict\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{851EAB91-8F66-4E83-8415-45D4515B4BE7}|Shoot Out Game MOO ICT\\Shoot Out Game MOO ICT.csproj|solutionrelative:shoot out game moo ict\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{851EAB91-8F66-4E83-8415-45D4515B4BE7}|Shoot Out Game MOO ICT\\Shoot Out Game MOO ICT.csproj|E:\\NETFramework\\Project\\Group2-NT106.P12-Project\\Zombie Shooter\\shoot out game moo ict\\bullet.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{851EAB91-8F66-4E83-8415-45D4515B4BE7}|Shoot Out Game MOO ICT\\Shoot Out Game MOO ICT.csproj|solutionrelative:shoot out game moo ict\\bullet.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -46,116 +34,87 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 1,
           "Children": [
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\ASUS\\Desktop\\Group2-NT106.P12-Project-Network\\Group2-NT106.P12-Project-Network\\Zombie Shooter\\Socket\\Server_ShootOutGame\\Server_ShootOutGame\\Program.cs",
+              "RelativeDocumentMoniker": "Socket\\Server_ShootOutGame\\Server_ShootOutGame\\Program.cs",
+              "ToolTip": "C:\\Users\\ASUS\\Desktop\\Group2-NT106.P12-Project-Network\\Group2-NT106.P12-Project-Network\\Zombie Shooter\\Socket\\Server_ShootOutGame\\Server_ShootOutGame\\Program.cs",
+              "RelativeToolTip": "Socket\\Server_ShootOutGame\\Server_ShootOutGame\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-27T14:43:18.013Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Form2.cs",
+              "DocumentMoniker": "C:\\Users\\ASUS\\Desktop\\Group2-NT106.P12-Project-Network\\Group2-NT106.P12-Project-Network\\Zombie Shooter\\Socket\\Server_ShootOutGame\\Server_ShootOutGame\\Form2.cs",
+              "RelativeDocumentMoniker": "Socket\\Server_ShootOutGame\\Server_ShootOutGame\\Form2.cs",
+              "ToolTip": "C:\\Users\\ASUS\\Desktop\\Group2-NT106.P12-Project-Network\\Group2-NT106.P12-Project-Network\\Zombie Shooter\\Socket\\Server_ShootOutGame\\Server_ShootOutGame\\Form2.cs",
+              "RelativeToolTip": "Socket\\Server_ShootOutGame\\Server_ShootOutGame\\Form2.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAAIAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-27T14:33:26.601Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Form2.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\ASUS\\Desktop\\Group2-NT106.P12-Project-Network\\Group2-NT106.P12-Project-Network\\Zombie Shooter\\Socket\\Server_ShootOutGame\\Server_ShootOutGame\\Form2.cs",
+              "RelativeDocumentMoniker": "Socket\\Server_ShootOutGame\\Server_ShootOutGame\\Form2.cs",
+              "ToolTip": "C:\\Users\\ASUS\\Desktop\\Group2-NT106.P12-Project-Network\\Group2-NT106.P12-Project-Network\\Zombie Shooter\\Socket\\Server_ShootOutGame\\Server_ShootOutGame\\Form2.cs [Design]",
+              "RelativeToolTip": "Socket\\Server_ShootOutGame\\Server_ShootOutGame\\Form2.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-27T13:20:54.168Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Login.cs",
+              "DocumentMoniker": "C:\\Users\\ASUS\\Desktop\\Group2-NT106.P12-Project-Network\\Group2-NT106.P12-Project-Network\\Zombie Shooter\\GameForm\\GameForm\\Login.cs",
+              "RelativeDocumentMoniker": "GameForm\\GameForm\\Login.cs",
+              "ToolTip": "C:\\Users\\ASUS\\Desktop\\Group2-NT106.P12-Project-Network\\Group2-NT106.P12-Project-Network\\Zombie Shooter\\GameForm\\GameForm\\Login.cs",
+              "RelativeToolTip": "GameForm\\GameForm\\Login.cs",
+              "ViewState": "AgIAACkAAAAAAAAAAAAcwDAAAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-26T09:50:14.147Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 5,
               "Title": "SocketClient.cs",
-              "DocumentMoniker": "E:\\NETFramework\\Project\\Group2-NT106.P12-Project\\Zombie Shooter\\Shoot Out Game MOO ICT\\SocketClient.cs",
+              "DocumentMoniker": "C:\\Users\\ASUS\\Desktop\\Group2-NT106.P12-Project-Network\\Group2-NT106.P12-Project-Network\\Zombie Shooter\\Shoot Out Game MOO ICT\\SocketClient.cs",
               "RelativeDocumentMoniker": "Shoot Out Game MOO ICT\\SocketClient.cs",
-              "ToolTip": "E:\\NETFramework\\Project\\Group2-NT106.P12-Project\\Zombie Shooter\\Shoot Out Game MOO ICT\\SocketClient.cs",
+              "ToolTip": "C:\\Users\\ASUS\\Desktop\\Group2-NT106.P12-Project-Network\\Group2-NT106.P12-Project-Network\\Zombie Shooter\\Shoot Out Game MOO ICT\\SocketClient.cs",
               "RelativeToolTip": "Shoot Out Game MOO ICT\\SocketClient.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAFAAAAAAAAAA==",
+              "ViewState": "AgIAAMQAAAAAAAAAAAAqwNkAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-22T07:35:45.342Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Form1.cs [Design]",
-              "DocumentMoniker": "E:\\NETFramework\\Project\\Group2-NT106.P12-Project\\Zombie Shooter\\Shoot Out Game MOO ICT\\Form1.cs",
-              "RelativeDocumentMoniker": "Shoot Out Game MOO ICT\\Form1.cs",
-              "ToolTip": "D:\\University Stuff\\3. HK1 2024 - 2025\\NT106\\Group2-NT106.P12-Project\\Zombie Shooter\\Shoot Out Game MOO ICT\\Form1.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-04T04:41:11.889Z"
+              "WhenOpened": "2024-10-26T10:14:01.745Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "SocketServer.cs",
-              "DocumentMoniker": "E:\\NETFramework\\Project\\Group2-NT106.P12-Project\\Zombie Shooter\\Socket\\Server_ShootOutGame\\Server_ShootOutGame\\SocketServer.cs",
-              "RelativeDocumentMoniker": "Socket\\Server_ShootOutGame\\Server_ShootOutGame\\SocketServer.cs",
-              "ToolTip": "E:\\NETFramework\\Project\\Group2-NT106.P12-Project\\Zombie Shooter\\Socket\\Server_ShootOutGame\\Server_ShootOutGame\\SocketServer.cs",
-              "RelativeToolTip": "Socket\\Server_ShootOutGame\\Server_ShootOutGame\\SocketServer.cs",
-              "ViewState": "AgIAADAAAAAAAAAAAAAIwGEAAAAKAAAAAAAAAA==",
+              "Title": "Login.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\ASUS\\Desktop\\Group2-NT106.P12-Project-Network\\Group2-NT106.P12-Project-Network\\Zombie Shooter\\GameForm\\GameForm\\Login.cs",
+              "RelativeDocumentMoniker": "GameForm\\GameForm\\Login.cs",
+              "ToolTip": "D:\\Document\\N\u0103m 2\\L\u1EADp tr\u00ECnh m\u1EA1ng c\u0103n b\u1EA3n\\Group2-NT106.P12-Project-Network\\Group2-NT106.P12-Project-Network\\Zombie Shooter\\GameForm\\GameForm\\Login.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-24T09:44:53.238Z"
-            },
+              "WhenOpened": "2024-10-26T09:37:47.049Z"
+            }
+          ]
+        },
+        {
+          "DockedWidth": 55,
+          "SelectedChildIndex": -1,
+          "Children": [
             {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Lobby.cs [Design]",
-              "DocumentMoniker": "E:\\NETFramework\\Project\\Group2-NT106.P12-Project\\Zombie Shooter\\GameForm\\GameForm\\Lobby.cs",
-              "RelativeDocumentMoniker": "GameForm\\GameForm\\Lobby.cs",
-              "ToolTip": "D:\\University Stuff\\3. HK1 2024 - 2025\\NT106\\Group2-NT106.P12-Project\\Zombie Shooter\\GameForm\\GameForm\\Lobby.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-24T09:37:53.816Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "SocketData.cs",
-              "DocumentMoniker": "E:\\NETFramework\\Project\\Group2-NT106.P12-Project\\Zombie Shooter\\Shoot Out Game MOO ICT\\SocketData.cs",
-              "RelativeDocumentMoniker": "Shoot Out Game MOO ICT\\SocketData.cs",
-              "ToolTip": "E:\\NETFramework\\Project\\Group2-NT106.P12-Project\\Zombie Shooter\\Shoot Out Game MOO ICT\\SocketData.cs",
-              "RelativeToolTip": "Shoot Out Game MOO ICT\\SocketData.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEcAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-23T02:13:30.274Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "SocketManager.cs",
-              "DocumentMoniker": "E:\\NETFramework\\Project\\Group2-NT106.P12-Project\\Zombie Shooter\\Shoot Out Game MOO ICT\\SocketManager.cs",
-              "RelativeDocumentMoniker": "Shoot Out Game MOO ICT\\SocketManager.cs",
-              "ToolTip": "E:\\NETFramework\\Project\\Group2-NT106.P12-Project\\Zombie Shooter\\Shoot Out Game MOO ICT\\SocketManager.cs",
-              "RelativeToolTip": "Shoot Out Game MOO ICT\\SocketManager.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAMgAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-23T02:26:07.002Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "Form1.cs",
-              "DocumentMoniker": "E:\\NETFramework\\Project\\Group2-NT106.P12-Project\\Zombie Shooter\\Shoot Out Game MOO ICT\\Form1.cs",
-              "RelativeDocumentMoniker": "Shoot Out Game MOO ICT\\Form1.cs",
-              "ToolTip": "E:\\NETFramework\\Project\\Group2-NT106.P12-Project\\Zombie Shooter\\Shoot Out Game MOO ICT\\Form1.cs",
-              "RelativeToolTip": "Shoot Out Game MOO ICT\\Form1.cs",
-              "ViewState": "AgIAACoAAAAAAAAAAAAYwLgBAAAlAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-02T14:44:43.176Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "Zombie.cs",
-              "DocumentMoniker": "E:\\NETFramework\\Project\\Group2-NT106.P12-Project\\Zombie Shooter\\Shoot Out Game MOO ICT\\Zombie.cs",
-              "RelativeDocumentMoniker": "Shoot Out Game MOO ICT\\Zombie.cs",
-              "ToolTip": "E:\\NETFramework\\Project\\Group2-NT106.P12-Project\\Zombie Shooter\\Shoot Out Game MOO ICT\\Zombie.cs",
-              "RelativeToolTip": "Shoot Out Game MOO ICT\\Zombie.cs",
-              "ViewState": "AgIAAB4AAAAAAAAAAAAuwAkAAAAgAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-03T04:35:55.672Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "Bullet.cs",
-              "DocumentMoniker": "E:\\NETFramework\\Project\\Group2-NT106.P12-Project\\Zombie Shooter\\Shoot Out Game MOO ICT\\Bullet.cs",
-              "RelativeDocumentMoniker": "Shoot Out Game MOO ICT\\Bullet.cs",
-              "ToolTip": "E:\\NETFramework\\Project\\Group2-NT106.P12-Project\\Zombie Shooter\\Shoot Out Game MOO ICT\\Bullet.cs",
-              "RelativeToolTip": "Shoot Out Game MOO ICT\\Bullet.cs",
-              "ViewState": "AgIAADUAAAAAAAAAAAAQwD0AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-02T14:44:13.241Z"
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
             }
           ]
         }

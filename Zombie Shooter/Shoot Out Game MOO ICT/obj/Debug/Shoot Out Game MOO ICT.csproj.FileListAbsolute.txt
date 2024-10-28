@@ -68,3 +68,13 @@ E:\NETFramework\Project\Group2-NT106.P12-Project\Zombie Shooter\Shoot Out Game M
 E:\NETFramework\Project\Group2-NT106.P12-Project\Zombie Shooter\Shoot Out Game MOO ICT\obj\Debug\Shoot Out Game MOO ICT.csproj.CoreCompileInputs.cache
 E:\NETFramework\Project\Group2-NT106.P12-Project\Zombie Shooter\Shoot Out Game MOO ICT\obj\Debug\Shoot Out Game MOO ICT.exe
 E:\NETFramework\Project\Group2-NT106.P12-Project\Zombie Shooter\Shoot Out Game MOO ICT\obj\Debug\Shoot Out Game MOO ICT.pdb
+C:\Users\ASUS\Desktop\Group2-NT106.P12-Project-Network\Group2-NT106.P12-Project-Network\Zombie Shooter\Shoot Out Game MOO ICT\bin\Debug\Shoot Out Game MOO ICT.exe.config
+C:\Users\ASUS\Desktop\Group2-NT106.P12-Project-Network\Group2-NT106.P12-Project-Network\Zombie Shooter\Shoot Out Game MOO ICT\bin\Debug\Shoot Out Game MOO ICT.exe
+C:\Users\ASUS\Desktop\Group2-NT106.P12-Project-Network\Group2-NT106.P12-Project-Network\Zombie Shooter\Shoot Out Game MOO ICT\bin\Debug\Shoot Out Game MOO ICT.pdb
+C:\Users\ASUS\Desktop\Group2-NT106.P12-Project-Network\Group2-NT106.P12-Project-Network\Zombie Shooter\Shoot Out Game MOO ICT\obj\Debug\Shoot Out Game MOO ICT.csproj.AssemblyReference.cache
+C:\Users\ASUS\Desktop\Group2-NT106.P12-Project-Network\Group2-NT106.P12-Project-Network\Zombie Shooter\Shoot Out Game MOO ICT\obj\Debug\Shoot_Out_Game_MOO_ICT.MainGame.resources
+C:\Users\ASUS\Desktop\Group2-NT106.P12-Project-Network\Group2-NT106.P12-Project-Network\Zombie Shooter\Shoot Out Game MOO ICT\obj\Debug\Shoot_Out_Game_MOO_ICT.Properties.Resources.resources
+C:\Users\ASUS\Desktop\Group2-NT106.P12-Project-Network\Group2-NT106.P12-Project-Network\Zombie Shooter\Shoot Out Game MOO ICT\obj\Debug\Shoot Out Game MOO ICT.csproj.GenerateResource.cache
+C:\Users\ASUS\Desktop\Group2-NT106.P12-Project-Network\Group2-NT106.P12-Project-Network\Zombie Shooter\Shoot Out Game MOO ICT\obj\Debug\Shoot Out Game MOO ICT.csproj.CoreCompileInputs.cache
+C:\Users\ASUS\Desktop\Group2-NT106.P12-Project-Network\Group2-NT106.P12-Project-Network\Zombie Shooter\Shoot Out Game MOO ICT\obj\Debug\Shoot Out Game MOO ICT.exe
+C:\Users\ASUS\Desktop\Group2-NT106.P12-Project-Network\Group2-NT106.P12-Project-Network\Zombie Shooter\Shoot Out Game MOO ICT\obj\Debug\Shoot Out Game MOO ICT.pdb

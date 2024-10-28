@@ -13,7 +13,6 @@ using Shoot_Out_Game_MOO_ICT;
 namespace Client
 {
     static class SocketClient
-
     {
         [STAThread]
         static void Main()
@@ -23,6 +22,7 @@ namespace Client
             Application.Run(new MainGame());
         }
     }
+
     public class GameClient
     {
         public static Socket clientSocket;
@@ -130,6 +130,28 @@ namespace Client
             localPlayer.Position = new PointF(localPlayer.Position.X + deltaX, localPlayer.Position.Y + deltaY);
             SendData($"PlayerUpdate;{localPlayer.Id},{localPlayer.Position.X},{localPlayer.Position.Y}");
         }
+
+        // Ngắt kết nối từ server
+        public static void Disconnect()
+        {
+            if (clientSocket != null && clientSocket.Connected)
+            {
+                try
+                {
+                    clientSocket.Shutdown(SocketShutdown.Both);
+                    clientSocket.Close();
+                }
+                catch (SocketException ex)
+                {
+                    // Xử lý lỗi nếu cần
+                    Console.WriteLine($"Error disconnecting: {ex.Message}");
+                }
+                finally
+                {
+                    clientSocket = null; // Đặt lại clientSocket về null
+                }
+            }
+        }
     }
 
     public class Player
@@ -150,6 +172,13 @@ namespace Client
         {
             // Khởi tạo giao diện game
             this.DoubleBuffered = true; // Giúp giảm hiện tượng nhấp nháy khi vẽ
+            this.FormClosing += GameForm_FormClosing; // Đăng ký sự kiện FormClosing
+        }
+
+        // Xử lý sự kiện khi form đóng
+        private void GameForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            GameClient.Disconnect(); // Gọi Disconnect trước khi form đóng
         }
 
         protected override void OnPaint(PaintEventArgs e)
