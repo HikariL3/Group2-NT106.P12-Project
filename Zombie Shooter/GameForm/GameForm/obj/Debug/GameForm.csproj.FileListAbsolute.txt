@@ -61,6 +61,7 @@ E:\NETFramework\Project\Group2-NT106.P12-Project\Zombie Shooter\GameForm\GameFor
 E:\NETFramework\Project\Group2-NT106.P12-Project\Zombie Shooter\GameForm\GameForm\obj\Debug\GameForm.csproj.CoreCompileInputs.cache
 E:\NETFramework\Project\Group2-NT106.P12-Project\Zombie Shooter\GameForm\GameForm\obj\Debug\GameForm.exe
 E:\NETFramework\Project\Group2-NT106.P12-Project\Zombie Shooter\GameForm\GameForm\obj\Debug\GameForm.pdb
+<<<<<<< HEAD
 C:\Users\ASUS\Desktop\Group2-NT106.P12-Project-Network\Group2-NT106.P12-Project-Network\Zombie Shooter\GameForm\GameForm\bin\Debug\GameForm.exe.config
 C:\Users\ASUS\Desktop\Group2-NT106.P12-Project-Network\Group2-NT106.P12-Project-Network\Zombie Shooter\GameForm\GameForm\bin\Debug\GameForm.exe
 C:\Users\ASUS\Desktop\Group2-NT106.P12-Project-Network\Group2-NT106.P12-Project-Network\Zombie Shooter\GameForm\GameForm\bin\Debug\GameForm.pdb
@@ -83,3 +84,8 @@ C:\Users\ASUS\Desktop\Group2-NT106.P12-Project-Network\Group2-NT106.P12-Project-
 C:\Users\ASUS\Desktop\Group2-NT106.P12-Project-Network\Group2-NT106.P12-Project-Network\Zombie Shooter\GameForm\GameForm\obj\Debug\GameForm.csproj.Up2Date
 C:\Users\ASUS\Desktop\Group2-NT106.P12-Project-Network\Group2-NT106.P12-Project-Network\Zombie Shooter\GameForm\GameForm\obj\Debug\GameForm.exe
 C:\Users\ASUS\Desktop\Group2-NT106.P12-Project-Network\Group2-NT106.P12-Project-Network\Zombie Shooter\GameForm\GameForm\obj\Debug\GameForm.pdb
+=======
+E:\NETFramework\Project\Group2-NT106.P12-Project\Zombie Shooter\GameForm\GameForm\bin\Debug\GameForm.exe.config
+E:\NETFramework\Project\Group2-NT106.P12-Project\Zombie Shooter\GameForm\GameForm\bin\Debug\GameForm.pdb
+E:\NETFramework\Project\Group2-NT106.P12-Project\Zombie Shooter\GameForm\GameForm\obj\Debug\GameForm.csproj.Up2Date
+>>>>>>> c68bbb2e3bf0dd3030ec364065c7ecd255efc1a7
