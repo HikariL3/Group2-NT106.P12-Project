@@ -12,7 +12,7 @@ namespace Server_ShootOutGame
     public partial class Form2 : Form
     {
         private static List<Player> connectedPlayers = new List<Player>();
-        private static List<Room> rooms = new List<Room>();
+        //private static List<Room> rooms = new List<Room>();
         private static List<Lobby> lobbies = new List<Lobby>();
         private static readonly int port = 8989;
         private TcpListener server;
@@ -90,7 +90,7 @@ namespace Server_ShootOutGame
                         player.IsHost = true;
                         UpdateInfo($"{player.PlayerName} is the host.");
                     }
-                    SendLobbyInfoToAll(player);
+                    //SendLobbyInfoToAll(player);
                     break;
 
                 case "DISCONNECT":
@@ -101,8 +101,25 @@ namespace Server_ShootOutGame
                     CreateRoom(player, arrPayload[1]);
                     break;
 
+                case "SEND_ROOM_LIST":
+                    SendRoomListToAll();
+                    break;
+
                 case "JOIN_ROOM":
                     JoinRoom(player, arrPayload[1]);
+                    break;
+
+                case "SEND_LOBBY":
+                    SendLobbyInfoToAll(player, arrPayload[1]);
+                    break;
+
+                case "READY":
+                    //var lobby = FindLobbyByPlayer(player);
+                    string readyInfo = $"READY_INFO;{player.PlayerName}";
+                    foreach (var _player in connectedPlayers)
+                    {
+                        SendMessageToPlayer(_player, readyInfo);
+                    }
                     break;
 
                 case "START":
@@ -152,71 +169,40 @@ namespace Server_ShootOutGame
                 }
         */
 
-        //Phiên bản khác của hàm CreateRoom
         private void CreateRoom(Player player, string id)
         {
             string roomId;
             if (!string.IsNullOrEmpty(id))
             {
-                 roomId = GenerateRoomId();
+                roomId = id;
             }
             else
             {
-                 roomId = id;
+                roomId = GenerateRoomId();
             }
-            
-            Room newRoom = new Room
+            Lobby newLobby = new Lobby
             {
                 RoomId = roomId,
                 Host = player,
                 Players = new List<Player> { player }
             };
-            rooms.Add(newRoom);
-
-            //Lobby newLobby = new Lobby
-            //{
-            //    Host = player,
-            //    Players = new List<Player> { player }
-            //};
-            //lobbies.Add(newLobby);
+            lobbies.Add(newLobby);
 
             UpdateInfo($"Lobby {roomId} has been created by {player.PlayerName}.");
             SendRoomListToAll();
+            string joinMessage = $"JOINED;{roomId}";
+            SendMessageToPlayer(player, joinMessage);
+
         }
-
-        //private void JoinRoom(Player player, string roomId)
-        //{
-        //    var lobby = lobbies.SingleOrDefault(r => r.Host.PlayerName == roomId);
-        //    if (lobby != null && lobby.Players.Count < 4)
-        //    {
-        //        lobby.Players.Add(player);
-        //        SendRoomListToAll();
-
-        //        string joinMessage = $"JOINED;{player.PlayerName};{roomId}";
-        //        BroadcastMessage(joinMessage, player);
-        //    }
-        //    else
-        //    {
-        //        string errorMessage = $"ERROR;Room {roomId} is full or does not exist.";
-        //        SendMessageToPlayer(player, errorMessage);
-        //    }
-        //}
 
         private void JoinRoom(Player player, string roomId)
         {
-            var room = rooms.SingleOrDefault(r => r.RoomId == roomId);
-            if (room != null && room.Players.Count < 4)
+            var lobby = lobbies.SingleOrDefault(r => r.RoomId == roomId);
+            if (lobby != null && lobby.Players.Count < 4)
             {
-                room.Players.Add(player);
-                //SendRoomListToAll();
-
-                string joinMessage = $"JOINED;{roomId};{player.PlayerName}";
-                //BroadcastMessage(joinMessage, player);
-
-                foreach (var _player in connectedPlayers)
-                {
-                    SendMessageToPlayer(_player, joinMessage);
-                }
+                lobby.Players.Add(player);
+                string joinMessage = $"JOINED;{roomId}";
+                SendMessageToPlayer(player, joinMessage);
             }
             else
             {
@@ -224,6 +210,29 @@ namespace Server_ShootOutGame
                 SendMessageToPlayer(player, errorMessage);
             }
         }
+
+        //private void JoinRoom(Player player, string roomId)
+        //{
+        //    var lobby = rooms.SingleOrDefault(r => r.RoomId == roomId);
+        //    if (room != null && room.Players.Count < 4)
+        //    {
+        //        room.Players.Add(player);
+        //        //SendRoomListToAll();
+
+        //        string joinMessage = $"JOINED;{roomId};{player.PlayerName}";
+        //        //BroadcastMessage(joinMessage, player);
+
+        //        foreach (var _player in connectedPlayers)
+        //        {
+        //            SendMessageToPlayer(_player, joinMessage);
+        //        }
+        //    }
+        //    else
+        //    {
+        //        string errorMessage = $"ERROR;Room {roomId} is full or does not exist.";
+        //        SendMessageToPlayer(player, errorMessage);
+        //    }
+        //}
 
         private void StartGameForLobby(Player player)
         {
@@ -291,12 +300,13 @@ namespace Server_ShootOutGame
             }
         }
 
+        //Hàm này đã sửa
         private void SendRoomList(Player player)
         {
             StringBuilder roomList = new StringBuilder("ROOMLIST;");
-            foreach (var room in rooms)
+            foreach (var lobby in lobbies)
             {
-                roomList.Append($"{room.RoomId};{room.Host.PlayerName};{(room.Players.Count < 4 ? "Available" : "Full")};");
+                roomList.Append($"{lobby.RoomId};{lobby.Host.PlayerName};");//sửa khúc này
             }
 
             SendMessageToPlayer(player, roomList.ToString());
@@ -309,12 +319,17 @@ namespace Server_ShootOutGame
 
         private void ShowingInfo_TextChanged(object sender, EventArgs e) { }
 
-        private void SendLobbyInfoToAll(Player player)
+        //hàm này đã sửa
+        private void SendLobbyInfoToAll(Player player, string roomId)
         {
-            foreach (var lobby in lobbies)
+            var lobby = lobbies.FirstOrDefault(r => r.RoomId == roomId);
+            if(lobby != null)
             {
-                string lobbyInfo = $"LOBBY_INFO;{lobby.Host.PlayerName};{lobby.Players.Count};{string.Join(",", lobby.Players.Select(p => p.PlayerName))}";
-                SendMessageToPlayer(player, lobbyInfo);
+                string lobbyInfo = $"LOBBY_INFO;{lobby.RoomId};{lobby.Players.Count};{string.Join(",", lobby.Players.Select(p => p.PlayerName))}";           
+                foreach (var _player in connectedPlayers)
+                {
+                    SendMessageToPlayer(_player, lobbyInfo);//sửa chỗ này
+                }
             }
         }
         public void UpdateInfo(string message)
@@ -375,15 +390,17 @@ namespace Server_ShootOutGame
         public int KillCount { get; set; } = 0;
     }
 
-    public class Room
-    {
-        public string RoomId { get; set; }
-        public Player Host { get; set; }
-        public List<Player> Players { get; set; } = new List<Player>();
-    }
+    //public class Room
+    //{
+    //    public string RoomId { get; set; }
+    //    public Player Host { get; set; }
+    //    public List<Player> Players { get; set; } = new List<Player>();
+    //    //public List<string> PlayersName { get; set; } = new List<string>();
+    //}
 
     public class Lobby
     {
+        public string RoomId{ get; set; }
         public Player Host { get; set; }
         public List<Player> Players { get; set; } = new List<Player>();
     }

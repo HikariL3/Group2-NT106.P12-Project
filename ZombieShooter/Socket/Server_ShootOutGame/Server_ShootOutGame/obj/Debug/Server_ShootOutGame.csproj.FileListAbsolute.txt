@@ -65,3 +65,13 @@ E:\NETFramework\Zombie Shooter\Socket\Server_ShootOutGame\Server_ShootOutGame\ob
 E:\NETFramework\Zombie Shooter\Socket\Server_ShootOutGame\Server_ShootOutGame\obj\Debug\Server_ShootOutGame.csproj.CoreCompileInputs.cache
 E:\NETFramework\Zombie Shooter\Socket\Server_ShootOutGame\Server_ShootOutGame\obj\Debug\Server_ShootOutGame.exe
 E:\NETFramework\Zombie Shooter\Socket\Server_ShootOutGame\Server_ShootOutGame\obj\Debug\Server_ShootOutGame.pdb
+E:\NETFramework\Project\ZombieShooter\Socket\Server_ShootOutGame\Server_ShootOutGame\bin\Debug\Server_ShootOutGame.exe.config
+E:\NETFramework\Project\ZombieShooter\Socket\Server_ShootOutGame\Server_ShootOutGame\bin\Debug\Server_ShootOutGame.exe
+E:\NETFramework\Project\ZombieShooter\Socket\Server_ShootOutGame\Server_ShootOutGame\bin\Debug\Server_ShootOutGame.pdb
+E:\NETFramework\Project\ZombieShooter\Socket\Server_ShootOutGame\Server_ShootOutGame\obj\Debug\Server_ShootOutGame.csproj.AssemblyReference.cache
+E:\NETFramework\Project\ZombieShooter\Socket\Server_ShootOutGame\Server_ShootOutGame\obj\Debug\Server_ShootOutGame.Form2.resources
+E:\NETFramework\Project\ZombieShooter\Socket\Server_ShootOutGame\Server_ShootOutGame\obj\Debug\Server_ShootOutGame.Properties.Resources.resources
+E:\NETFramework\Project\ZombieShooter\Socket\Server_ShootOutGame\Server_ShootOutGame\obj\Debug\Server_ShootOutGame.csproj.GenerateResource.cache
+E:\NETFramework\Project\ZombieShooter\Socket\Server_ShootOutGame\Server_ShootOutGame\obj\Debug\Server_ShootOutGame.csproj.CoreCompileInputs.cache
+E:\NETFramework\Project\ZombieShooter\Socket\Server_ShootOutGame\Server_ShootOutGame\obj\Debug\Server_ShootOutGame.exe
+E:\NETFramework\Project\ZombieShooter\Socket\Server_ShootOutGame\Server_ShootOutGame\obj\Debug\Server_ShootOutGame.pdb

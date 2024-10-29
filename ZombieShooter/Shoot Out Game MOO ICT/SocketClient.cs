@@ -30,8 +30,10 @@ namespace Client
         public static List<Player> players = new List<Player>();
         public static Player localPlayer;
 
-        public static List<Room> rooms = new List<Room>();
-        public static string id;
+        public static List<Lobby> lobbies = new List<Lobby>();
+        public static string joinedRoom;
+        public static Lobby joinedLobby;
+      
 
         // Kết nối đến server
         public static void ConnectToServer(IPEndPoint serverEP)
@@ -76,37 +78,81 @@ namespace Client
                     HandleCollision(payload);
                     break;
                 // Thêm các loại thông điệp khác nếu cần
-                case "ROOMLIST":
-                    UpdateRoomList(payload);
+                case "ROOMLIST": 
+                    AddRoomList(payload);
                     break ;
 
                 case "JOINED":
+                    joinedRoom = payload[1];
+                    var lobby = lobbies.SingleOrDefault(r => r.RoomId == payload[1]);
+                    if (lobby != null)
+                    {
+                        joinedLobby = lobby;
+                    }
+                    break;
+
+                case "LOBBY_INFO":
                     UpdateLobby(payload);
+                    break;
+
+                case "READY_INFO":
+                    UpdateReadyInfo(payload);
                     break;
             }
         }
         //Cập nhập danh sách phòng
-        private static void UpdateRoomList(string[] payload)
+        private static void AddRoomList(string[] payload)
         {
-            id = payload[1];
-            for(int i = 1; i < payload.Length-1; i += 3)
+            for(int i = 1; i < payload.Length-1; i += 2)
             {
-                Room newRoom = new Room()
+                var lobby = lobbies.SingleOrDefault(r => r.RoomId == payload[i]);
+                if(lobby == null)
                 {
-                    idRoom = payload[i],
-                    HostName = payload[i+1],
-                    Status = payload[i+2],
-                    Players =  new List<string> { payload[i + 1] }
-                };
-                rooms.Add(newRoom);
+                    Lobby newLobby = new Lobby()
+                    {
+                        RoomId=payload[i],
+                        HostName = payload[i + 1],
+                        Host = new Player { Name = payload[i + 1] },
+                        PlayersName = new List<string> { payload[i + 1] },
+                        Players = new List<Player>
+                        {
+                            new Player() {Name = payload[i + 1]}
+                        }
+                    };
+                    lobbies.Add(newLobby);
+                }
             }
         }
-
         private static void UpdateLobby(string[] payload)
         {
-            var room = rooms.SingleOrDefault(r => r.idRoom == payload[1]);
-            id = payload[1];
-            room.Players.Add(payload[2]);
+            var lobby = lobbies.SingleOrDefault(r => r.RoomId == payload[1]);
+            if(lobby != null)
+            {
+                joinedLobby = lobby;
+                int playerCount = Convert.ToInt32(payload[2]);
+                string[] playerList = payload[3].Split(',');
+                for (int i = 1; i < playerCount; i++)
+                {
+                    if (!lobby.PlayersName.Contains(playerList[i]))
+                    {
+                        lobby.PlayersName.Add(playerList[i]);
+                        lobby.Players.Add(new Player() { Name = playerList[i] });
+                    }
+                }
+            }
+        }
+        public static void UpdateReadyInfo(string[] payload)
+        {
+            var player = joinedLobby.Players.SingleOrDefault(r => r.Name == payload[1]);
+            if (player != null)
+                player.IsReady = true;
+        }
+
+        public static bool CheckIsReady(string name)
+        {
+            var player = joinedLobby.Players.SingleOrDefault(r => r.Name == name);
+            if(player == null) return false;
+            return player.IsReady;
         }
 
         // Cập nhật vị trí của người chơi
@@ -191,7 +237,7 @@ namespace Client
     {
         public string Id { get; set; }
         public PointF Position { get; set; }
-
+        public bool IsReady = false;
         public string Name { get; set; }
         public int Order { get; set; }
 
@@ -202,13 +248,20 @@ namespace Client
         }
     }
 
-    public class Room
-    {
-        public string idRoom {  get; set; }
-        public string Status { get; set; }
+    //public class Room
+    //{
+    //    public string RoomId {  get; set; }
+    //    public string HostName { get; set; }
+    //    public List<string> PlayersName { get; set; } = new List<string>();
+    //}
 
+    public class Lobby
+    {
+        public string RoomId { get; set; }
+        public Player Host { get; set; }
         public string HostName { get; set; }
-        public List<string> Players { get; set; } = new List<string>();
+        public List<Player> Players{ get; set; } = new List<Player>();
+        public List<string> PlayersName { get; set; } = new List<string>();
     }
 
     public class GameForm : Form

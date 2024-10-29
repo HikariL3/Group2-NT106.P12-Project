@@ -54,7 +54,6 @@
             this.avatarPlayer1 = new System.Windows.Forms.PictureBox();
             this.avatarPlayer3 = new System.Windows.Forms.PictureBox();
             this.avatarPlayer2 = new System.Windows.Forms.PictureBox();
-            this.checkButton = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -68,7 +67,7 @@
             // 
             // namePlayer1
             // 
-            this.namePlayer1.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.namePlayer1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.namePlayer1.Location = new System.Drawing.Point(16, 229);
             this.namePlayer1.Name = "namePlayer1";
             this.namePlayer1.Size = new System.Drawing.Size(100, 31);
@@ -89,7 +88,7 @@
             // 
             // namePlayer3
             // 
-            this.namePlayer3.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.namePlayer3.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.namePlayer3.Location = new System.Drawing.Point(280, 229);
             this.namePlayer3.Name = "namePlayer3";
             this.namePlayer3.Size = new System.Drawing.Size(100, 31);
@@ -109,7 +108,7 @@
             // 
             // namePlayer2
             // 
-            this.namePlayer2.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.namePlayer2.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.namePlayer2.Location = new System.Drawing.Point(149, 229);
             this.namePlayer2.Name = "namePlayer2";
             this.namePlayer2.Size = new System.Drawing.Size(100, 31);
@@ -197,7 +196,7 @@
             // 
             // namePlayer4
             // 
-            this.namePlayer4.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.namePlayer4.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.namePlayer4.Location = new System.Drawing.Point(420, 229);
             this.namePlayer4.Name = "namePlayer4";
             this.namePlayer4.Size = new System.Drawing.Size(100, 31);
@@ -264,26 +263,27 @@
             this.startButton.TabIndex = 19;
             this.startButton.Text = "Bắt Đầu";
             this.startButton.UseVisualStyleBackColor = false;
+            this.startButton.Click += new System.EventHandler(this.startButton_Click);
             // 
             // soLuong
             // 
             this.soLuong.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.soLuong.Location = new System.Drawing.Point(245, 27);
+            this.soLuong.Location = new System.Drawing.Point(16, 68);
             this.soLuong.Name = "soLuong";
             this.soLuong.Size = new System.Drawing.Size(139, 31);
             this.soLuong.TabIndex = 25;
             this.soLuong.Text = "SỐ LƯỢNG: 0";
-            this.soLuong.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.soLuong.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // maPhong
             // 
             this.maPhong.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.maPhong.Location = new System.Drawing.Point(409, 27);
+            this.maPhong.Location = new System.Drawing.Point(193, 68);
             this.maPhong.Name = "maPhong";
-            this.maPhong.Size = new System.Drawing.Size(160, 31);
+            this.maPhong.Size = new System.Drawing.Size(327, 31);
             this.maPhong.TabIndex = 23;
-            this.maPhong.Text = "MÃ PHÒNG: ";
-            this.maPhong.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.maPhong.Text = "MÃ PHÒNG:";
+            this.maPhong.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label2
             // 
@@ -344,18 +344,6 @@
             this.avatarPlayer2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.avatarPlayer2.TabIndex = 2;
             this.avatarPlayer2.TabStop = false;
-            this.avatarPlayer2.Click += new System.EventHandler(this.pictureBox2_Click);
-            // 
-            // checkButton
-            // 
-            this.checkButton.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkButton.Location = new System.Drawing.Point(332, 371);
-            this.checkButton.Name = "checkButton";
-            this.checkButton.Size = new System.Drawing.Size(132, 56);
-            this.checkButton.TabIndex = 28;
-            this.checkButton.Text = "Check";
-            this.checkButton.UseVisualStyleBackColor = true;
-            this.checkButton.Click += new System.EventHandler(this.checkButton_Click);
             // 
             // Lobby
             // 
@@ -364,7 +352,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(959, 446);
-            this.Controls.Add(this.checkButton);
             this.Controls.Add(this.pictureBox4);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.maPhong);
@@ -429,6 +416,5 @@
         private System.Windows.Forms.Label maPhong;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.PictureBox pictureBox4;
-        private System.Windows.Forms.Button checkButton;
     }
 }

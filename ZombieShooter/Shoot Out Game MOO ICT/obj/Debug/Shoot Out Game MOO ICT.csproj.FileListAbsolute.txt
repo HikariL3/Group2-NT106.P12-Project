@@ -98,3 +98,13 @@ E:\NETFramework\Zombie Shooter\Shoot Out Game MOO ICT\obj\Debug\Shoot Out Game M
 E:\NETFramework\Zombie Shooter\Shoot Out Game MOO ICT\obj\Debug\Shoot Out Game MOO ICT.csproj.CoreCompileInputs.cache
 E:\NETFramework\Zombie Shooter\Shoot Out Game MOO ICT\obj\Debug\Shoot Out Game MOO ICT.exe
 E:\NETFramework\Zombie Shooter\Shoot Out Game MOO ICT\obj\Debug\Shoot Out Game MOO ICT.pdb
+E:\NETFramework\Project\ZombieShooter\Shoot Out Game MOO ICT\bin\Debug\Shoot Out Game MOO ICT.exe.config
+E:\NETFramework\Project\ZombieShooter\Shoot Out Game MOO ICT\bin\Debug\Shoot Out Game MOO ICT.exe
+E:\NETFramework\Project\ZombieShooter\Shoot Out Game MOO ICT\bin\Debug\Shoot Out Game MOO ICT.pdb
+E:\NETFramework\Project\ZombieShooter\Shoot Out Game MOO ICT\obj\Debug\Shoot Out Game MOO ICT.csproj.AssemblyReference.cache
+E:\NETFramework\Project\ZombieShooter\Shoot Out Game MOO ICT\obj\Debug\Shoot_Out_Game_MOO_ICT.MainGame.resources
+E:\NETFramework\Project\ZombieShooter\Shoot Out Game MOO ICT\obj\Debug\Shoot_Out_Game_MOO_ICT.Properties.Resources.resources
+E:\NETFramework\Project\ZombieShooter\Shoot Out Game MOO ICT\obj\Debug\Shoot Out Game MOO ICT.csproj.GenerateResource.cache
+E:\NETFramework\Project\ZombieShooter\Shoot Out Game MOO ICT\obj\Debug\Shoot Out Game MOO ICT.csproj.CoreCompileInputs.cache
+E:\NETFramework\Project\ZombieShooter\Shoot Out Game MOO ICT\obj\Debug\Shoot Out Game MOO ICT.exe
+E:\NETFramework\Project\ZombieShooter\Shoot Out Game MOO ICT\obj\Debug\Shoot Out Game MOO ICT.pdb

@@ -34,6 +34,7 @@ namespace GameForm
 
                     string message = $"CONNECT;{username.Text}"; // Sử dụng ký tự phân tách là ';'
                     GameClient.SendData(message); // Gọi phương thức static mà không cần tạo đối tượng
+                    GameClient.localPlayer = new Player { Name = username.Text };
 
                     this.Hide();
                     newRoom = new NewRoom();

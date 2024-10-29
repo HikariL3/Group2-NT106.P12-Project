@@ -66,11 +66,12 @@ namespace GameForm
 
         private void showRoomList_Click(object sender, EventArgs e)
         {
+            
             listPhong.Items.Clear();
-            int count = GameClient.rooms.Count;
+            int count = GameClient.lobbies.Count;
             for(int i=0; i<count; i++)
             {
-                listPhong.Items.Add(GameClient.rooms[i].idRoom);
+                listPhong.Items.Add(GameClient.lobbies[i].RoomId);
             }
         }
 

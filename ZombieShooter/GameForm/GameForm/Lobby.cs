@@ -17,13 +17,87 @@ namespace GameForm
         public Lobby()
         {
             InitializeComponent();
-            soLuong.Text = string.Format($"SỐ LƯỢNG: {GameClient.rooms[0].Players.Count}");
+            this.Load += Lobby_Load;
         }
 
-        private void pictureBox2_Click(object sender, EventArgs e)
+        private async void Lobby_Load(object sender, EventArgs e)
         {
-
+            await RunContinuouslyAsync();
         }
+
+        async Task RunContinuouslyAsync()
+        {
+            GameClient.SendData($"SEND_LOBBY;{GameClient.joinedRoom}");
+            await Task.Delay(1000);
+            while (true) // Chạy liên tục cho đến khi chương trình kết thúc
+            {
+                InitLobby();    
+
+                // Chờ 1 giây trước khi lặp lại
+                await Task.Delay(1000);
+            }
+        }
+
+
+        private void InitLobby()
+        {
+            string[] playersName = new string[4];
+            soLuong.Text = "SỐ LƯỢNG: " + GameClient.joinedLobby.PlayersName.Count.ToString();
+            maPhong.Text = "MÃ PHÒNG: " + GameClient.joinedLobby.RoomId;
+            int countPlayer = GameClient.joinedLobby.PlayersName.Count;
+          
+            for(int i = 0; i < countPlayer; i++)
+            {
+                switch(i)
+                {
+                    case 0:
+                        namePlayer1.Text = GameClient.joinedLobby.PlayersName[i];
+                        avatarPlayer1.Image = Properties.Resources.ares;
+                        readyLabel1.Visible = true;
+                        if(GameClient.CheckIsReady(namePlayer1.Text))
+                        {
+                            readyLabel1.Text = "Sẵn sàng";
+                            readyLabel1.ForeColor = Color.Lime;
+                        }
+                        break;
+                    
+                    case 1:
+                        namePlayer2.Text = GameClient.joinedLobby.PlayersName[i];
+                        avatarPlayer2.Image = Properties.Resources.knight;
+                        readyLabel2.Visible = true;
+                        if (GameClient.CheckIsReady(namePlayer2.Text))
+                        {
+                            readyLabel2.Text = "Sẵn sàng";
+                            readyLabel2.ForeColor = Color.Lime;
+                        }
+                        break;
+
+                    case 2:
+                        namePlayer2.Text = GameClient.joinedLobby.PlayersName[i];
+                        avatarPlayer3.Image = Properties.Resources.serial_killer;
+                        readyLabel3.Visible = true;
+                        if (GameClient.CheckIsReady(namePlayer3.Text))
+                        {
+                            readyLabel3.Text = "Sẵn sàng";
+                            readyLabel3.ForeColor = Color.Lime;
+                        }
+                        break;
+
+                    case 3:
+                        namePlayer4.Text = GameClient.joinedLobby.PlayersName[i];
+                        avatarPlayer2.Image = Properties.Resources.player1;
+                        readyLabel4.Visible = true;
+                        if (GameClient.CheckIsReady(namePlayer4.Text))
+                        {
+                            readyLabel4.Text = "Sẵn sàng";
+                            readyLabel4.ForeColor = Color.Lime;
+                        }
+                        break;
+                }
+            }
+        }
+
+
 
         private void sendButton_Click(object sender, EventArgs e)
         {
@@ -34,29 +108,14 @@ namespace GameForm
             showMessage.Items.Add(message);
         }
 
-        private bool checkReady()
-        {
-            if (readyLabel1.Text == "Chưa sẵn sàng") return false;
-            if (readyLabel2.Text == "Chưa sẵn sàng") return false;
-            if (readyLabel3.Text == "Chưa sẵn sàng") return false;
-            if (readyLabel4.Text == "Chưa sẵn sàng") return false;
-
-            return true;
-        }
-
         private void readyButton_Click(object sender, EventArgs e)
         {
-            
+            GameClient.SendData("READY");
         }
 
-        private void checkButton_Click(object sender, EventArgs e)
+        private void startButton_Click(object sender, EventArgs e)
         {
-
-            string message1 = String.Format($"{GameClient.rooms[0].idRoom} {GameClient.rooms[0].Status} {GameClient.rooms[0].HostName} {GameClient.rooms[0].Players[0]}");
-            showMessage.Items.Add(message1);
-
-            string message2 = String.Format($"{GameClient.rooms[0].idRoom} {GameClient.rooms[0].Status} {GameClient.rooms[0].HostName} {GameClient.rooms[0].Players[1]}");
-            showMessage.Items.Add(message2);
+            ///////////////////////
         }
     }
 }
