@@ -63,9 +63,66 @@ namespace Shoot_Out_Game_MOO_ICT.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap barrel_lay {
+            get {
+                object obj = ResourceManager.GetObject("barrel_lay", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap barrel_stand {
+            get {
+                object obj = ResourceManager.GetObject("barrel_stand", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream begin {
+            get {
+                return ResourceManager.GetStream("begin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream brain {
+            get {
+                return ResourceManager.GetStream("brain", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream bzfinalwave {
+            get {
+                return ResourceManager.GetStream("bzfinalwave", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap bzleft {
             get {
                 object obj = ResourceManager.GetObject("bzleft", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap car {
+            get {
+                object obj = ResourceManager.GetObject("car", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -76,6 +133,33 @@ namespace Shoot_Out_Game_MOO_ICT.Properties {
         internal static System.IO.UnmanagedMemoryStream empty {
             get {
                 return ResourceManager.GetStream("empty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream finalwave {
+            get {
+                return ResourceManager.GetStream("finalwave", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream Groan0 {
+            get {
+                return ResourceManager.GetStream("Groan0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream Groan1 {
+            get {
+                return ResourceManager.GetStream("Groan1", resourceCulture);
             }
         }
         
@@ -152,6 +236,16 @@ namespace Shoot_Out_Game_MOO_ICT.Properties {
         internal static System.Drawing.Bitmap pistolup {
             get {
                 object obj = ResourceManager.GetObject("pistolup", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap sandbag {
+            get {
+                object obj = ResourceManager.GetObject("sandbag", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
