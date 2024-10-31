@@ -11,9 +11,8 @@ using System.Media;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Rebar;
 using System.Net.Sockets;
 using Client;
-//using GameForm;
 
-namespace Shoot_Out_Game_MOO_ICT
+namespace GameForm
 {
     public partial class MainGame : Form
     {
@@ -30,12 +29,13 @@ namespace Shoot_Out_Game_MOO_ICT
         int offset = 20;
         Random ranSpawn = new Random();
         int timeLeft = 120;
+        private SoundManager soundManager = new SoundManager();
+        private bool finalWave = false;
         public MainGame()
         {
             InitializeComponent();
             InitializeGuns();
             RestartGame();
-
         }
         private void InitializeGuns()
         {
@@ -43,7 +43,7 @@ namespace Shoot_Out_Game_MOO_ICT
             Gun pistol = new Gun("Pistol", 40, 12, 20, 300, 350, 1000,
                                 Properties.Resources.pistolup, Properties.Resources.pistoldown,
                                 Properties.Resources.pistolleft, Properties.Resources.pistolright);
-            Gun shotgun = new Gun("Shotgun", 25, 2, 10, 200, 700, 1400,
+            Gun shotgun = new Gun("Shotgun", 25, 3, 10, 200, 700, 1400,
                                 Properties.Resources.shotgunup, Properties.Resources.shotgundown,
                                 Properties.Resources.shotgunleft, Properties.Resources.shotgunright);
             Gun sniper = new Gun("Sniper", 120, 5, 30, 500, 1000, 1600,
@@ -58,42 +58,73 @@ namespace Shoot_Out_Game_MOO_ICT
             txtAmmo.Text = "Ammo: " + currentGun.CurrentAmmo;
         }
 
+        private void MainGame_Load(object sender, EventArgs e)
+        {
+            soundManager.LoadSound("pistol", Properties.Resources.pistolshoot);
+            soundManager.LoadSound("shotgun", Properties.Resources.shotgunshoot);
+            soundManager.LoadSound("sniper", Properties.Resources.snipershoot);
+            soundManager.LoadSound("reload", Properties.Resources.gunload);
+            soundManager.LoadSound("switch", Properties.Resources.gswitch);
+            soundManager.LoadSound("empty", Properties.Resources.empty);
+            soundManager.LoadSound("groan0", Properties.Resources.Groan0);
+            soundManager.LoadSound("groan1", Properties.Resources.Groan1);
+            soundManager.LoadSound("finalwave", Properties.Resources.finalwave);
+            soundManager.LoadSound("bzfinalwave", Properties.Resources.bzfinalwave);
+            soundManager.LoadSound("brain", Properties.Resources.brain);
+            soundManager.LoadSound("begin", Properties.Resources.begin);
+
+            soundManager.PlaySound("begin");
+        }
+
+        #region CODE FOR HANDLING GAME EVENT
         //BEGIN OF-----------------------------------------------------------------------
-        //------------------THESE LINES OF CODE ARE HANDLING GAME EVENT------------------
+        //----------------THESE LINES OF CODE ARE FOR HANDLING GAME EVENT----------------
         //-------------------------------------------------------------------------------
 
         private void ActualTime_Tick(object sender, EventArgs e)
         {
+            if (timeLeft % 7 == 0 && timeLeft != 0)
+            {
+                int randSound = ranSpawn.Next(1, 4);
+                Random rand = new Random();
+                if (randSound == 1)
+                    soundManager.PlaySound("groan0");
+                if (randSound == 2)
+                    soundManager.PlaySound("groan1");
+                if (randSound == 3)
+                    soundManager.PlaySound("brain");
+            }
             if (timeLeft > 0)
             {
                 timeLeft--;
                 txtTimer.Text = "Time: " + timeLeft.ToString();
             }
 
-            if (timeLeft == 0)
+            if (timeLeft == 0 && !finalWave)
             {
                 FinalWave();
+                finalWave = true;
             }
 
-            else if (timeLeft <= 30)
+            else if (timeLeft <= 30 && timeLeft != 0)
             {
                 if (timeLeft % 2 == 0)
                     MakeZombies4();
             }
 
-            else if (timeLeft <= 60)
+            else if (timeLeft <= 60 && timeLeft != 0)
             {
                 if (timeLeft % 2 == 0)
                     MakeZombies3();
             }
 
-            else if (timeLeft <= 90)
+            else if (timeLeft <= 90 && timeLeft != 0)
             {
                 if (timeLeft % 3 == 0)
                     MakeZombies2();
             }
 
-            else if (timeLeft <= 120)
+            else if (timeLeft <= 120 && timeLeft != 0)
             {
                 if (timeLeft % 3 == 0)
                     MakeZombies1();
@@ -119,7 +150,6 @@ namespace Shoot_Out_Game_MOO_ICT
             else
             {
                 gameOver = true;
-                GameTimer.Stop();
                 YouLose();
             }
 
@@ -236,10 +266,7 @@ namespace Shoot_Out_Game_MOO_ICT
 
             if (e.KeyCode == Keys.C && gameOver == false)
             {
-                using (SoundPlayer player = new SoundPlayer(Properties.Resources.gswitch))
-                {
-                    player.Play();
-                }
+                soundManager.PlaySound("switch");
                 SwitchGun();
             }
 
@@ -292,10 +319,7 @@ namespace Shoot_Out_Game_MOO_ICT
 
             else if (e.KeyCode == Keys.Space && currentGun.CurrentAmmo == 0 && gameOver == false && canFire)
             {
-                using (SoundPlayer player = new SoundPlayer(Properties.Resources.empty))
-                {
-                    player.Play();
-                }
+                soundManager.PlaySound("empty");
             }
 
             if (e.KeyCode == Keys.Enter && gameOver == true)
@@ -304,22 +328,15 @@ namespace Shoot_Out_Game_MOO_ICT
             }
 
         }
-
-        private void txtScore_Click(object sender, EventArgs e)
-        {
-
-        }
-
         //END OF-------------------------------------------------------------------------
-        //------------------THESE LINES OF CODE ARE HANDLING GAME EVENT------------------
+        //----------------THESE LINES OF CODE ARE FOR HANDLING GAME EVENT----------------
         //-------------------------------------------------------------------------------
+        #endregion
 
-
-
+        #region CODE FOR GUN'S MECHANICS
         //BEGIN OF-----------------------------------------------------------------------
         //------------------THESE LINES OF CODE ARE FOR GUN'S MECHANICS------------------
         //-------------------------------------------------------------------------------
-
 
         private void SwitchGun()
         {
@@ -355,10 +372,7 @@ namespace Shoot_Out_Game_MOO_ICT
 
         private void ReloadGun()
         {
-            using (SoundPlayer player = new SoundPlayer(Properties.Resources.gunload))
-            {
-                player.Play();
-            }
+            soundManager.PlaySound("reload");
             txtGun.Text = "Reloading...";
             txtState.Text = "";
 
@@ -387,10 +401,7 @@ namespace Shoot_Out_Game_MOO_ICT
                 case "Pistol":
                     bulletSpeed = 25;
                     bulletRange = 500;
-                    using (SoundPlayer player = new SoundPlayer(Properties.Resources.pistolshoot))
-                    {
-                        player.Play();
-                    }
+                    soundManager.PlaySound("pistol");
                     Bullet shootPistolBullet = new Bullet(bulletSpeed, bulletRange);
                     shootPistolBullet.direction = direction;
                     shootPistolBullet.bulletLeft = player.Left + (player.Width / 2);
@@ -404,10 +415,7 @@ namespace Shoot_Out_Game_MOO_ICT
                     bulletSpeed = 25;
                     bulletRange = 350;
                     Random rand = new Random();
-                    using (SoundPlayer player = new SoundPlayer(Properties.Resources.shotgunshoot))
-                    {
-                        player.Play();
-                    }
+                    soundManager.PlaySound("shotgun");
 
                     for (int i = 0; i < 8; i++)
                     {
@@ -428,10 +436,7 @@ namespace Shoot_Out_Game_MOO_ICT
                 case "Sniper":
                     bulletSpeed = 50;
                     bulletRange = 1200;
-                    using (SoundPlayer player = new SoundPlayer(Properties.Resources.snipershoot))
-                    {
-                        player.Play();
-                    }
+                    soundManager.PlaySound("sniper");
                     Bullet shootSniperBullet = new Bullet(bulletSpeed, bulletRange);
                     shootSniperBullet.direction = direction;
                     shootSniperBullet.bulletLeft = player.Left + (player.Width / 2);
@@ -469,19 +474,9 @@ namespace Shoot_Out_Game_MOO_ICT
         //END OF-------------------------------------------------------------------------
         //------------------THESE LINES OF CODE ARE FOR GUN'S MECHANICS------------------
         //-------------------------------------------------------------------------------
+        #endregion
 
-        //scrap
-        private void wall_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
-        //scrap
-
+        #region CODE FOR MAKING ZOMBIES SPAWN
         //BEGIN OF-----------------------------------------------------------------------
         //---------------THESE LINES OF CODE ARE FOR MAKING ZOMBIES SPAWN----------------
         //-------------------------------------------------------------------------------
@@ -608,7 +603,6 @@ namespace Shoot_Out_Game_MOO_ICT
             }
         }
 
-
         private void MakeZombies4()
         {
             int spawnChance = ranSpawn.Next(1, 101);
@@ -657,6 +651,7 @@ namespace Shoot_Out_Game_MOO_ICT
 
         private async void FinalWave() //when timer reaches 0s
         {
+            soundManager.PlaySound("finalwave");
             Random rand = new Random();
 
             for (int i = 0; i < 2; i++)
@@ -710,8 +705,8 @@ namespace Shoot_Out_Game_MOO_ICT
             }
 
             await Task.Delay(2000);
-
-            for (int i = 0; i < 2; i++)
+            soundManager.PlaySound("bzfinalwave");
+            for (int i = 0; i < 3; i++)
             {
                 Zombie zombie = Zombie.CreateZombie(1);
                 int minSpawnHeight = 100;
@@ -725,12 +720,12 @@ namespace Shoot_Out_Game_MOO_ICT
                 this.Controls.Add(zombie.ZombiePictureBox);
                 await Task.Delay(1000);
             }
-
         }
 
         //END OF-------------------------------------------------------------------------
         //---------------THESE LINES OF CODE ARE FOR MAKING ZOMBIES SPAWN----------------
         //-------------------------------------------------------------------------------
+        #endregion
 
         private void YouWin()
         {

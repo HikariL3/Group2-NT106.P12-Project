@@ -308,18 +308,18 @@ namespace GameForm.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
-        internal static System.IO.UnmanagedMemoryStream Groan {
+        internal static System.IO.UnmanagedMemoryStream Groan0 {
             get {
-                return ResourceManager.GetStream("Groan", resourceCulture);
+                return ResourceManager.GetStream("Groan0", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
-        internal static System.IO.UnmanagedMemoryStream Groan4 {
+        internal static System.IO.UnmanagedMemoryStream Groan1 {
             get {
-                return ResourceManager.GetStream("Groan4", resourceCulture);
+                return ResourceManager.GetStream("Groan1", resourceCulture);
             }
         }
         

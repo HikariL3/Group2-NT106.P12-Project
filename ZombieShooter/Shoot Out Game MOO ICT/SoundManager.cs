@@ -4,7 +4,7 @@ using System.IO;
 using System.Threading.Tasks;
 using NAudio.Wave;
 
-public class SoundManager
+internal class SoundManager
 {
     private Dictionary<string, byte[]> soundResources;  // Store byte arrays of sounds
     private List<WaveOutEvent> activeSounds;  // Keep track of active sounds for concurrent playback

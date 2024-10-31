@@ -73,7 +73,6 @@
             this.txtKill.Size = new System.Drawing.Size(124, 27);
             this.txtKill.TabIndex = 0;
             this.txtKill.Text = "Kills: 0";
-            this.txtKill.Click += new System.EventHandler(this.txtScore_Click);
             // 
             // label1
             // 

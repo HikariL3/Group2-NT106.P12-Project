@@ -1,4 +1,4 @@
-﻿namespace Shoot_Out_Game_MOO_ICT
+﻿namespace GameForm
 {
     partial class MainGame
     {
@@ -73,7 +73,6 @@
             this.txtKill.Size = new System.Drawing.Size(124, 27);
             this.txtKill.TabIndex = 0;
             this.txtKill.Text = "Kills: 0";
-            this.txtKill.Click += new System.EventHandler(this.txtScore_Click);
             // 
             // label1
             // 
@@ -182,7 +181,7 @@
             // 
             this.wall.BackColor = System.Drawing.Color.Black;
             this.wall.Image = ((System.Drawing.Image)(resources.GetObject("wall.Image")));
-            this.wall.Location = new System.Drawing.Point(343, 39);
+            this.wall.Location = new System.Drawing.Point(355, 39);
             this.wall.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.wall.Name = "wall";
             this.wall.Size = new System.Drawing.Size(76, 674);
@@ -193,7 +192,7 @@
             // player
             // 
             this.player.Image = ((System.Drawing.Image)(resources.GetObject("player.Image")));
-            this.player.Location = new System.Drawing.Point(193, 329);
+            this.player.Location = new System.Drawing.Point(229, 324);
             this.player.Margin = new System.Windows.Forms.Padding(4);
             this.player.Name = "player";
             this.player.Size = new System.Drawing.Size(75, 100);
@@ -224,7 +223,6 @@
             this.Name = "MainGame";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Zombie Shooter";
-   
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.KeyIsDown);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.KeyIsUp);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
