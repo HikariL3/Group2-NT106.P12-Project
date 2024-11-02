@@ -10,11 +10,9 @@ using System.Windows.Forms;
 using System.Media;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Rebar;
 using System.Net.Sockets;
-using Client;
 using GameForm;
-using Server_ShootOutGame;
 using System.Net.NetworkInformation;
-//using GameForm;
+using Client;
 
 namespace GameForm
 {
@@ -33,12 +31,13 @@ namespace GameForm
         int offset = 20;
         Random ranSpawn = new Random();
         int timeLeft = 120;
+        private SoundManager soundManager = new SoundManager();
+        private bool finalWave = false;
         public MainGame()
         {
             InitializeComponent();
             InitializeGuns();
             RestartGame();
-
         }
         private void InitializeGuns()
         {
@@ -46,7 +45,7 @@ namespace GameForm
             Gun pistol = new Gun("Pistol", 40, 12, 20, 300, 350, 1000,
                                 Properties.Resources.pistolup, Properties.Resources.pistoldown,
                                 Properties.Resources.pistolleft, Properties.Resources.pistolright);
-            Gun shotgun = new Gun("Shotgun", 25, 2, 10, 200, 700, 1400,
+            Gun shotgun = new Gun("Shotgun", 25, 3, 10, 200, 700, 1400,
                                 Properties.Resources.shotgunup, Properties.Resources.shotgundown,
                                 Properties.Resources.shotgunleft, Properties.Resources.shotgunright);
             Gun sniper = new Gun("Sniper", 120, 5, 30, 500, 1000, 1600,
@@ -61,42 +60,73 @@ namespace GameForm
             txtAmmo.Text = "Ammo: " + currentGun.CurrentAmmo;
         }
 
+        private void MainGame_Load(object sender, EventArgs e)
+        {
+            soundManager.LoadSound("pistol", Properties.Resources.pistolshoot);
+            soundManager.LoadSound("shotgun", Properties.Resources.shotgunshoot);
+            soundManager.LoadSound("sniper", Properties.Resources.snipershoot);
+            soundManager.LoadSound("reload", Properties.Resources.gunload);
+            soundManager.LoadSound("switch", Properties.Resources.gswitch);
+            soundManager.LoadSound("empty", Properties.Resources.empty);
+            soundManager.LoadSound("groan0", Properties.Resources.Groan0);
+            soundManager.LoadSound("groan1", Properties.Resources.Groan1);
+            soundManager.LoadSound("finalwave", Properties.Resources.finalwave);
+            soundManager.LoadSound("bzfinalwave", Properties.Resources.bzfinalwave);
+            soundManager.LoadSound("brain", Properties.Resources.brain);
+            soundManager.LoadSound("begin", Properties.Resources.begin);
+
+            soundManager.PlaySound("begin");
+        }
+
+        #region CODE FOR HANDLING GAME EVENT
         //BEGIN OF-----------------------------------------------------------------------
-        //------------------THESE LINES OF CODE ARE HANDLING GAME EVENT------------------
+        //----------------THESE LINES OF CODE ARE FOR HANDLING GAME EVENT----------------
         //-------------------------------------------------------------------------------
 
         private void ActualTime_Tick(object sender, EventArgs e)
         {
+            if (timeLeft % 7 == 0 && timeLeft != 0)
+            {
+                int randSound = ranSpawn.Next(1, 4);
+                Random rand = new Random();
+                if (randSound == 1)
+                    soundManager.PlaySound("groan0");
+                if (randSound == 2)
+                    soundManager.PlaySound("groan1");
+                if (randSound == 3)
+                    soundManager.PlaySound("brain");
+            }
             if (timeLeft > 0)
             {
                 timeLeft--;
                 txtTimer.Text = "Time: " + timeLeft.ToString();
             }
 
-            if (timeLeft == 0)
+            if (timeLeft == 0 && !finalWave)
             {
                 FinalWave();
+                finalWave = true;
             }
 
-            else if (timeLeft <= 30)
+            else if (timeLeft <= 30 && timeLeft != 0)
             {
                 if (timeLeft % 2 == 0)
                     MakeZombies4();
             }
 
-            else if (timeLeft <= 60)
+            else if (timeLeft <= 60 && timeLeft != 0)
             {
                 if (timeLeft % 2 == 0)
                     MakeZombies3();
             }
 
-            else if (timeLeft <= 90)
+            else if (timeLeft <= 90 && timeLeft != 0)
             {
                 if (timeLeft % 3 == 0)
                     MakeZombies2();
             }
 
-            else if (timeLeft <= 120)
+            else if (timeLeft <= 120 && timeLeft != 0)
             {
                 if (timeLeft % 3 == 0)
                     MakeZombies1();
@@ -105,7 +135,6 @@ namespace GameForm
 
         private void MainTimerEvent(object sender, EventArgs e)
         {
-
             if (timeLeft <= 0)
             {
                 if (zombiesList.Count == 0)
@@ -122,38 +151,72 @@ namespace GameForm
             else
             {
                 gameOver = true;
-                GameTimer.Stop();
                 YouLose();
             }
 
             txtKill.Text = "Kills: " + kill;
             txtScore.Text = "Score: " + score;
 
-            if (goLeft == true && player.Left > 0)
-            {
-                player.Left -= speed;
+            // Initialize movement flags
+            bool canMoveLeft = goLeft && player.Left > 0;
+            bool canMoveRight = goRight && player.Left + player.Width < this.ClientSize.Width;
+            bool canMoveUp = goUp && player.Top > 45;
+            bool canMoveDown = goDown && player.Top + player.Height < this.ClientSize.Height;
 
-            }
-            if (goRight == true && player.Left + player.Width < this.ClientSize.Width)
+            // Check for collisions with obstacles
+            foreach (Control obstacle in this.Controls)
             {
-                if (player.Right < wall.Left)
+                if (obstacle is PictureBox &&
+                    ((string)obstacle.Name == "car" ||
+                    (string)obstacle.Name == "barrel_stand" ||
+                    (string)obstacle.Name == "barrel_lay" ||
+                    (string)obstacle.Name == "wall" ||
+                    (string)obstacle.Name == "sandbag"))
                 {
-                    player.Left += speed;
+                    if (player.Bounds.IntersectsWith(obstacle.Bounds))
+                    {
+                        // Adjust movement flags based on collision direction
+                        if (goLeft && player.Left < obstacle.Right && player.Right > obstacle.Right)
+                        {
+                            canMoveLeft = false;
+                        }
+                        if (goRight && player.Right > obstacle.Left && player.Left < obstacle.Left)
+                        {
+                            canMoveRight = false;
+                        }
+                        if (goUp && player.Top < obstacle.Bottom && player.Bottom > obstacle.Bottom)
+                        {
+                            canMoveUp = false;
+                        }
+                        if (goDown && player.Bottom > obstacle.Top && player.Top < obstacle.Top)
+                        {
+                            canMoveDown = false;
+                        }
+                    }
                 }
             }
-            if (goUp == true && player.Top > 45)
+
+            // Move player based on updated movement flags
+            if (canMoveLeft)
+            {
+                player.Left -= speed;
+            }
+            if (canMoveRight)
+            {
+                player.Left += speed;
+            }
+            if (canMoveUp)
             {
                 player.Top -= speed;
             }
-            if (goDown == true && player.Top + player.Height < this.ClientSize.Height)
+            if (canMoveDown)
             {
                 player.Top += speed;
             }
 
-
+            // Zombie handling code
             foreach (Zombie zombie in zombiesList.ToList())
             {
-
                 foreach (Control j in this.Controls)
                 {
                     if (j is PictureBox && (string)j.Tag == "bullet")
@@ -174,6 +237,7 @@ namespace GameForm
                         }
                     }
                 }
+
                 if (zombie.ZombiePictureBox.Left > wall.Right)
                 {
                     zombie.ZombiePictureBox.Left -= zombie.Speed;
@@ -185,6 +249,7 @@ namespace GameForm
                 }
             }
         }
+
 
         private void DamageWall(Zombie zombie)
         {
@@ -238,10 +303,7 @@ namespace GameForm
 
             if (e.KeyCode == Keys.C && gameOver == false)
             {
-                using (SoundPlayer player = new SoundPlayer(Properties.Resources.gswitch))
-                {
-                    player.Play();
-                }
+                soundManager.PlaySound("switch");
                 SwitchGun();
             }
 
@@ -294,10 +356,7 @@ namespace GameForm
 
             else if (e.KeyCode == Keys.Space && currentGun.CurrentAmmo == 0 && gameOver == false && canFire)
             {
-                using (SoundPlayer player = new SoundPlayer(Properties.Resources.empty))
-                {
-                    player.Play();
-                }
+                soundManager.PlaySound("empty");
             }
 
             if (e.KeyCode == Keys.Enter && gameOver == true)
@@ -306,22 +365,15 @@ namespace GameForm
             }
 
         }
-
-        private void txtScore_Click(object sender, EventArgs e)
-        {
-
-        }
-
         //END OF-------------------------------------------------------------------------
-        //------------------THESE LINES OF CODE ARE HANDLING GAME EVENT------------------
+        //----------------THESE LINES OF CODE ARE FOR HANDLING GAME EVENT----------------
         //-------------------------------------------------------------------------------
+        #endregion
 
-
-
+        #region CODE FOR GUN'S MECHANICS
         //BEGIN OF-----------------------------------------------------------------------
         //------------------THESE LINES OF CODE ARE FOR GUN'S MECHANICS------------------
         //-------------------------------------------------------------------------------
-
 
         private void SwitchGun()
         {
@@ -357,10 +409,7 @@ namespace GameForm
 
         private void ReloadGun()
         {
-            using (SoundPlayer player = new SoundPlayer(Properties.Resources.gunload))
-            {
-                player.Play();
-            }
+            soundManager.PlaySound("reload");
             txtGun.Text = "Reloading...";
             txtState.Text = "";
 
@@ -389,14 +438,12 @@ namespace GameForm
                 case "Pistol":
                     bulletSpeed = 25;
                     bulletRange = 500;
-                    using (SoundPlayer player = new SoundPlayer(Properties.Resources.pistolshoot))
-                    {
-                        player.Play();
-                    }
+                    soundManager.PlaySound("pistol");
                     Bullet shootPistolBullet = new Bullet(bulletSpeed, bulletRange);
                     shootPistolBullet.direction = direction;
                     shootPistolBullet.bulletLeft = player.Left + (player.Width / 2);
                     shootPistolBullet.bulletTop = player.Top + (player.Height / 2);
+
                     shootPistolBullet.bulletTop = player.Top + (player.Height / 2) + offset;
 
                     shootPistolBullet.MakeBullet(this);
@@ -405,15 +452,13 @@ namespace GameForm
                     bulletSpeed = 25;
                     bulletRange = 350;
                     Random rand = new Random();
-                    using (SoundPlayer player = new SoundPlayer(Properties.Resources.shotgunshoot))
-                    {
-                        player.Play();
-                    }
+                    soundManager.PlaySound("shotgun");
 
                     for (int i = 0; i < 8; i++)
                     {
                         Bullet shootShotgunPellet = new Bullet(bulletSpeed, bulletRange);
                         shootShotgunPellet.direction = direction;
+
                         int spreadAngle = rand.Next(-60, 61);
 
                         shootShotgunPellet.bulletLeft = player.Left + (player.Width / 2);
@@ -428,10 +473,7 @@ namespace GameForm
                 case "Sniper":
                     bulletSpeed = 50;
                     bulletRange = 1200;
-                    using (SoundPlayer player = new SoundPlayer(Properties.Resources.snipershoot))
-                    {
-                        player.Play();
-                    }
+                    soundManager.PlaySound("sniper");
                     Bullet shootSniperBullet = new Bullet(bulletSpeed, bulletRange);
                     shootSniperBullet.direction = direction;
                     shootSniperBullet.bulletLeft = player.Left + (player.Width / 2);
@@ -469,19 +511,9 @@ namespace GameForm
         //END OF-------------------------------------------------------------------------
         //------------------THESE LINES OF CODE ARE FOR GUN'S MECHANICS------------------
         //-------------------------------------------------------------------------------
+        #endregion
 
-        //scrap
-        private void wall_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
-        //scrap
-
+        #region CODE FOR MAKING ZOMBIES SPAWN
         //BEGIN OF-----------------------------------------------------------------------
         //---------------THESE LINES OF CODE ARE FOR MAKING ZOMBIES SPAWN----------------
         //-------------------------------------------------------------------------------
@@ -608,7 +640,6 @@ namespace GameForm
             }
         }
 
-
         private void MakeZombies4()
         {
             int spawnChance = ranSpawn.Next(1, 101);
@@ -657,6 +688,7 @@ namespace GameForm
 
         private async void FinalWave() //when timer reaches 0s
         {
+            soundManager.PlaySound("finalwave");
             Random rand = new Random();
 
             for (int i = 0; i < 2; i++)
@@ -710,8 +742,8 @@ namespace GameForm
             }
 
             await Task.Delay(2000);
-
-            for (int i = 0; i < 2; i++)
+            soundManager.PlaySound("bzfinalwave");
+            for (int i = 0; i < 3; i++)
             {
                 Zombie zombie = Zombie.CreateZombie(1);
                 int minSpawnHeight = 100;
@@ -725,12 +757,12 @@ namespace GameForm
                 this.Controls.Add(zombie.ZombiePictureBox);
                 await Task.Delay(1000);
             }
-
         }
 
         //END OF-------------------------------------------------------------------------
         //---------------THESE LINES OF CODE ARE FOR MAKING ZOMBIES SPAWN----------------
         //-------------------------------------------------------------------------------
+        #endregion
 
         private void YouWin()
         {
@@ -782,6 +814,7 @@ namespace GameForm
 
             healthBar.Value = (int)wallHealth;
             txtAmmo.Text = "Ammo: " + currentGun.CurrentAmmo;
+
             player.Left = wall.Left - player.Width - 10;
             player.Top = wall.Top + (wall.Height / 2) - (player.Height / 2);
 

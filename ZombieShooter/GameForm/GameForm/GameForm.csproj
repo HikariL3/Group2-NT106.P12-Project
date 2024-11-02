@@ -107,7 +107,6 @@
     </Compile>
     <Compile Include="SocketClient.cs" />
     <Compile Include="SocketData.cs" />
-    <Compile Include="SocketManager.cs" />
     <Compile Include="SoundManager.cs" />
     <Compile Include="Win.cs">
       <SubType>Form</SubType>
