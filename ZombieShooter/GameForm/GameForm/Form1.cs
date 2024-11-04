@@ -167,15 +167,14 @@ namespace GameForm
             foreach (Control obstacle in this.Controls)
             {
                 if (obstacle is PictureBox &&
-                    ((string)obstacle.Name == "car" ||
+                    ((string)obstacle.Name == "car"         ||
                     (string)obstacle.Name == "barrel_stand" ||
-                    (string)obstacle.Name == "barrel_lay" ||
-                    (string)obstacle.Name == "wall" ||
+                    (string)obstacle.Name == "barrel_lay"   ||
+                    (string)obstacle.Name == "wall"         ||
                     (string)obstacle.Name == "sandbag"))
                 {
                     if (player.Bounds.IntersectsWith(obstacle.Bounds))
                     {
-                        // Adjust movement flags based on collision direction
                         if (goLeft && player.Left < obstacle.Right && player.Right > obstacle.Right)
                         {
                             canMoveLeft = false;
@@ -196,7 +195,6 @@ namespace GameForm
                 }
             }
 
-            // Move player based on updated movement flags
             if (canMoveLeft)
             {
                 player.Left -= speed;
@@ -214,7 +212,6 @@ namespace GameForm
                 player.Top += speed;
             }
 
-            // Zombie handling code
             foreach (Zombie zombie in zombiesList.ToList())
             {
                 foreach (Control j in this.Controls)
@@ -264,32 +261,32 @@ namespace GameForm
         private void KeyIsDown(object sender, KeyEventArgs e)
         {
 
-            if (gameOver == true)
-            {
-                return;
-            }
-
-            if (e.KeyCode == Keys.Left)
-            {
-                goLeft = true;
-                facing = "left";
-                player.Image = currentGun.ImageLeft;
-            }
-
-            if (e.KeyCode == Keys.Right)
-            {
-                goRight = true;
-                facing = "right";
-                player.Image = currentGun.ImageRight;
-            }
-
-            if (e.KeyCode == Keys.Up)
-            {
-                goUp = true;
-                facing = "up";
-                player.Image = currentGun.ImageUp;
-            }
-
+            if (gameOver == true)                          
+            {                                              
+                return;                                    
+            }                                              
+                                                           
+            if (e.KeyCode == Keys.Left)                    
+            {                                              
+                goLeft = true;                             
+                facing = "left";                           
+                player.Image = currentGun.ImageLeft;       
+            }                                              
+                                                           
+            if (e.KeyCode == Keys.Right)                   
+            {                                              
+                goRight = true;                            
+                facing = "right";                          
+                player.Image = currentGun.ImageRight;      
+            }                                              
+                                                           
+            if (e.KeyCode == Keys.Up)                      
+            {                                              
+                goUp = true;                               
+                facing = "up";                             
+                player.Image = currentGun.ImageUp;         
+            }                                              
+                                                           
             if (e.KeyCode == Keys.Down)
             {
                 goDown = true;
@@ -775,6 +772,7 @@ namespace GameForm
         private void YouWin()
         {
             GameTimer.Stop();
+            ActualTime.Stop();
             MessageBox.Show("Game Over! You defeated all the zombies!", "You win!",
                 MessageBoxButtons.OK, MessageBoxIcon.Information);
 
@@ -787,6 +785,7 @@ namespace GameForm
         private void YouLose()
         {
             GameTimer.Stop();
+            ActualTime.Stop();
             MessageBox.Show("Game Over! You are dead, the zombies destroyed your wall", "You lose!",
                 MessageBoxButtons.OK, MessageBoxIcon.Information);
 

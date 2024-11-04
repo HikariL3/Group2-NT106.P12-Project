@@ -39,13 +39,13 @@ namespace Shoot_Out_Game_MOO_ICT
         private void InitializeGuns()
         {
             // Load images for the guns
-            Gun pistol = new Gun("Pistol", 40, 12, 20, 300, 350, 1000,
+            Gun pistol = new Gun("Pistol", 40, 12, 25, 500, 350, 1000,
                                 Properties.Resources.pistolup, Properties.Resources.pistoldown,
                                 Properties.Resources.pistolleft, Properties.Resources.pistolright);
-            Gun shotgun = new Gun("Shotgun", 25, 3, 10, 200, 700, 1400,
+            Gun shotgun = new Gun("Shotgun", 25, 3, 25, 350, 700, 1400,
                                 Properties.Resources.shotgunup, Properties.Resources.shotgundown,
                                 Properties.Resources.shotgunleft, Properties.Resources.shotgunright);
-            Gun sniper = new Gun("Sniper", 120, 5, 30, 500, 1000, 1600,
+            Gun sniper = new Gun("Sniper", 120, 5, 50, 1200, 1000, 1600,
                                 Properties.Resources.sniperup, Properties.Resources.sniperdown,
                                 Properties.Resources.sniperleft, Properties.Resources.sniperright);
 
@@ -456,7 +456,7 @@ namespace Shoot_Out_Game_MOO_ICT
                         Bullet shootShotgunPellet = new Bullet(bulletSpeed, bulletRange);
                         shootShotgunPellet.direction = direction;
 
-                        int spreadAngle = rand.Next(-60, 61);
+                        int spreadAngle = rand.Next(-70, 71);
 
                         shootShotgunPellet.bulletLeft = player.Left + (player.Width / 2);
                         shootShotgunPellet.bulletTop = player.Top + (player.Height / 2);
@@ -564,7 +564,7 @@ namespace Shoot_Out_Game_MOO_ICT
                 zombiesList.Add(zombie);
                 this.Controls.Add(zombie.ZombiePictureBox);
             }
-            else if (spawnChance <= 80)
+            else if (spawnChance <= 75)
             {
                 Zombie zombie = Zombie.CreateZombie(3);
                 int minSpawnHeight = 100;
@@ -764,6 +764,7 @@ namespace Shoot_Out_Game_MOO_ICT
         private void YouWin()
         {
             GameTimer.Stop();
+            ActualTime.Stop();
             MessageBox.Show("Game Over! You defeated all the zombies!", "You win!",
                 MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
@@ -771,6 +772,7 @@ namespace Shoot_Out_Game_MOO_ICT
         private void YouLose()
         {
             GameTimer.Stop();
+            ActualTime.Stop();
             MessageBox.Show("Game Over! You are dead, the zombies destroyed your wall", "You lose!",
                 MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
@@ -786,7 +788,7 @@ namespace Shoot_Out_Game_MOO_ICT
             }
             zombiesList.Clear();
 
-            timeLeft = 120;
+            timeLeft = 15;
 
             goUp = false;
             goDown = false;

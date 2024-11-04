@@ -41,9 +41,11 @@
             this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.panel1.Controls.Add(this.rankingButton);
             this.panel1.Controls.Add(this.pictureBox1);
-            this.panel1.Location = new System.Drawing.Point(2, 1);
+            this.panel1.Font = new System.Drawing.Font("Microsoft YaHei", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.panel1.Location = new System.Drawing.Point(3, 1);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(482, 285);
+            this.panel1.Size = new System.Drawing.Size(643, 351);
             this.panel1.TabIndex = 0;
             // 
             // rankingButton
@@ -51,11 +53,12 @@
             this.rankingButton.BackColor = System.Drawing.Color.Orange;
             this.rankingButton.FlatAppearance.BorderColor = System.Drawing.Color.Orange;
             this.rankingButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rankingButton.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rankingButton.Font = new System.Drawing.Font("DFVN Pexel Grotesk", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rankingButton.ForeColor = System.Drawing.Color.White;
-            this.rankingButton.Location = new System.Drawing.Point(144, 203);
+            this.rankingButton.Location = new System.Drawing.Point(192, 250);
+            this.rankingButton.Margin = new System.Windows.Forms.Padding(4);
             this.rankingButton.Name = "rankingButton";
-            this.rankingButton.Size = new System.Drawing.Size(203, 37);
+            this.rankingButton.Size = new System.Drawing.Size(271, 46);
             this.rankingButton.TabIndex = 3;
             this.rankingButton.Text = "Bảng Xếp Hạng";
             this.rankingButton.UseVisualStyleBackColor = false;
@@ -64,19 +67,21 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::GameForm.Properties.Resources.Screenshot_2024_10_23_092901;
-            this.pictureBox1.Location = new System.Drawing.Point(113, 117);
+            this.pictureBox1.Location = new System.Drawing.Point(151, 144);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(257, 51);
+            this.pictureBox1.Size = new System.Drawing.Size(343, 63);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
             // Win
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(484, 286);
+            this.ClientSize = new System.Drawing.Size(645, 352);
             this.Controls.Add(this.panel1);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Win";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Result: Win";

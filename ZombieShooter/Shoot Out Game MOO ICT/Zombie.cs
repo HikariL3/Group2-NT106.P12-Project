@@ -42,10 +42,10 @@ namespace Shoot_Out_Game_MOO_ICT
             switch (type)
             {
                 case 1:
-                    return new Zombie(250, 2, 32, 60, "left", zombiePic,
+                    return new Zombie(250, 2, 32, 70, "left", zombiePic,
                         Properties.Resources.bzleft); // variant 1 images
                 case 2:
-                    return new Zombie(40, 5, 15, 30, "left", zombiePic,
+                    return new Zombie(40, 6, 15, 27, "left", zombiePic,
                         Properties.Resources.szleft); // variant 2 images
                 case 3:
                     return new Zombie(100, 3, 15, 30, "left", zombiePic,

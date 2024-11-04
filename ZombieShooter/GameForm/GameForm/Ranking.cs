@@ -58,6 +58,9 @@ namespace GameForm
 
         private void thoatButton_Click(object sender, EventArgs e)
         {
+            GameClient.Disconnect();
+            Login login = new Login();
+            login.Show();
             this.Close();
         }
 

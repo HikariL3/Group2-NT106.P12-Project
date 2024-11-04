@@ -200,6 +200,7 @@ namespace GameForm
                 MessageBox.Show("Các người chơi khác vẫn chưa sẵn sàng!", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
+
         private void Lobby_FormClosed_1(object sender, FormClosedEventArgs e)
         {
             _cts?.Cancel();          
@@ -208,5 +209,6 @@ namespace GameForm
             Login login = new Login(); 
             login.Show();
         }
+
     }
 }

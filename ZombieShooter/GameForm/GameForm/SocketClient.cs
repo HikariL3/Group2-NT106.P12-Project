@@ -301,21 +301,6 @@ namespace Client
             }
         }
 
-        // Chức năng bắn đạn
-        public static void Shoot()
-        {
-            // Xử lý việc bắn súng
-            // Không gửi thông tin lên server
-        }
-
-        // Di chuyển người chơi
-        public static void MovePlayer(float deltaX, float deltaY)
-        {
-            // Cập nhật vị trí người chơi
-            localPlayer.Position = new PointF(localPlayer.Position.X + deltaX, localPlayer.Position.Y + deltaY);
-            SendData($"PlayerUpdate;{localPlayer.Id},{localPlayer.Position.X},{localPlayer.Position.Y}");
-        }
-
         // Ngắt kết nối từ server
         public static void Disconnect()
         {
@@ -414,39 +399,6 @@ namespace Client
         private void GameForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             GameClient.Disconnect(); // Gọi Disconnect trước khi form đóng
-        }
-
-        protected override void OnPaint(PaintEventArgs e)
-        {
-            // Vẽ tất cả người chơi trên màn hình
-            foreach (var player in GameClient.players)
-            {
-                e.Graphics.FillEllipse(Brushes.Blue, player.Position.X, player.Position.Y, 20, 20);
-            }
-        }
-
-        // Các phương thức xử lý sự kiện game như KeyDown, MouseClick...
-        protected override void OnKeyDown(KeyEventArgs e)
-        {
-            switch (e.KeyCode)
-            {
-                case Keys.W:
-                    GameClient.MovePlayer(0, -5); // Di chuyển lên
-                    break;
-                case Keys.S:
-                    GameClient.MovePlayer(0, 5); // Di chuyển xuống
-                    break;
-                case Keys.A:
-                    GameClient.MovePlayer(-5, 0); // Di chuyển trái
-                    break;
-                case Keys.D:
-                    GameClient.MovePlayer(5, 0); // Di chuyển phải
-                    break;
-                case Keys.Space:
-                    GameClient.Shoot(); // Bắn đạn
-                    break;
-            }
-            Invalidate(); // Yêu cầu vẽ lại màn hình
         }
     }
 }
