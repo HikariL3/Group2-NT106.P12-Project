@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.rankingButton = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -45,16 +45,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(482, 285);
             this.panel1.TabIndex = 0;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::GameForm.Properties.Resources.Screenshot_2024_10_23_092901;
-            this.pictureBox1.Location = new System.Drawing.Point(113, 117);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(257, 51);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
             // 
             // rankingButton
             // 
@@ -71,6 +61,16 @@
             this.rankingButton.UseVisualStyleBackColor = false;
             this.rankingButton.Click += new System.EventHandler(this.rankingButton_Click);
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::GameForm.Properties.Resources.Screenshot_2024_10_23_092901;
+            this.pictureBox1.Location = new System.Drawing.Point(113, 117);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(257, 51);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
+            // 
             // Win
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -80,6 +80,7 @@
             this.Name = "Win";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Result: Win";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Win_FormClosed);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);

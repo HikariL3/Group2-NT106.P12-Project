@@ -74,6 +74,11 @@ namespace GameForm
                 startButton.Enabled = true;
                 startButton.Visible = true;
             }
+            else
+            {
+                startButton.Enabled = false;
+                startButton.Visible = false;
+            }
 
             string[] playersName = new string[4];
             soLuong.Text = "SỐ LƯỢNG: " + GameClient.joinedLobby.PlayersName.Count.ToString();
@@ -129,6 +134,43 @@ namespace GameForm
                         break;
                 }
             }
+            for(int i = countPlayer; i < 4; i++)
+            {
+                switch(i)
+                {
+                    case 0:
+                        namePlayer1.Text = "Player1";
+                        avatarPlayer1.Image = Properties.Resources.avatar_vo_danh_9;
+                        readyLabel1.Visible = false;
+                        readyLabel1.Text = "Chưa sẵn sàng";
+                        readyLabel1.ForeColor = Color.Red;
+                        break;
+
+                    case 1:
+                        namePlayer2.Text = "Player2";
+                        avatarPlayer2.Image = Properties.Resources.avatar_vo_danh_9;
+                        readyLabel2.Visible = false;
+                        readyLabel2.Text = "Chưa sẵn sàng";
+                        readyLabel2.ForeColor = Color.Red;
+                        break;
+
+                    case 2:
+                        namePlayer3.Text = "Player3";
+                        avatarPlayer3.Image = Properties.Resources.avatar_vo_danh_9;
+                        readyLabel3.Visible = false;
+                        readyLabel3.Text = "Chưa sẵn sàng";
+                        readyLabel3.ForeColor = Color.Red;
+                        break;
+
+                    case 3:
+                        namePlayer4.Text = "Player4";
+                        avatarPlayer4.Image = Properties.Resources.avatar_vo_danh_9;
+                        readyLabel4.Visible = false;
+                        readyLabel4.Text = "Chưa sẵn sàng";
+                        readyLabel4.ForeColor = Color.Red;
+                        break;
+                }
+            }
         }
 
         private void sendButton_Click(object sender, EventArgs e)
@@ -158,14 +200,13 @@ namespace GameForm
                 MessageBox.Show("Các người chơi khác vẫn chưa sẵn sàng!", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
-
-        private void Lobby_FormClosed(object sender, FormClosedEventArgs e)
+        private void Lobby_FormClosed_1(object sender, FormClosedEventArgs e)
         {
-            GameClient.Disconnect();
-            Login login = new Login();
+            _cts?.Cancel();          
+            GameClient.Disconnect();  
+            GameClient.ClearLobby();
+            Login login = new Login(); 
             login.Show();
-            _cts?.Cancel();
-            this.Close();
         }
     }
 }

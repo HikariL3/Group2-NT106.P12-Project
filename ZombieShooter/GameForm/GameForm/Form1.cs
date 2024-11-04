@@ -640,6 +640,14 @@ namespace GameForm
             }
         }
 
+        private void MainGame_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            GameClient.Disconnect();
+            GameClient.ClearLobby();
+            Login login = new Login();
+            login.Show();
+        }
+
         private void MakeZombies4()
         {
             int spawnChance = ranSpawn.Next(1, 101);

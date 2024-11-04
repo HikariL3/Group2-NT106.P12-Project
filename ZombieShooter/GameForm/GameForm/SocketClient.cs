@@ -8,7 +8,6 @@ using System.Net;
 using System.Threading;
 using System.Windows.Forms;
 using System.Drawing;
-//using Shoot_Out_Game_MOO_ICT;
 using GameForm;
 
 namespace Client
@@ -28,14 +27,18 @@ namespace Client
     {
         public static Socket clientSocket;
         public static Thread receiveThread;
+        private static bool stopThread = false;    
         public static List<Player> players = new List<Player>();
         public static Player localPlayer;
 
         public static bool isStartGame = false;
 
+        public static bool isCreateRoom = true;
+        public static bool isJoinRoom = true;
+
         public static List<Lobby> lobbies = new List<Lobby>();
-        public static string joinedRoom;
-        public static Lobby joinedLobby;
+        public static string joinedRoom = null;
+        public static Lobby joinedLobby = null;
 
         public static List<string> messages = new List<string>();
 
@@ -60,7 +63,7 @@ namespace Client
         private static void ReceiveData()
         {
             byte[] buffer = new byte[1024];
-            while (clientSocket.Connected)
+            while (clientSocket.Connected && !stopThread)
             {
                 int receivedBytes = clientSocket.Receive(buffer);
                 string receivedData = Encoding.UTF8.GetString(buffer, 0, receivedBytes);
@@ -120,6 +123,22 @@ namespace Client
                     if (payload[1] == "True")
                         joinedLobby.IsGameOver = true;
                     break;
+
+                case "PLAYER_DISCONNECTED":
+                    HandleDisconnect(payload[1]);  
+                    break;
+
+                case "CLEAR_LOBBY":
+                    ClearLobby();
+                    break;
+
+                case "ERROR_JOIN":
+                    isJoinRoom = false;
+                    break;
+
+                case "ERROR_CREATE":
+                    isCreateRoom = false;
+                    break;
             }
         }
         //Cập nhập danh sách phòng
@@ -145,6 +164,22 @@ namespace Client
                 }
             }
         }
+
+        private static void HandleDisconnect(string playerName)
+        {
+            if(joinedLobby != null && joinedLobby.PlayersName.Contains(playerName))
+            {
+                joinedLobby.Players.RemoveAll(p => p.Name == playerName);
+                joinedLobby.PlayersName.Remove(playerName);
+
+                if (joinedLobby.HostName == playerName)
+                {
+                    joinedLobby.HostName = joinedLobby.PlayersName[0];
+                    joinedLobby.Host = new Player { Name = joinedLobby.PlayersName[0] };
+                }
+            }
+        }
+
         private static void UpdateLobby(string[] payload)
         {
             var lobby = lobbies.SingleOrDefault(r => r.RoomId == payload[1]);
@@ -289,7 +324,17 @@ namespace Client
                 try
                 {
                     SendData("DISCONNECT");
-                    clientSocket.Shutdown(SocketShutdown.Both);
+                    stopThread = true;
+
+                    if (receiveThread != null && receiveThread.IsAlive)
+                    {
+                        receiveThread.Join();
+                    }
+
+                    if (clientSocket.Connected)
+                    {
+                        clientSocket.Shutdown(SocketShutdown.Both);
+                    }
                     clientSocket.Close();
                 }
                 catch (SocketException ex)
@@ -302,14 +347,39 @@ namespace Client
                     clientSocket = null; // Đặt lại clientSocket về null
                 }
             }
+            stopThread = false;
+            localPlayer = null;
+            isCreateRoom = true;
+            isJoinRoom = true;
+            isStartGame = false;
+        }
+        public static void ClearLobby()
+        {
+            foreach(var lobby in lobbies)
+            {
+                lobby.Players.Clear();
+                lobby.PlayersName.Clear();
+                lobby.Host = null;
+                lobby.RoomId = null;        
+                lobby.HostName = null;       
+                lobby.IsGameOver = false;
+            }
+            lobbies.Clear();
+            joinedRoom = null;
+            joinedLobby = null;
+            isCreateRoom = true;
+            isJoinRoom = true;
+            isStartGame = false;
         }
     }
+
+    
 
     public class Player
     {
         public string Id { get; set; }
         public PointF Position { get; set; }
-        public bool IsReady = false;
+        public bool IsReady { get; set; } = false;
         public string Name { get; set; }
         public int Score { get; set; } = 0;
         public int Kill { get; set; } = 0;

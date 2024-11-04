@@ -52,8 +52,7 @@ namespace GameForm
         }
         private void Login_FormClosed(object sender, FormClosedEventArgs e)
         {
-            GameClient.Disconnect();
+            Environment.Exit(0);
         }
-
     }
 }

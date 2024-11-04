@@ -13,7 +13,6 @@ namespace Server_ShootOutGame
     public partial class Form2 : Form
     {
         private static List<Player> connectedPlayers = new List<Player>();
-        //private static List<Room> rooms = new List<Room>();
         private static List<Lobby> lobbies = new List<Lobby>();
         private static readonly int port = 8989;
         private TcpListener server;
@@ -153,6 +152,18 @@ namespace Server_ShootOutGame
                     }
                     break;
 
+                case "CLEAR_LOBBY":
+                    var _lobby = FindLobbyByPlayer(player);
+                    if(_lobby != null)
+                    {
+                        _lobby.Players.Clear();
+                        _lobby.Host = null;
+                        lobbies.RemoveAll(l => l.RoomId == _lobby.RoomId);
+                    }
+                    string clearLobbyMessage = "CLEAR_LOBBY";
+                    SendMessageToPlayer(player, clearLobbyMessage);
+                    break;
+
                 case "DISCONNECTGameRoom":
                     CloseAllGameRooms();
                     break;
@@ -171,6 +182,9 @@ namespace Server_ShootOutGame
 
             string disconnectMessage = $"PLAYER_DISCONNECTED;{player.PlayerName}";
             BroadcastMessage(disconnectMessage, player);
+
+            var lobby = FindLobbyByPlayer(player);
+            lobby.Players.RemoveAll(p => p.PlayerName == player.PlayerName);
         }
 
         private void CreateRoom(Player player, string id)
@@ -201,7 +215,7 @@ namespace Server_ShootOutGame
             }
             else
             {
-                string errorMessage = $"ERROR;Room {id} is available.";
+                string errorMessage = $"ERROR_CREATE;{id}";
                 SendMessageToPlayer(player, errorMessage);
             }
         }
@@ -217,7 +231,7 @@ namespace Server_ShootOutGame
             }
             else
             {
-                string errorMessage = $"ERROR;Room {roomId} is full or does not exist.";
+                string errorMessage = $"ERROR_JOIN;{roomId}";
                 SendMessageToPlayer(player, errorMessage);
             }
         }

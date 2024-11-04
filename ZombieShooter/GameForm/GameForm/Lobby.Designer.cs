@@ -376,6 +376,7 @@
             this.Name = "Lobby";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Lobby";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Lobby_FormClosed_1);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();

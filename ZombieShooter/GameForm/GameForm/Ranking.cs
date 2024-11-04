@@ -1,6 +1,7 @@
 ﻿using Client;
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace GameForm
@@ -58,6 +59,27 @@ namespace GameForm
         private void thoatButton_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void newGameButton_Click(object sender, EventArgs e)
+        {
+            GameClient.SendData("CLEAR_LOBBY");
+            NewRoom newRoom = new NewRoom();
+            this.Hide();
+            newRoom.Show();
+        }
+
+        private async void Ranking_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            GameClient.Disconnect();
+
+            await WaitFunction();
+
+            GameClient.SendData("CLEAR_LOBBY");
+        }
+        private async Task WaitFunction()
+        {
+            await Task.Delay(300);
         }
     }
 }
