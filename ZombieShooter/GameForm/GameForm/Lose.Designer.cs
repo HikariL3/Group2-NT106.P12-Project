@@ -50,12 +50,12 @@
             this.rankingButton.BackColor = System.Drawing.Color.Orange;
             this.rankingButton.FlatAppearance.BorderColor = System.Drawing.Color.Orange;
             this.rankingButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rankingButton.Font = new System.Drawing.Font("DFVN Pexel Grotesk", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rankingButton.Font = new System.Drawing.Font("Courier New", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rankingButton.ForeColor = System.Drawing.Color.White;
-            this.rankingButton.Location = new System.Drawing.Point(229, 22);
+            this.rankingButton.Location = new System.Drawing.Point(216, 10);
             this.rankingButton.Margin = new System.Windows.Forms.Padding(4);
             this.rankingButton.Name = "rankingButton";
-            this.rankingButton.Size = new System.Drawing.Size(204, 47);
+            this.rankingButton.Size = new System.Drawing.Size(232, 43);
             this.rankingButton.TabIndex = 4;
             this.rankingButton.Text = "Bảng Xếp Hạng";
             this.rankingButton.UseVisualStyleBackColor = false;
