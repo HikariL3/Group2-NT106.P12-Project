@@ -12,17 +12,6 @@ using GameForm;
 
 namespace Client
 {
-    //static class SocketClient
-    //{
-    //    [STAThread]
-    //    static void Main()
-    //    {
-    //        Application.EnableVisualStyles();
-    //        Application.SetCompatibleTextRenderingDefault(false);
-    //        Application.Run(new MainGame());
-    //    }
-    //}
-
     public class GameClient
     {
         public static Socket clientSocket;
@@ -79,13 +68,6 @@ namespace Client
 
             switch (messageType)
             {
-                case "PlayerUpdate":
-                    UpdatePlayerPositions(payload);
-                    break;
-                case "Collision":
-                    HandleCollision(payload);
-                    break;
-                // Thêm các loại thông điệp khác nếu cần
                 case "ROOMLIST":
                     AddRoomList(payload);
                     break;
@@ -260,47 +242,6 @@ namespace Client
                 }
             }
         }
-
-        // Cập nhật vị trí của người chơi
-        private static void UpdatePlayerPositions(string[] payload)
-        {
-            for (int i = 1; i < payload.Length; i++)
-            {
-                string[] playerData = payload[i].Split(',');
-                string playerId = playerData[0];
-                float x = float.Parse(playerData[1]);
-                float y = float.Parse(playerData[2]);
-
-                var player = players.FirstOrDefault(p => p.Id == playerId);
-                if (player != null)
-                {
-                    player.Position = new PointF(x, y);
-                }
-                else
-                {
-                    // Nếu là người chơi mới, thêm vào danh sách
-                    players.Add(new Player { Id = playerId, Position = new PointF(x, y) });
-                }
-            }
-        }
-
-        // Xử lý va chạm với tường hoặc người chơi
-        private static void HandleCollision(string[] payload)
-        {
-            string collisionType = payload[1]; // Tường hoặc người chơi
-            if (collisionType == "Wall")
-            {
-                // Xử lý va chạm với tường
-                localPlayer.HandleWallCollision();
-            }
-            else if (collisionType == "Player")
-            {
-                // Cập nhật hình ảnh người chơi khác
-                string playerId = payload[2];
-                // Xử lý cập nhật hình ảnh cho playerId
-            }
-        }
-
         // Ngắt kết nối từ server
         public static void Disconnect()
         {
@@ -357,9 +298,6 @@ namespace Client
             isStartGame = false;
         }
     }
-
-    
-
     public class Player
     {
         public string Id { get; set; }
@@ -368,12 +306,6 @@ namespace Client
         public string Name { get; set; }
         public int Score { get; set; } = 0;
         public int Kill { get; set; } = 0;
-
-        // Xử lý va chạm với tường
-        public void HandleWallCollision()
-        {
-            // Thay đổi vị trí hoặc trạng thái người chơi khi va chạm
-        }
     }
 
     public class Lobby
