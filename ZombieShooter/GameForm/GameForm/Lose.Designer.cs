@@ -29,9 +29,7 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.yesButton = new System.Windows.Forms.Button();
-            this.noButton = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
+            this.rankingButton = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -40,65 +38,36 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.panel1.Controls.Add(this.yesButton);
-            this.panel1.Controls.Add(this.noButton);
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Location = new System.Drawing.Point(1, 270);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel1.Controls.Add(this.rankingButton);
+            this.panel1.Location = new System.Drawing.Point(-7, 270);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(645, 87);
+            this.panel1.Size = new System.Drawing.Size(653, 87);
             this.panel1.TabIndex = 1;
             // 
-            // yesButton
+            // rankingButton
             // 
-            this.yesButton.BackColor = System.Drawing.Color.DodgerBlue;
-            this.yesButton.FlatAppearance.BorderColor = System.Drawing.Color.DodgerBlue;
-            this.yesButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.yesButton.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.yesButton.ForeColor = System.Drawing.Color.White;
-            this.yesButton.Location = new System.Drawing.Point(345, 20);
-            this.yesButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.yesButton.Name = "yesButton";
-            this.yesButton.Size = new System.Drawing.Size(109, 46);
-            this.yesButton.TabIndex = 3;
-            this.yesButton.Text = "YES";
-            this.yesButton.UseVisualStyleBackColor = false;
-            // 
-            // noButton
-            // 
-            this.noButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.noButton.FlatAppearance.BorderColor = System.Drawing.Color.Maroon;
-            this.noButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.noButton.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.noButton.ForeColor = System.Drawing.Color.White;
-            this.noButton.Location = new System.Drawing.Point(463, 20);
-            this.noButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.noButton.Name = "noButton";
-            this.noButton.Size = new System.Drawing.Size(109, 46);
-            this.noButton.TabIndex = 2;
-            this.noButton.Text = "NO";
-            this.noButton.UseVisualStyleBackColor = false;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(15, 32);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(287, 24);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Bạn có muốn chơi lại không?";
+            this.rankingButton.BackColor = System.Drawing.Color.Orange;
+            this.rankingButton.FlatAppearance.BorderColor = System.Drawing.Color.Orange;
+            this.rankingButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rankingButton.Font = new System.Drawing.Font("Courier New", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rankingButton.ForeColor = System.Drawing.Color.White;
+            this.rankingButton.Location = new System.Drawing.Point(216, 10);
+            this.rankingButton.Margin = new System.Windows.Forms.Padding(4);
+            this.rankingButton.Name = "rankingButton";
+            this.rankingButton.Size = new System.Drawing.Size(232, 43);
+            this.rankingButton.TabIndex = 4;
+            this.rankingButton.Text = "Bảng Xếp Hạng";
+            this.rankingButton.UseVisualStyleBackColor = false;
+            this.rankingButton.Click += new System.EventHandler(this.rankingButton_Click);
             // 
             // pictureBox1
             // 
             this.pictureBox1.Image = global::GameForm.Properties.Resources.Screenshot_2024_10_23_075300;
-            this.pictureBox1.Location = new System.Drawing.Point(1, 2);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox1.Location = new System.Drawing.Point(-7, 2);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(645, 270);
+            this.pictureBox1.Size = new System.Drawing.Size(653, 270);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
@@ -112,12 +81,12 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.pictureBox1);
             this.DoubleBuffered = true;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Lose";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Result: Lose";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Lose_FormClosed);
             this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
@@ -127,8 +96,6 @@
 
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button yesButton;
-        private System.Windows.Forms.Button noButton;
+        private System.Windows.Forms.Button rankingButton;
     }
 }

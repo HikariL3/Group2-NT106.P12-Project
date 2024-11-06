@@ -8,32 +8,37 @@ using System.Net;
 using System.Threading;
 using System.Windows.Forms;
 using System.Drawing;
-using Shoot_Out_Game_MOO_ICT;
+using GameForm;
 
 namespace Client
 {
-    static class SocketClient
-    {
-        [STAThread]
-        static void Main()
-        {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainGame());
-        }
-    }
+    //static class SocketClient
+    //{
+    //    [STAThread]
+    //    static void Main()
+    //    {
+    //        Application.EnableVisualStyles();
+    //        Application.SetCompatibleTextRenderingDefault(false);
+    //        Application.Run(new MainGame());
+    //    }
+    //}
 
     public class GameClient
     {
         public static Socket clientSocket;
         public static Thread receiveThread;
+        private static bool stopThread = false;    
         public static List<Player> players = new List<Player>();
         public static Player localPlayer;
+
         public static bool isStartGame = false;
 
+        public static bool isCreateRoom = true;
+        public static bool isJoinRoom = true;
+
         public static List<Lobby> lobbies = new List<Lobby>();
-        public static string joinedRoom;
-        public static Lobby joinedLobby;
+        public static string joinedRoom = null;
+        public static Lobby joinedLobby = null;
 
         public static List<string> messages = new List<string>();
 
@@ -58,7 +63,7 @@ namespace Client
         private static void ReceiveData()
         {
             byte[] buffer = new byte[1024];
-            while (clientSocket.Connected)
+            while (clientSocket.Connected && !stopThread)
             {
                 int receivedBytes = clientSocket.Receive(buffer);
                 string receivedData = Encoding.UTF8.GetString(buffer, 0, receivedBytes);
@@ -113,6 +118,27 @@ namespace Client
                 case "UPDATE_STATS":
                     UpdateStats(payload);
                     break;
+
+                case "GAMEOVER":
+                    if (payload[1] == "True")
+                        joinedLobby.IsGameOver = true;
+                    break;
+
+                case "PLAYER_DISCONNECTED":
+                    HandleDisconnect(payload[1]);  
+                    break;
+
+                case "CLEAR_LOBBY":
+                    ClearLobby();
+                    break;
+
+                case "ERROR_JOIN":
+                    isJoinRoom = false;
+                    break;
+
+                case "ERROR_CREATE":
+                    isCreateRoom = false;
+                    break;
             }
         }
         //Cập nhập danh sách phòng
@@ -138,6 +164,22 @@ namespace Client
                 }
             }
         }
+
+        private static void HandleDisconnect(string playerName)
+        {
+            if(joinedLobby != null && joinedLobby.PlayersName.Contains(playerName))
+            {
+                joinedLobby.Players.RemoveAll(p => p.Name == playerName);
+                joinedLobby.PlayersName.Remove(playerName);
+
+                if (joinedLobby.HostName == playerName)
+                {
+                    joinedLobby.HostName = joinedLobby.PlayersName[0];
+                    joinedLobby.Host = new Player { Name = joinedLobby.PlayersName[0] };
+                }
+            }
+        }
+
         private static void UpdateLobby(string[] payload)
         {
             var lobby = lobbies.SingleOrDefault(r => r.RoomId == payload[1]);
@@ -146,12 +188,20 @@ namespace Client
                 joinedLobby = lobby;
                 int playerCount = Convert.ToInt32(payload[2]);
                 string[] playerList = payload[3].Split(',');
-                for (int i = 1; i < playerCount; i++)
+                string[] readyPlayerList = payload[4].Split(',');
+                for (int i = 0; i < playerCount; i++)
                 {
                     if (!lobby.PlayersName.Contains(playerList[i]))
                     {
                         lobby.PlayersName.Add(playerList[i]);
-                        lobby.Players.Add(new Player() { Name = playerList[i] });
+                        lobby.Players.Add(new Player() { 
+                            Name = playerList[i],
+                            IsReady = bool.Parse(readyPlayerList[i])
+                        });
+                    }
+                    else
+                    {
+                        lobby.Players[i].IsReady = bool.Parse(readyPlayerList[i]);
                     }
                 }
             }
@@ -177,6 +227,13 @@ namespace Client
                 if (!player.IsReady) return false;
             }
             return true;
+        }
+
+        public static bool CheckGameOver()
+        {
+            if(joinedLobby.IsGameOver)
+                return true;
+            return false;
         }
 
         public static void UpdateMessage(string content)
@@ -244,21 +301,6 @@ namespace Client
             }
         }
 
-        // Chức năng bắn đạn
-        public static void Shoot()
-        {
-            // Xử lý việc bắn súng
-            // Không gửi thông tin lên server
-        }
-
-        // Di chuyển người chơi
-        public static void MovePlayer(float deltaX, float deltaY)
-        {
-            // Cập nhật vị trí người chơi
-            localPlayer.Position = new PointF(localPlayer.Position.X + deltaX, localPlayer.Position.Y + deltaY);
-            SendData($"PlayerUpdate;{localPlayer.Id},{localPlayer.Position.X},{localPlayer.Position.Y}");
-        }
-
         // Ngắt kết nối từ server
         public static void Disconnect()
         {
@@ -267,7 +309,17 @@ namespace Client
                 try
                 {
                     SendData("DISCONNECT");
-                    clientSocket.Shutdown(SocketShutdown.Both);
+                    stopThread = true;
+
+                    if (receiveThread != null && receiveThread.IsAlive)
+                    {
+                        receiveThread.Join();
+                    }
+
+                    if (clientSocket.Connected)
+                    {
+                        clientSocket.Shutdown(SocketShutdown.Both);
+                    }
                     clientSocket.Close();
                 }
                 catch (SocketException ex)
@@ -280,14 +332,39 @@ namespace Client
                     clientSocket = null; // Đặt lại clientSocket về null
                 }
             }
+            stopThread = false;
+            localPlayer = null;
+            isCreateRoom = true;
+            isJoinRoom = true;
+            isStartGame = false;
+        }
+        public static void ClearLobby()
+        {
+            foreach(var lobby in lobbies)
+            {
+                lobby.Players.Clear();
+                lobby.PlayersName.Clear();
+                lobby.Host = null;
+                lobby.RoomId = null;        
+                lobby.HostName = null;       
+                lobby.IsGameOver = false;
+            }
+            lobbies.Clear();
+            joinedRoom = null;
+            joinedLobby = null;
+            isCreateRoom = true;
+            isJoinRoom = true;
+            isStartGame = false;
         }
     }
+
+    
 
     public class Player
     {
         public string Id { get; set; }
         public PointF Position { get; set; }
-        public bool IsReady = false;
+        public bool IsReady { get; set; } = false;
         public string Name { get; set; }
         public int Score { get; set; } = 0;
         public int Kill { get; set; } = 0;
@@ -301,6 +378,7 @@ namespace Client
 
     public class Lobby
     {
+        public bool IsGameOver { get; set; } = false;   
         public string RoomId { get; set; }
         public Player Host { get; set; }
         public string HostName { get; set; }
@@ -321,39 +399,6 @@ namespace Client
         private void GameForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             GameClient.Disconnect(); // Gọi Disconnect trước khi form đóng
-        }
-
-        protected override void OnPaint(PaintEventArgs e)
-        {
-            // Vẽ tất cả người chơi trên màn hình
-            foreach (var player in GameClient.players)
-            {
-                e.Graphics.FillEllipse(Brushes.Blue, player.Position.X, player.Position.Y, 20, 20);
-            }
-        }
-
-        // Các phương thức xử lý sự kiện game như KeyDown, MouseClick...
-        protected override void OnKeyDown(KeyEventArgs e)
-        {
-            switch (e.KeyCode)
-            {
-                case Keys.W:
-                    GameClient.MovePlayer(0, -5); // Di chuyển lên
-                    break;
-                case Keys.S:
-                    GameClient.MovePlayer(0, 5); // Di chuyển xuống
-                    break;
-                case Keys.A:
-                    GameClient.MovePlayer(-5, 0); // Di chuyển trái
-                    break;
-                case Keys.D:
-                    GameClient.MovePlayer(5, 0); // Di chuyển phải
-                    break;
-                case Keys.Space:
-                    GameClient.Shoot(); // Bắn đạn
-                    break;
-            }
-            Invalidate(); // Yêu cầu vẽ lại màn hình
         }
     }
 }

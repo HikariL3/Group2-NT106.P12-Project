@@ -41,13 +41,20 @@ namespace GameForm
             lobby.Show();
         }
 
-        private void createButton_Click(object sender, EventArgs e)
+        private async void createButton_Click(object sender, EventArgs e)
         {
-            //if (!checkMaPhong(maPhong.Text)) return;
-
             GameClient.SendData($"CREATE_ROOM;{maPhong.Text}");
 
-            TurnForm();
+            await WaitFunction();
+
+            if (GameClient.isCreateRoom)
+            {
+                TurnForm();
+            }
+            else
+            {
+                MessageBox.Show($"Phòng {maPhong.Text} đã được tạo!", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void listPhong_SelectedIndexChanged(object sender, EventArgs e)
@@ -55,17 +62,29 @@ namespace GameForm
             maPhong.Text = listPhong.SelectedItem.ToString();
         }
 
-        private void joinButton_Click(object sender, EventArgs e)
+        private async void joinButton_Click(object sender, EventArgs e)
         {
             if (!checkMaPhong(maPhong.Text)) return;
 
             GameClient.SendData($"JOIN_ROOM;{maPhong.Text}");
 
-            TurnForm();
+            await WaitFunction();
+
+            if(GameClient.isJoinRoom)
+            {
+                TurnForm();
+            }
+            else
+            {
+                MessageBox.Show($"Phòng {maPhong.Text} chưa được tạo hoặc đã đủ người!", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
-        private void showRoomList_Click(object sender, EventArgs e)
+        private async void showRoomList_Click(object sender, EventArgs e)
         {
+            GameClient.SendData("SEND_ROOM_LIST");
+
+            await WaitFunction();
 
             listPhong.Items.Clear();
             int count = GameClient.lobbies.Count;
@@ -75,9 +94,15 @@ namespace GameForm
             }
         }
 
+        private async Task WaitFunction()
+        {
+            await Task.Delay(700);
+        }
+
         private void NewRoom_FormClosed(object sender, FormClosedEventArgs e)
         {
             GameClient.Disconnect();
+            GameClient.ClearLobby();
             Login login = new Login();
             login.Show();
         }

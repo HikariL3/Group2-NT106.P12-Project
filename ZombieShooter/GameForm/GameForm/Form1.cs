@@ -10,6 +10,8 @@ using System.Windows.Forms;
 using System.Media;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Rebar;
 using System.Net.Sockets;
+using GameForm;
+using System.Net.NetworkInformation;
 using Client;
 
 namespace GameForm
@@ -40,13 +42,13 @@ namespace GameForm
         private void InitializeGuns()
         {
             // Load images for the guns
-            Gun pistol = new Gun("Pistol", 40, 12, 20, 300, 350, 1000,
+            Gun pistol = new Gun("Pistol", 40, 12, 25, 500, 350, 1000,
                                 Properties.Resources.pistolup, Properties.Resources.pistoldown,
                                 Properties.Resources.pistolleft, Properties.Resources.pistolright);
-            Gun shotgun = new Gun("Shotgun", 25, 3, 10, 200, 700, 1400,
+            Gun shotgun = new Gun("Shotgun", 25, 3, 25, 350, 700, 1400,
                                 Properties.Resources.shotgunup, Properties.Resources.shotgundown,
                                 Properties.Resources.shotgunleft, Properties.Resources.shotgunright);
-            Gun sniper = new Gun("Sniper", 120, 5, 30, 500, 1000, 1600,
+            Gun sniper = new Gun("Sniper", 120, 5, 50, 1200, 1000, 1600,
                                 Properties.Resources.sniperup, Properties.Resources.sniperdown,
                                 Properties.Resources.sniperleft, Properties.Resources.sniperright);
 
@@ -133,7 +135,6 @@ namespace GameForm
 
         private void MainTimerEvent(object sender, EventArgs e)
         {
-
             if (timeLeft <= 0)
             {
                 if (zombiesList.Count == 0)
@@ -156,32 +157,63 @@ namespace GameForm
             txtKill.Text = "Kills: " + kill;
             txtScore.Text = "Score: " + score;
 
-            if (goLeft == true && player.Left > 0)
-            {
+            // Initialize movement flags
+            bool canMoveLeft = goLeft && player.Left > 0;
+            bool canMoveRight = goRight && player.Left + player.Width < this.ClientSize.Width;
+            bool canMoveUp = goUp && player.Top > 45;
+            bool canMoveDown = goDown && player.Top + player.Height < this.ClientSize.Height;
 
-                player.Left -= speed;
-
-            }
-            if (goRight == true && player.Left + player.Width < this.ClientSize.Width)
+            // Check for collisions with obstacles
+            foreach (Control obstacle in this.Controls)
             {
-                if (player.Right < wall.Left)
+                if (obstacle is PictureBox &&
+                    ((string)obstacle.Name == "car"         ||
+                    (string)obstacle.Name == "barrel_stand" ||
+                    (string)obstacle.Name == "barrel_lay"   ||
+                    (string)obstacle.Name == "wall"         ||
+                    (string)obstacle.Name == "sandbag"))
                 {
-                    player.Left += speed;
+                    if (player.Bounds.IntersectsWith(obstacle.Bounds))
+                    {
+                        if (goLeft && player.Left < obstacle.Right && player.Right > obstacle.Right)
+                        {
+                            canMoveLeft = false;
+                        }
+                        if (goRight && player.Right > obstacle.Left && player.Left < obstacle.Left)
+                        {
+                            canMoveRight = false;
+                        }
+                        if (goUp && player.Top < obstacle.Bottom && player.Bottom > obstacle.Bottom)
+                        {
+                            canMoveUp = false;
+                        }
+                        if (goDown && player.Bottom > obstacle.Top && player.Top < obstacle.Top)
+                        {
+                            canMoveDown = false;
+                        }
+                    }
                 }
             }
-            if (goUp == true && player.Top > 45)
+
+            if (canMoveLeft)
+            {
+                player.Left -= speed;
+            }
+            if (canMoveRight)
+            {
+                player.Left += speed;
+            }
+            if (canMoveUp)
             {
                 player.Top -= speed;
             }
-            if (goDown == true && player.Top + player.Height < this.ClientSize.Height)
+            if (canMoveDown)
             {
                 player.Top += speed;
             }
 
-
             foreach (Zombie zombie in zombiesList.ToList())
             {
-
                 foreach (Control j in this.Controls)
                 {
                     if (j is PictureBox && (string)j.Tag == "bullet")
@@ -202,6 +234,7 @@ namespace GameForm
                         }
                     }
                 }
+
                 if (zombie.ZombiePictureBox.Left > wall.Right)
                 {
                     zombie.ZombiePictureBox.Left -= zombie.Speed;
@@ -213,6 +246,7 @@ namespace GameForm
                 }
             }
         }
+
 
         private void DamageWall(Zombie zombie)
         {
@@ -227,32 +261,32 @@ namespace GameForm
         private void KeyIsDown(object sender, KeyEventArgs e)
         {
 
-            if (gameOver == true)
-            {
-                return;
-            }
-
-            if (e.KeyCode == Keys.Left)
-            {
-                goLeft = true;
-                facing = "left";
-                player.Image = currentGun.ImageLeft;
-            }
-
-            if (e.KeyCode == Keys.Right)
-            {
-                goRight = true;
-                facing = "right";
-                player.Image = currentGun.ImageRight;
-            }
-
-            if (e.KeyCode == Keys.Up)
-            {
-                goUp = true;
-                facing = "up";
-                player.Image = currentGun.ImageUp;
-            }
-
+            if (gameOver == true)                          
+            {                                              
+                return;                                    
+            }                                              
+                                                           
+            if (e.KeyCode == Keys.Left)                    
+            {                                              
+                goLeft = true;                             
+                facing = "left";                           
+                player.Image = currentGun.ImageLeft;       
+            }                                              
+                                                           
+            if (e.KeyCode == Keys.Right)                   
+            {                                              
+                goRight = true;                            
+                facing = "right";                          
+                player.Image = currentGun.ImageRight;      
+            }                                              
+                                                           
+            if (e.KeyCode == Keys.Up)                      
+            {                                              
+                goUp = true;                               
+                facing = "up";                             
+                player.Image = currentGun.ImageUp;         
+            }                                              
+                                                           
             if (e.KeyCode == Keys.Down)
             {
                 goDown = true;
@@ -485,7 +519,7 @@ namespace GameForm
         {
             int spawnChance = ranSpawn.Next(1, 101);
             Random rand = new Random();
-            if (spawnChance <= 60)
+            if (spawnChance <= 65)
             {
                 Zombie zombie = Zombie.CreateZombie(4);
                 int minSpawnHeight = 100;
@@ -654,7 +688,7 @@ namespace GameForm
             soundManager.PlaySound("finalwave");
             Random rand = new Random();
 
-            for (int i = 0; i < 2; i++)
+            for (int i = 0; i < 3; i++)
             {
                 Zombie zombie = Zombie.CreateZombie(4);
                 int minSpawnHeight = 100;
@@ -666,12 +700,12 @@ namespace GameForm
 
                 zombiesList.Add(zombie);
                 this.Controls.Add(zombie.ZombiePictureBox);
-
+                await Task.Delay(500);
             }
 
             await Task.Delay(1000);
 
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < 2; i++)
             {
                 Zombie zombie = Zombie.CreateZombie(3);
                 int minSpawnHeight = 100;
@@ -683,13 +717,12 @@ namespace GameForm
 
                 zombiesList.Add(zombie);
                 this.Controls.Add(zombie.ZombiePictureBox);
-                await Task.Delay(300);
-
+                await Task.Delay(500);
             }
 
             await Task.Delay(2000);
 
-            for (int i = 0; i < 2; i++)
+            for (int i = 0; i < 3; i++)
             {
                 Zombie zombie = Zombie.CreateZombie(2);
                 int minSpawnHeight = 100;
@@ -701,7 +734,7 @@ namespace GameForm
 
                 zombiesList.Add(zombie);
                 this.Controls.Add(zombie.ZombiePictureBox);
-                await Task.Delay(500);
+                await Task.Delay(1000);
             }
 
             await Task.Delay(2000);
@@ -718,7 +751,7 @@ namespace GameForm
 
                 zombiesList.Add(zombie);
                 this.Controls.Add(zombie.ZombiePictureBox);
-                await Task.Delay(1000);
+                await Task.Delay(1500);
             }
         }
 
@@ -730,20 +763,35 @@ namespace GameForm
         private void YouWin()
         {
             GameTimer.Stop();
+            ActualTime.Stop();
             MessageBox.Show("Game Over! You defeated all the zombies!", "You win!",
                 MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-            GameClient.SendData($"RANKING;{kill};{score}");
-
+            GameClient.SendData($"STATS;{kill};{score}");
+            Win winForm = new Win();
+            winForm.ShowDialog();
+            this.Hide();
         }
 
         private void YouLose()
         {
             GameTimer.Stop();
+            ActualTime.Stop();
             MessageBox.Show("Game Over! You are dead, the zombies destroyed your wall", "You lose!",
                 MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-            GameClient.SendData($"RANKING;{kill};{score}");
+            GameClient.SendData($"STATS;{kill};{score}");
+            Lose loseForm = new Lose();
+            loseForm.ShowDialog();
+            this.Hide();
+        }
+
+        private void MainGame_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            GameClient.Disconnect();
+            GameClient.ClearLobby();
+            Login login = new Login();
+            login.Show();
         }
 
         private void RestartGame()
@@ -779,6 +827,7 @@ namespace GameForm
             canFire = true;
 
             GameTimer.Start();
+            ActualTime.Start();
         }
     }
 }

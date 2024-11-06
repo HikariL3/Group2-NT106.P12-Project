@@ -50,17 +50,9 @@ namespace GameForm
                 MessageBox.Show("Vui lòng nhập đầy đủ thông tin!", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
-
-
         private void Login_FormClosed(object sender, FormClosedEventArgs e)
         {
-            GameClient.Disconnect();
-        }
-
-        private void Login_Load(object sender, EventArgs e)
-        {
-
+            Environment.Exit(0);
         }
     }
 }

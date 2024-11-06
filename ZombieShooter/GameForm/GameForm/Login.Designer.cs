@@ -52,6 +52,7 @@
             this.ipAddress.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
             this.ipAddress.Size = new System.Drawing.Size(253, 41);
             this.ipAddress.TabIndex = 17;
+            this.ipAddress.Text = "127.0.0.1";
             // 
             // startButton
             // 
@@ -155,7 +156,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Login";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Login_FormClosed);
-            this.Load += new System.EventHandler(this.Login_Load);
             ((System.ComponentModel.ISupportInitialize)(this.ZombieIcon)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.backgroundImg)).EndInit();
             this.ResumeLayout(false);

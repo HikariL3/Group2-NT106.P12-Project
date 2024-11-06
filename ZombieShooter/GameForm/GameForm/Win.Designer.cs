@@ -29,8 +29,7 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.rankingButton = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -40,44 +39,36 @@
             // 
             this.panel1.BackgroundImage = global::GameForm.Properties.Resources.Screenshot_2024_10_23_092341;
             this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.panel1.Controls.Add(this.button2);
-            this.panel1.Controls.Add(this.button1);
+            this.panel1.Controls.Add(this.rankingButton);
             this.panel1.Controls.Add(this.pictureBox1);
+            this.panel1.Font = new System.Drawing.Font("Microsoft YaHei", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.panel1.Location = new System.Drawing.Point(3, 1);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(643, 351);
             this.panel1.TabIndex = 0;
             // 
-            // button2
+            // rankingButton
             // 
-            this.button2.BackgroundImage = global::GameForm.Properties.Resources.next;
-            this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Location = new System.Drawing.Point(327, 257);
-            this.button2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(133, 43);
-            this.button2.TabIndex = 2;
-            this.button2.UseVisualStyleBackColor = true;
-            // 
-            // button1
-            // 
-            this.button1.BackgroundImage = global::GameForm.Properties.Resources.back;
-            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Location = new System.Drawing.Point(185, 257);
-            this.button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(133, 43);
-            this.button1.TabIndex = 1;
-            this.button1.UseVisualStyleBackColor = true;
+            this.rankingButton.BackColor = System.Drawing.Color.Orange;
+            this.rankingButton.FlatAppearance.BorderColor = System.Drawing.Color.Orange;
+            this.rankingButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rankingButton.Font = new System.Drawing.Font("Courier New", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rankingButton.ForeColor = System.Drawing.Color.White;
+            this.rankingButton.Location = new System.Drawing.Point(192, 250);
+            this.rankingButton.Margin = new System.Windows.Forms.Padding(4);
+            this.rankingButton.Name = "rankingButton";
+            this.rankingButton.Size = new System.Drawing.Size(271, 46);
+            this.rankingButton.TabIndex = 3;
+            this.rankingButton.Text = "Bảng Xếp Hạng";
+            this.rankingButton.UseVisualStyleBackColor = false;
+            this.rankingButton.Click += new System.EventHandler(this.rankingButton_Click);
             // 
             // pictureBox1
             // 
             this.pictureBox1.Image = global::GameForm.Properties.Resources.Screenshot_2024_10_23_092901;
             this.pictureBox1.Location = new System.Drawing.Point(151, 144);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(343, 63);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -90,10 +81,11 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(645, 352);
             this.Controls.Add(this.panel1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Win";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Result: Win";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Win_FormClosed);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
@@ -104,7 +96,6 @@
 
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button rankingButton;
     }
 }

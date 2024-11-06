@@ -13,7 +13,6 @@ namespace Server_ShootOutGame
     public partial class Form2 : Form
     {
         private static List<Player> connectedPlayers = new List<Player>();
-        //private static List<Room> rooms = new List<Room>();
         private static List<Lobby> lobbies = new List<Lobby>();
         private static readonly int port = 8989;
         private TcpListener server;
@@ -103,7 +102,7 @@ namespace Server_ShootOutGame
                     break;
 
                 case "SEND_ROOM_LIST":
-                    SendRoomListToAll();
+                    SendRoomList(player);
                     break;
 
                 case "JOIN_ROOM":
@@ -115,9 +114,10 @@ namespace Server_ShootOutGame
                     break;
 
                 case "READY":
-                    //var lobby = FindLobbyByPlayer(player);
+                    var lobby = FindLobbyByPlayer(player);
+                    lobby.Players.SingleOrDefault(r => r.PlayerName == player.PlayerName).IsReady = true;
                     string readyInfo = $"READY_INFO;{player.PlayerName}";
-                    foreach (var _player in connectedPlayers)
+                    foreach (var _player in lobby.Players)
                     {
                         SendMessageToPlayer(_player, readyInfo);
                     }
@@ -132,12 +132,36 @@ namespace Server_ShootOutGame
                     StartGameForLobby(player);
                     break;
 
-                case "RANKING":
+                case "STATS":
                     int killCount = int.Parse(arrPayload[1]);
                     int scoreGained = int.Parse(arrPayload[2]);
                     player.KillCount += killCount;
                     player.Score += scoreGained;
                     UpdatePlayerStats(player);
+                    break;
+
+                case "GAMEOVER":
+                    CheckGameOver(player);
+                    break;
+
+                case "RANKING":
+                    var playerLobby = FindLobbyByPlayer(player);
+                    if (playerLobby != null)
+                    {
+                        BroadcastRanking(playerLobby);
+                    }
+                    break;
+
+                case "CLEAR_LOBBY":
+                    var _lobby = FindLobbyByPlayer(player);
+                    if(_lobby != null)
+                    {
+                        _lobby.Players.Clear();
+                        _lobby.Host = null;
+                        lobbies.RemoveAll(l => l.RoomId == _lobby.RoomId);
+                    }
+                    string clearLobbyMessage = "CLEAR_LOBBY";
+                    SendMessageToPlayer(player, clearLobbyMessage);
                     break;
 
                 case "DISCONNECTGameRoom":
@@ -158,32 +182,45 @@ namespace Server_ShootOutGame
 
             string disconnectMessage = $"PLAYER_DISCONNECTED;{player.PlayerName}";
             BroadcastMessage(disconnectMessage, player);
+
+            var lobby = FindLobbyByPlayer(player);
+            if (lobby != null)
+            {
+                lobby.Players.RemoveAll(p => p.PlayerName == player.PlayerName);
+            }
         }
 
         private void CreateRoom(Player player, string id)
         {
-            string roomId;
-            if (!string.IsNullOrEmpty(id))
+            var lobby = lobbies.SingleOrDefault(r => r.RoomId == id);
+            if (lobby == null)
             {
-                roomId = id;
+                string roomId;
+                if (!string.IsNullOrEmpty(id))
+                {
+                    roomId = id;
+                }
+                else
+                {
+                    roomId = GenerateRoomId();
+                }
+                Lobby newLobby = new Lobby
+                {
+                    RoomId = roomId,
+                    Host = player,
+                    Players = new List<Player> { player }
+                };
+                lobbies.Add(newLobby);
+                UpdateInfo($"Lobby {roomId} has been created by {player.PlayerName}.");
+                SendRoomList(player);
+                string joinMessage = $"JOINED;{roomId}";
+                SendMessageToPlayer(player, joinMessage);
             }
             else
             {
-                roomId = GenerateRoomId();
+                string errorMessage = $"ERROR_CREATE;{id}";
+                SendMessageToPlayer(player, errorMessage);
             }
-            Lobby newLobby = new Lobby
-            {
-                RoomId = roomId,
-                Host = player,
-                Players = new List<Player> { player }
-            };
-            lobbies.Add(newLobby);
-
-            UpdateInfo($"Lobby {roomId} has been created by {player.PlayerName}.");
-            SendRoomListToAll();
-            string joinMessage = $"JOINED;{roomId}";
-            SendMessageToPlayer(player, joinMessage);
-
         }
 
         private void JoinRoom(Player player, string roomId)
@@ -197,7 +234,7 @@ namespace Server_ShootOutGame
             }
             else
             {
-                string errorMessage = $"ERROR;Room {roomId} is full or does not exist.";
+                string errorMessage = $"ERROR_JOIN;{roomId}";
                 SendMessageToPlayer(player, errorMessage);
             }
         }
@@ -220,6 +257,25 @@ namespace Server_ShootOutGame
             }
         }
 
+        private void CheckGameOver(Player player)
+        {
+            bool check = true;
+            var lobby = FindLobbyByPlayer(player);
+            if(lobby != null)
+            {
+                foreach(var _player in lobby.Players)
+                {
+                    if(!_player.IsGameOver)
+                    {
+                        check = false; 
+                        break;
+                    }
+                }
+                string GameOverInfo = $"GAMEOVER;{check.ToString()}";
+                SendMessageToPlayer(player, GameOverInfo);
+            }
+        }
+
         private void CloseAllGameRooms()
         {
             foreach (var player in connectedPlayers)
@@ -233,7 +289,8 @@ namespace Server_ShootOutGame
         private void UpdatePlayerStats(Player player)
         {
             string updateMessage = $"UPDATE_STATS;{player.PlayerName};{player.KillCount};{player.Score}";
-            BroadcastMessage(updateMessage, player);
+            //BroadcastMessage(updateMessage, player);
+            player.IsGameOver = true;
             Lobby lobby = FindLobbyByPlayer(player);
             if (lobby != null)
             {
@@ -249,11 +306,15 @@ namespace Server_ShootOutGame
         private void BroadcastMessage(string message, Player sender)
         {
             byte[] msgBuffer = Encoding.UTF8.GetBytes(message);
-            foreach (var player in connectedPlayers)
+            Lobby lobby = FindLobbyByPlayer(sender);
+            if(lobby != null)
             {
-                if (player.PlayerSocket != sender.PlayerSocket)
+                foreach (var player in lobby.Players)
                 {
-                    SendMessageToPlayer(player, message);
+                    if (player.PlayerSocket != sender.PlayerSocket)
+                    {
+                        SendMessageToPlayer(player, message);
+                    }
                 }
             }
         }
@@ -302,7 +363,9 @@ namespace Server_ShootOutGame
             var lobby = lobbies.FirstOrDefault(r => r.RoomId == roomId);
             if (lobby != null)
             {
-                string lobbyInfo = $"LOBBY_INFO;{lobby.RoomId};{lobby.Players.Count};{string.Join(",", lobby.Players.Select(p => p.PlayerName))}";
+                string lobbyInfo = $"LOBBY_INFO;{lobby.RoomId};{lobby.Players.Count};" +
+                    $"{string.Join(",", lobby.Players.Select(p => p.PlayerName))};" +
+                    $"{string.Join(",", lobby.Players.Select(p => p.IsReady.ToString()))}";
                 foreach (var _player in connectedPlayers)
                 {
                     SendMessageToPlayer(_player, lobbyInfo);//sửa chỗ này
@@ -320,6 +383,26 @@ namespace Server_ShootOutGame
                 ShowingInfo.AppendText(message + Environment.NewLine);
                 ShowingInfo.SelectionStart = ShowingInfo.Text.Length; // Cuộn xuống cuối
                 ShowingInfo.ScrollToCaret(); // Cuộn đến vị trí con trỏ
+            }
+        }
+        private void BroadcastRanking(Lobby lobby)
+        {
+            var rankingData = new StringBuilder("RANKING;");
+
+            // Sắp xếp người chơi trong phòng theo điểm giảm dần
+            var sortedPlayers = lobby.Players.OrderByDescending(p => p.Score).ToList();
+
+            foreach (var player in sortedPlayers)
+            {
+                rankingData.Append($"{player.PlayerName};{player.KillCount};{player.Score};");
+            }
+
+            string rankingMessage = rankingData.ToString().TrimEnd(';');
+
+            // Gửi dữ liệu xếp hạng đến tất cả người chơi trong phòng
+            foreach (var player in lobby.Players)
+            {
+                SendMessageToPlayer(player, rankingMessage);
             }
         }
 
@@ -363,6 +446,8 @@ namespace Server_ShootOutGame
         public string PlayerName { get; set; }
         public bool IsHost { get; set; }
         public int Turn { get; set; }
+        public bool IsReady { get; set; } = false;
+        public bool IsGameOver { get; set; } = false;
         public int Score { get; set; } = 0;
         public int KillCount { get; set; } = 0;
     }
