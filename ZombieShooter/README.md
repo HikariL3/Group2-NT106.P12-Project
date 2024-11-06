@@ -5,17 +5,16 @@ Currently, we are using the old namespace from the source code. Stop doubting ._
 
 -------Division-------
 
-|   Work division   | Name | 
-|----------|-----------|
-| Game mechanics | Lê Vĩnh Huy    | 
-|  Sounds | Lê Vĩnh Huy   | 
-| Picture | Lê Vĩnh Huy & Nguyễn Quốc Vương |
-|  Form UI | Nguyễn Quốc Vương |
-| Client | Nguyễn Quốc Vương & Trần Thị Quỳnh Hương |  
-| Server | Trần Thị Quỳnh Hương | 
+| Work division  | Name                                     | 
+|----------------|------------------------------------------|
+| Game mechanics | Lê Vĩnh Huy                              | 
+|  Sounds        | Lê Vĩnh Huy                              | 
+| Pictures       | Lê Vĩnh Huy & Nguyễn Quốc Vương          |
+|  Form UI       | Nguyễn Quốc Vương                        |
+| Client         | Nguyễn Quốc Vương & Trần Thị Quỳnh Hương |  
+| Server         | Trần Thị Quỳnh Hương                     | 
 
 
---To be continue
 
 
 

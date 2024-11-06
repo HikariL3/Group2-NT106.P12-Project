@@ -42,7 +42,6 @@ namespace GameForm
         private void Win_FormClosed(object sender, FormClosedEventArgs e)
         {
             GameClient.Disconnect();
-
             GameClient.ClearLobby();
             Login login = new Login();
             login.Show();

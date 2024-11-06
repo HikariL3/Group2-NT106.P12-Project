@@ -42,13 +42,13 @@ namespace GameForm
         private void InitializeGuns()
         {
             // Load images for the guns
-            Gun pistol = new Gun("Pistol", 40, 12, 20, 300, 350, 1000,
+            Gun pistol = new Gun("Pistol", 40, 12, 25, 500, 350, 1000,
                                 Properties.Resources.pistolup, Properties.Resources.pistoldown,
                                 Properties.Resources.pistolleft, Properties.Resources.pistolright);
-            Gun shotgun = new Gun("Shotgun", 25, 3, 10, 200, 700, 1400,
+            Gun shotgun = new Gun("Shotgun", 25, 3, 25, 350, 700, 1400,
                                 Properties.Resources.shotgunup, Properties.Resources.shotgundown,
                                 Properties.Resources.shotgunleft, Properties.Resources.shotgunright);
-            Gun sniper = new Gun("Sniper", 120, 5, 30, 500, 1000, 1600,
+            Gun sniper = new Gun("Sniper", 120, 5, 50, 1200, 1000, 1600,
                                 Properties.Resources.sniperup, Properties.Resources.sniperdown,
                                 Properties.Resources.sniperleft, Properties.Resources.sniperright);
 
@@ -519,7 +519,7 @@ namespace GameForm
         {
             int spawnChance = ranSpawn.Next(1, 101);
             Random rand = new Random();
-            if (spawnChance <= 60)
+            if (spawnChance <= 65)
             {
                 Zombie zombie = Zombie.CreateZombie(4);
                 int minSpawnHeight = 100;
@@ -637,14 +637,6 @@ namespace GameForm
             }
         }
 
-        private void MainGame_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            GameClient.Disconnect();
-            GameClient.ClearLobby();
-            Login login = new Login();
-            login.Show();
-        }
-
         private void MakeZombies4()
         {
             int spawnChance = ranSpawn.Next(1, 101);
@@ -696,7 +688,7 @@ namespace GameForm
             soundManager.PlaySound("finalwave");
             Random rand = new Random();
 
-            for (int i = 0; i < 2; i++)
+            for (int i = 0; i < 3; i++)
             {
                 Zombie zombie = Zombie.CreateZombie(4);
                 int minSpawnHeight = 100;
@@ -708,12 +700,12 @@ namespace GameForm
 
                 zombiesList.Add(zombie);
                 this.Controls.Add(zombie.ZombiePictureBox);
-
+                await Task.Delay(500);
             }
 
             await Task.Delay(1000);
 
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < 2; i++)
             {
                 Zombie zombie = Zombie.CreateZombie(3);
                 int minSpawnHeight = 100;
@@ -725,13 +717,12 @@ namespace GameForm
 
                 zombiesList.Add(zombie);
                 this.Controls.Add(zombie.ZombiePictureBox);
-                await Task.Delay(300);
-
+                await Task.Delay(500);
             }
 
             await Task.Delay(2000);
 
-            for (int i = 0; i < 2; i++)
+            for (int i = 0; i < 3; i++)
             {
                 Zombie zombie = Zombie.CreateZombie(2);
                 int minSpawnHeight = 100;
@@ -743,7 +734,7 @@ namespace GameForm
 
                 zombiesList.Add(zombie);
                 this.Controls.Add(zombie.ZombiePictureBox);
-                await Task.Delay(500);
+                await Task.Delay(1000);
             }
 
             await Task.Delay(2000);
@@ -760,7 +751,7 @@ namespace GameForm
 
                 zombiesList.Add(zombie);
                 this.Controls.Add(zombie.ZombiePictureBox);
-                await Task.Delay(1000);
+                await Task.Delay(1500);
             }
         }
 
@@ -793,6 +784,14 @@ namespace GameForm
             Lose loseForm = new Lose();
             loseForm.ShowDialog();
             this.Hide();
+        }
+
+        private void MainGame_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            GameClient.Disconnect();
+            GameClient.ClearLobby();
+            Login login = new Login();
+            login.Show();
         }
 
         private void RestartGame()
@@ -828,6 +827,7 @@ namespace GameForm
             canFire = true;
 
             GameTimer.Start();
+            ActualTime.Start();
         }
     }
 }

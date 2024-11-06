@@ -61,7 +61,6 @@
             this.statsPlayer2 = new System.Windows.Forms.GroupBox();
             this.statsPlayer3 = new System.Windows.Forms.GroupBox();
             this.statsPlayer4 = new System.Windows.Forms.GroupBox();
-            this.pictureBox7 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -72,7 +71,6 @@
             this.statsPlayer2.SuspendLayout();
             this.statsPlayer3.SuspendLayout();
             this.statsPlayer4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             this.SuspendLayout();
             // 
             // labelBXH
@@ -301,8 +299,8 @@
             // 
             this.thoatButton.BackColor = System.Drawing.SystemColors.Control;
             this.thoatButton.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.thoatButton.Location = new System.Drawing.Point(11, 517);
-            this.thoatButton.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.thoatButton.Location = new System.Drawing.Point(11, 484);
+            this.thoatButton.Margin = new System.Windows.Forms.Padding(5);
             this.thoatButton.Name = "thoatButton";
             this.thoatButton.Size = new System.Drawing.Size(111, 57);
             this.thoatButton.TabIndex = 20;
@@ -313,8 +311,8 @@
             // newGameButton
             // 
             this.newGameButton.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.newGameButton.Location = new System.Drawing.Point(847, 517);
-            this.newGameButton.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.newGameButton.Location = new System.Drawing.Point(637, 484);
+            this.newGameButton.Margin = new System.Windows.Forms.Padding(5);
             this.newGameButton.Name = "newGameButton";
             this.newGameButton.Size = new System.Drawing.Size(111, 57);
             this.newGameButton.TabIndex = 21;
@@ -326,7 +324,7 @@
             // 
             this.pictureBox5.Image = global::GameForm.Properties.Resources.crown;
             this.pictureBox5.Location = new System.Drawing.Point(240, 6);
-            this.pictureBox5.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.pictureBox5.Margin = new System.Windows.Forms.Padding(5);
             this.pictureBox5.Name = "pictureBox5";
             this.pictureBox5.Size = new System.Drawing.Size(93, 86);
             this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -336,8 +334,8 @@
             // pictureBox4
             // 
             this.pictureBox4.Image = global::GameForm.Properties.Resources.pngwing_com;
-            this.pictureBox4.Location = new System.Drawing.Point(1004, 130);
-            this.pictureBox4.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.pictureBox4.Location = new System.Drawing.Point(758, 184);
+            this.pictureBox4.Margin = new System.Windows.Forms.Padding(5);
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.Size = new System.Drawing.Size(223, 290);
             this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -453,7 +451,7 @@
             this.statsPlayer1.Controls.Add(this.label6);
             this.statsPlayer1.Controls.Add(this.pictureBox1);
             this.statsPlayer1.Location = new System.Drawing.Point(11, 166);
-            this.statsPlayer1.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.statsPlayer1.Margin = new System.Windows.Forms.Padding(5);
             this.statsPlayer1.Name = "statsPlayer1";
             this.statsPlayer1.Padding = new System.Windows.Forms.Padding(0);
             this.statsPlayer1.Size = new System.Drawing.Size(737, 62);
@@ -469,7 +467,7 @@
             this.statsPlayer2.Controls.Add(this.scorePlayer2);
             this.statsPlayer2.Controls.Add(this.pictureBox2);
             this.statsPlayer2.Location = new System.Drawing.Point(11, 247);
-            this.statsPlayer2.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.statsPlayer2.Margin = new System.Windows.Forms.Padding(5);
             this.statsPlayer2.Name = "statsPlayer2";
             this.statsPlayer2.Padding = new System.Windows.Forms.Padding(0);
             this.statsPlayer2.Size = new System.Drawing.Size(737, 62);
@@ -485,7 +483,7 @@
             this.statsPlayer3.Controls.Add(this.killPlayer3);
             this.statsPlayer3.Controls.Add(this.pictureBox3);
             this.statsPlayer3.Location = new System.Drawing.Point(11, 327);
-            this.statsPlayer3.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.statsPlayer3.Margin = new System.Windows.Forms.Padding(5);
             this.statsPlayer3.Name = "statsPlayer3";
             this.statsPlayer3.Padding = new System.Windows.Forms.Padding(0);
             this.statsPlayer3.Size = new System.Drawing.Size(737, 62);
@@ -501,7 +499,7 @@
             this.statsPlayer4.Controls.Add(this.scorePlayer4);
             this.statsPlayer4.Controls.Add(this.pictureBox6);
             this.statsPlayer4.Location = new System.Drawing.Point(11, 412);
-            this.statsPlayer4.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.statsPlayer4.Margin = new System.Windows.Forms.Padding(5);
             this.statsPlayer4.Name = "statsPlayer4";
             this.statsPlayer4.Padding = new System.Windows.Forms.Padding(0);
             this.statsPlayer4.Size = new System.Drawing.Size(737, 62);
@@ -509,23 +507,12 @@
             this.statsPlayer4.TabStop = false;
             this.statsPlayer4.Visible = false;
             // 
-            // pictureBox7
-            // 
-            this.pictureBox7.Image = global::GameForm.Properties.Resources.pngwing_com;
-            this.pictureBox7.Location = new System.Drawing.Point(748, 166);
-            this.pictureBox7.Name = "pictureBox7";
-            this.pictureBox7.Size = new System.Drawing.Size(221, 206);
-            this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox7.TabIndex = 31;
-            this.pictureBox7.TabStop = false;
-            // 
             // Ranking
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(981, 491);
-            this.Controls.Add(this.pictureBox7);
+            this.ClientSize = new System.Drawing.Size(995, 551);
             this.Controls.Add(this.statsPlayer4);
             this.Controls.Add(this.statsPlayer3);
             this.Controls.Add(this.statsPlayer2);
@@ -539,7 +526,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label5);
-            this.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "Ranking";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Ranking";
@@ -554,7 +541,6 @@
             this.statsPlayer2.ResumeLayout(false);
             this.statsPlayer3.ResumeLayout(false);
             this.statsPlayer4.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -593,6 +579,5 @@
         private System.Windows.Forms.GroupBox statsPlayer2;
         private System.Windows.Forms.GroupBox statsPlayer3;
         private System.Windows.Forms.GroupBox statsPlayer4;
-        private System.Windows.Forms.PictureBox pictureBox7;
     }
 }

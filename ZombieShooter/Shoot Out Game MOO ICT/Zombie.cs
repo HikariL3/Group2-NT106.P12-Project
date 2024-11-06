@@ -48,7 +48,7 @@ namespace Shoot_Out_Game_MOO_ICT
                     return new Zombie(40, 6, 15, 27, "left", zombiePic,
                         Properties.Resources.szleft); // variant 2 images
                 case 3:
-                    return new Zombie(100, 3, 15, 30, "left", zombiePic,
+                    return new Zombie(100, 3, 15, 32, "left", zombiePic,
                         Properties.Resources.tzleft); // variant 3 images
                 case 4:
                     return new Zombie(40, 3, 12, 20, "left", zombiePic,

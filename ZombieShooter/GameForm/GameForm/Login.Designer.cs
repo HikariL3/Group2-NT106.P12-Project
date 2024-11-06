@@ -45,11 +45,12 @@
             this.ipAddress.BackColor = System.Drawing.Color.White;
             this.ipAddress.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.ipAddress.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ipAddress.Location = new System.Drawing.Point(351, 179);
+            this.ipAddress.Location = new System.Drawing.Point(468, 220);
+            this.ipAddress.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ipAddress.Multiline = true;
             this.ipAddress.Name = "ipAddress";
             this.ipAddress.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
-            this.ipAddress.Size = new System.Drawing.Size(190, 33);
+            this.ipAddress.Size = new System.Drawing.Size(253, 41);
             this.ipAddress.TabIndex = 17;
             this.ipAddress.Text = "127.0.0.1";
             // 
@@ -59,9 +60,10 @@
             this.startButton.FlatAppearance.BorderColor = System.Drawing.Color.Tomato;
             this.startButton.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.startButton.ForeColor = System.Drawing.Color.White;
-            this.startButton.Location = new System.Drawing.Point(351, 234);
+            this.startButton.Location = new System.Drawing.Point(468, 288);
+            this.startButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.startButton.Name = "startButton";
-            this.startButton.Size = new System.Drawing.Size(190, 40);
+            this.startButton.Size = new System.Drawing.Size(253, 49);
             this.startButton.TabIndex = 15;
             this.startButton.Text = "BẮT ĐẦU";
             this.startButton.UseVisualStyleBackColor = false;
@@ -71,9 +73,10 @@
             // 
             this.ipAddressLabel.AutoSize = true;
             this.ipAddressLabel.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ipAddressLabel.Location = new System.Drawing.Point(347, 156);
+            this.ipAddressLabel.Location = new System.Drawing.Point(463, 192);
+            this.ipAddressLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.ipAddressLabel.Name = "ipAddressLabel";
-            this.ipAddressLabel.Size = new System.Drawing.Size(69, 20);
+            this.ipAddressLabel.Size = new System.Drawing.Size(83, 24);
             this.ipAddressLabel.TabIndex = 14;
             this.ipAddressLabel.Text = "Địa chỉ IP";
             // 
@@ -81,9 +84,10 @@
             // 
             this.usernameLabel.AutoSize = true;
             this.usernameLabel.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.usernameLabel.Location = new System.Drawing.Point(347, 85);
+            this.usernameLabel.Location = new System.Drawing.Point(463, 105);
+            this.usernameLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.usernameLabel.Name = "usernameLabel";
-            this.usernameLabel.Size = new System.Drawing.Size(109, 20);
+            this.usernameLabel.Size = new System.Drawing.Size(125, 24);
             this.usernameLabel.TabIndex = 13;
             this.usernameLabel.Text = "Tên người chơi";
             // 
@@ -92,29 +96,32 @@
             this.username.BackColor = System.Drawing.Color.White;
             this.username.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.username.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.username.Location = new System.Drawing.Point(351, 108);
+            this.username.Location = new System.Drawing.Point(468, 133);
+            this.username.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.username.Multiline = true;
             this.username.Name = "username";
             this.username.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
-            this.username.Size = new System.Drawing.Size(190, 33);
+            this.username.Size = new System.Drawing.Size(253, 41);
             this.username.TabIndex = 12;
             // 
             // gameName
             // 
             this.gameName.AutoSize = true;
             this.gameName.Font = new System.Drawing.Font("Arial Narrow", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gameName.Location = new System.Drawing.Point(380, 38);
+            this.gameName.Location = new System.Drawing.Point(507, 47);
+            this.gameName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.gameName.Name = "gameName";
-            this.gameName.Size = new System.Drawing.Size(161, 31);
+            this.gameName.Size = new System.Drawing.Size(204, 40);
             this.gameName.TabIndex = 11;
             this.gameName.Text = "Zombie Game";
             // 
             // ZombieIcon
             // 
             this.ZombieIcon.Image = global::GameForm.Properties.Resources.pngwing_com;
-            this.ZombieIcon.Location = new System.Drawing.Point(300, 16);
+            this.ZombieIcon.Location = new System.Drawing.Point(400, 20);
+            this.ZombieIcon.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ZombieIcon.Name = "ZombieIcon";
-            this.ZombieIcon.Size = new System.Drawing.Size(83, 69);
+            this.ZombieIcon.Size = new System.Drawing.Size(111, 85);
             this.ZombieIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.ZombieIcon.TabIndex = 16;
             this.ZombieIcon.TabStop = false;
@@ -123,8 +130,9 @@
             // 
             this.backgroundImg.Image = global::GameForm.Properties.Resources._1804058af6cd71e04a87ca365e9553ce454318c872f329d93229b8329f501d31;
             this.backgroundImg.Location = new System.Drawing.Point(0, 1);
+            this.backgroundImg.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.backgroundImg.Name = "backgroundImg";
-            this.backgroundImg.Size = new System.Drawing.Size(294, 349);
+            this.backgroundImg.Size = new System.Drawing.Size(392, 430);
             this.backgroundImg.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.backgroundImg.TabIndex = 10;
             this.backgroundImg.TabStop = false;
@@ -132,9 +140,9 @@
             // Login
             // 
             this.AcceptButton = this.startButton;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(595, 350);
+            this.ClientSize = new System.Drawing.Size(793, 431);
             this.Controls.Add(this.ipAddress);
             this.Controls.Add(this.ZombieIcon);
             this.Controls.Add(this.startButton);
@@ -143,6 +151,7 @@
             this.Controls.Add(this.username);
             this.Controls.Add(this.gameName);
             this.Controls.Add(this.backgroundImg);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "Login";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Login";

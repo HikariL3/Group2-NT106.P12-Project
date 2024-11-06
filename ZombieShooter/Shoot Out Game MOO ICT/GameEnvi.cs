@@ -688,7 +688,7 @@ namespace Shoot_Out_Game_MOO_ICT
             soundManager.PlaySound("finalwave");
             Random rand = new Random();
 
-            for (int i = 0; i < 2; i++)
+            for (int i = 0; i < 3; i++)
             {
                 Zombie zombie = Zombie.CreateZombie(4);
                 int minSpawnHeight = 100;
@@ -700,12 +700,12 @@ namespace Shoot_Out_Game_MOO_ICT
 
                 zombiesList.Add(zombie);
                 this.Controls.Add(zombie.ZombiePictureBox);
-
+                await Task.Delay(500);
             }
 
             await Task.Delay(1000);
 
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < 2; i++)
             {
                 Zombie zombie = Zombie.CreateZombie(3);
                 int minSpawnHeight = 100;
@@ -717,13 +717,12 @@ namespace Shoot_Out_Game_MOO_ICT
 
                 zombiesList.Add(zombie);
                 this.Controls.Add(zombie.ZombiePictureBox);
-                await Task.Delay(300);
-
+                await Task.Delay(500);
             }
 
             await Task.Delay(2000);
 
-            for (int i = 0; i < 2; i++)
+            for (int i = 0; i < 3; i++)
             {
                 Zombie zombie = Zombie.CreateZombie(2);
                 int minSpawnHeight = 100;
@@ -752,7 +751,7 @@ namespace Shoot_Out_Game_MOO_ICT
 
                 zombiesList.Add(zombie);
                 this.Controls.Add(zombie.ZombiePictureBox);
-                await Task.Delay(1000);
+                await Task.Delay(1500);
             }
         }
 
@@ -788,7 +787,7 @@ namespace Shoot_Out_Game_MOO_ICT
             }
             zombiesList.Clear();
 
-            timeLeft = 15;
+            timeLeft = 20;
 
             goUp = false;
             goDown = false;
@@ -810,6 +809,7 @@ namespace Shoot_Out_Game_MOO_ICT
             canFire = true;
 
             GameTimer.Start();
+            ActualTime.Start();
         }
     }
 }
