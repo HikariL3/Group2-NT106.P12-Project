@@ -42,7 +42,7 @@ namespace GameForm
             switch (type)
             {
                 case 1:
-                    return new Zombie(250, 2, 30, 75, "left", zombiePic,
+                    return new Zombie(240, 2, 30, 75, "left", zombiePic,
                         Properties.Resources.bzleft); // variant 1 images
                 case 2:
                     return new Zombie(40, 6, 14, 27, "left", zombiePic,
