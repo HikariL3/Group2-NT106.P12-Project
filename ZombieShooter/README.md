@@ -6,7 +6,9 @@ We wished to develop this to have 4 players in a room, but time did not allow. T
 We are really glad if you actually use our project for reference and further development :3 
 
 Should you have any questions regarding this project, please contact me via:
+
 X: @AegleLe
+
 Facebook: https://www.facebook.com/codename.Hikari/
 
 
