@@ -58,9 +58,6 @@ namespace GameForm
 
         private void thoatButton_Click(object sender, EventArgs e)
         {
-            GameClient.Disconnect();
-            Login login = new Login();
-            login.Show();
             this.Close();
         }
 
@@ -74,11 +71,14 @@ namespace GameForm
 
         private async void Ranking_FormClosed(object sender, FormClosedEventArgs e)
         {
-            GameClient.Disconnect();
+            GameClient.SendData("CLEAR_LOBBY");
 
             await WaitFunction();
 
-            GameClient.SendData("CLEAR_LOBBY");
+            GameClient.Disconnect();
+
+            Login login = new Login();
+            login.Show();
         }
         private async Task WaitFunction()
         {

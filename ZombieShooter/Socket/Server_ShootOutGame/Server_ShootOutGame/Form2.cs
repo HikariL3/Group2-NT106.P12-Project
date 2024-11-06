@@ -184,7 +184,10 @@ namespace Server_ShootOutGame
             BroadcastMessage(disconnectMessage, player);
 
             var lobby = FindLobbyByPlayer(player);
-            lobby.Players.RemoveAll(p => p.PlayerName == player.PlayerName);
+            if (lobby != null)
+            {
+                lobby.Players.RemoveAll(p => p.PlayerName == player.PlayerName);
+            }
         }
 
         private void CreateRoom(Player player, string id)
