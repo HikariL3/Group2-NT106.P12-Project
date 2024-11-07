@@ -53,7 +53,7 @@
             this.rankingButton.BackColor = System.Drawing.Color.Orange;
             this.rankingButton.FlatAppearance.BorderColor = System.Drawing.Color.Orange;
             this.rankingButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rankingButton.Font = new System.Drawing.Font("Courier New", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rankingButton.Font = new System.Drawing.Font("Courier New", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rankingButton.ForeColor = System.Drawing.Color.White;
             this.rankingButton.Location = new System.Drawing.Point(192, 250);
             this.rankingButton.Margin = new System.Windows.Forms.Padding(4);

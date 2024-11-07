@@ -45,10 +45,10 @@ namespace GameForm
             Gun pistol = new Gun("Pistol", 40, 12, 25, 500, 350, 1000,
                                 Properties.Resources.pistolup, Properties.Resources.pistoldown,
                                 Properties.Resources.pistolleft, Properties.Resources.pistolright);
-            Gun shotgun = new Gun("Shotgun", 25, 3, 25, 350, 700, 1400,
+            Gun shotgun = new Gun("Shotgun", 15, 3, 25, 350, 700, 1400,
                                 Properties.Resources.shotgunup, Properties.Resources.shotgundown,
                                 Properties.Resources.shotgunleft, Properties.Resources.shotgunright);
-            Gun sniper = new Gun("Sniper", 120, 5, 50, 1200, 1000, 1600,
+            Gun sniper = new Gun("Sniper", 100, 5, 50, 1200, 1000, 1600,
                                 Properties.Resources.sniperup, Properties.Resources.sniperdown,
                                 Properties.Resources.sniperleft, Properties.Resources.sniperright);
 
@@ -230,6 +230,7 @@ namespace GameForm
                                 score += zombie.Score;
                                 this.Controls.Remove(zombie.ZombiePictureBox);
                                 zombiesList.Remove(zombie);
+                                break;
                             }
                         }
                     }
@@ -760,8 +761,9 @@ namespace GameForm
         //-------------------------------------------------------------------------------
         #endregion
 
-        private void YouWin()
+        private async void YouWin()
         {
+            await Task.Delay(5);
             GameTimer.Stop();
             ActualTime.Stop();
             MessageBox.Show("Game Over! You defeated all the zombies!", "You win!",
@@ -773,8 +775,9 @@ namespace GameForm
             this.Hide();
         }
 
-        private void YouLose()
+        private async void YouLose()
         {
+            await Task.Delay(5);
             GameTimer.Stop();
             ActualTime.Stop();
             MessageBox.Show("Game Over! You are dead, the zombies destroyed your wall", "You lose!",
