@@ -18,7 +18,6 @@ namespace GameForm
     {
         private CancellationTokenSource _cts;
 
-
         public Lobby()
         {
             InitializeComponent();

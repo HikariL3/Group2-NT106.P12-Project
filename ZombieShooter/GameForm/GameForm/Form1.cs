@@ -13,6 +13,7 @@ using System.Net.Sockets;
 using GameForm;
 using System.Net.NetworkInformation;
 using Client;
+using Server_ShootOutGame;
 
 namespace GameForm
 {
@@ -74,9 +75,10 @@ namespace GameForm
             soundManager.LoadSound("bzfinalwave", Properties.Resources.bzfinalwave);
             soundManager.LoadSound("brain", Properties.Resources.brain);
             soundManager.LoadSound("begin", Properties.Resources.begin);
-
             soundManager.PlaySound("begin");
+            name1.Text = GameClient.localPlayer.Name;/////////////////////////
         }
+
 
         #region CODE FOR HANDLING GAME EVENT
         //BEGIN OF-----------------------------------------------------------------------
@@ -163,15 +165,12 @@ namespace GameForm
             bool canMoveUp = goUp && player.Top > 45;
             bool canMoveDown = goDown && player.Top + player.Height < this.ClientSize.Height;
 
+
             // Check for collisions with obstacles
             foreach (Control obstacle in this.Controls)
             {
                 if (obstacle is PictureBox &&
-                    ((string)obstacle.Name == "car"         ||
-                    (string)obstacle.Name == "barrel_stand" ||
-                    (string)obstacle.Name == "barrel_lay"   ||
-                    (string)obstacle.Name == "wall"         ||
-                    (string)obstacle.Name == "sandbag"))
+                    ((string)obstacle.Name == "wall"))
                 {
                     if (player.Bounds.IntersectsWith(obstacle.Bounds))
                     {
@@ -198,18 +197,22 @@ namespace GameForm
             if (canMoveLeft)
             {
                 player.Left -= speed;
+                name1.Left -= speed;
             }
             if (canMoveRight)
             {
                 player.Left += speed;
+                name1.Left += speed;
             }
             if (canMoveUp)
             {
                 player.Top -= speed;
+                name1.Top -= speed;
             }
             if (canMoveDown)
             {
                 player.Top += speed;
+                name1.Top += speed;
             }
 
             foreach (Zombie zombie in zombiesList.ToList())
@@ -826,6 +829,10 @@ namespace GameForm
 
             player.Left = wall.Left - player.Width - 10;
             player.Top = wall.Top + (wall.Height / 2) - (player.Height / 2);
+            
+            //Initialize the name along with the player
+            name1.Left = wall.Left - player.Width - 10;
+            name1.Top = wall.Top + (wall.Height / 2) - (player.Height / 2);
 
             canFire = true;
 

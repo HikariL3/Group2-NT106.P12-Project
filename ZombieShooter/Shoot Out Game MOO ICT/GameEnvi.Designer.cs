@@ -28,17 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainGame));
             this.txtAmmo = new System.Windows.Forms.Label();
             this.txtKill = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.healthBar = new System.Windows.Forms.ProgressBar();
-            this.GameTimer = new System.Windows.Forms.Timer();
+            this.GameTimer = new System.Windows.Forms.Timer(this.components);
             this.txtGun = new System.Windows.Forms.Label();
             this.txtState = new System.Windows.Forms.Label();
             this.txtScore = new System.Windows.Forms.Label();
             this.txtTimer = new System.Windows.Forms.Label();
-            this.ActualTime = new System.Windows.Forms.Timer();
+            this.ActualTime = new System.Windows.Forms.Timer(this.components);
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.wall = new System.Windows.Forms.PictureBox();
@@ -106,7 +107,7 @@
             // GameTimer
             // 
             this.GameTimer.Enabled = true;
-            this.GameTimer.Interval = 20;
+            this.GameTimer.Interval = 35;
             this.GameTimer.Tick += new System.EventHandler(this.MainTimerEvent);
             // 
             // txtGun
