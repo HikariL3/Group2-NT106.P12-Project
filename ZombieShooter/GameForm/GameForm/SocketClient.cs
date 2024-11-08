@@ -63,15 +63,17 @@ namespace Client
         // Xử lý dữ liệu nhận được từ server
         private static void ProcessReceivedData(string data)
         {
+            //Tách thông điệp để phân tích
             string[] payload = data.Split(';');
             string messageType = payload[0];
-
+            //Phân loại thông điệp nhận từ server
             switch (messageType)
             {
+                //Nhận danh sách phòng mà server gửi cho
                 case "ROOMLIST":
                     AddRoomList(payload);
                     break;
-
+                //server thông báo lại là đã vào phòng hoặc không
                 case "JOINED":
                     joinedRoom = payload[1];
                     var lobby = lobbies.SingleOrDefault(r => r.RoomId == payload[1]);
@@ -80,50 +82,50 @@ namespace Client
                         joinedLobby = lobby;
                     }
                     break;
-
+                 //Nhận danh sách người chơi (tên, trạng thái sẵn sàng) từ server và cập nhập vào class Lobby, Player
                 case "LOBBY_INFO":
                     UpdateLobby(payload);
                     break;
-
+                //Nhận từ server xem các người chơi khác sẵn sàng hay chưa
                 case "READY_INFO":
                     UpdateReadyInfo(payload);
                     break;
-
+                //Nhận message trong lobby từ các client khác
                 case "SEND_MESSAGE":
                     UpdateMessage(payload[1]);
                     break;
-
+                //Nhận thông báo bắt đầu vào game từ server
                 case "START":
                     isStartGame = true;
                     break;
-
+                //Nhận thông số (kill, score) từ player khác
                 case "UPDATE_STATS":
                     UpdateStats(payload);
                     break;
-
+                //Kiểm tra xem các người chơi khác đã xong trận chưa
                 case "GAMEOVER":
                     if (payload[1] == "True")
                         joinedLobby.IsGameOver = true;
                     break;
-
+                //Server thông báo đã xử lý ngắt kết nối của mình
                 case "PLAYER_DISCONNECTED":
                     HandleDisconnect(payload[1]);  
                     break;
-
+                //Xóa lobby vừa chơi xong
                 case "CLEAR_LOBBY":
                     ClearLobby();
                     break;
-
+                //Lỗi khi tham gia vào phòng (phòng muốn vào ko tồn tại hoặc đủ người hoặc đã vào trận)
                 case "ERROR_JOIN":
                     isJoinRoom = false;
                     break;
-
+                //Lỗi khi tạo phòng (phòng đã được tạo)
                 case "ERROR_CREATE":
                     isCreateRoom = false;
                     break;
             }
         }
-        //Cập nhập danh sách phòng
+        //Cập nhập danh sách phòng hiện có vào list lobbies
         private static void AddRoomList(string[] payload)
         {
             for (int i = 1; i < payload.Length - 1; i += 2)
@@ -146,7 +148,7 @@ namespace Client
                 }
             }
         }
-
+        //Xử lý ngắt kết nối
         private static void HandleDisconnect(string playerName)
         {
             if(joinedLobby != null && joinedLobby.PlayersName.Contains(playerName))
@@ -161,7 +163,7 @@ namespace Client
                 }
             }
         }
-
+        //Cập nhập danh sách các người khác trong cùng 1 lobby
         private static void UpdateLobby(string[] payload)
         {
             var lobby = lobbies.SingleOrDefault(r => r.RoomId == payload[1]);
@@ -188,20 +190,21 @@ namespace Client
                 }
             }
         }
+        //Cập nhập trạng thái sẵn sàng của người chơi khác
         public static void UpdateReadyInfo(string[] payload)
         {
             var player = joinedLobby.Players.SingleOrDefault(r => r.Name == payload[1]);
             if (player != null)
                 player.IsReady = true;
         }
-
+        //Kiểm tra xem người chơi có "name" đã sẵn sàng chưa
         public static bool CheckIsReady(string name)
         {
             var player = joinedLobby.Players.SingleOrDefault(r => r.Name == name);
             if (player == null) return false;
             return player.IsReady;
         }
-
+        //Kiểm tra xem tất cả player đã sẵn sàng chưa
         public static bool CheckIsReadyForAll()
         {
             foreach (var player in joinedLobby.Players)
@@ -210,19 +213,19 @@ namespace Client
             }
             return true;
         }
-
+        //Kiểm tra xem còn người chơi khác trong trận không
         public static bool CheckGameOver()
         {
             if(joinedLobby.IsGameOver)
                 return true;
             return false;
         }
-
+        //Tin nhắn từ người chơi khác
         public static void UpdateMessage(string content)
         {
             messages.Add(content);
         }
-
+        
         public static string GetMessageFromPlayers()
         {
             if (messages.Count == 0) return null;
@@ -230,7 +233,7 @@ namespace Client
             messages.Clear();
             return content;
         }
-
+        //Cập nhập thông số (score và kill) vào class lobby và player
         public static void UpdateStats(string[] payload)
         {
             foreach (var player in joinedLobby.Players)
@@ -279,6 +282,7 @@ namespace Client
             isJoinRoom = true;
             isStartGame = false;
         }
+        //Xóa lobby
         public static void ClearLobby()
         {
             foreach(var lobby in lobbies)
@@ -310,7 +314,8 @@ namespace Client
 
     public class Lobby
     {
-        public bool IsGameOver { get; set; } = false;   
+        public bool IsGameOver { get; set; } = false;
+        public bool IsStart { get; set; } = false;
         public string RoomId { get; set; }
         public Player Host { get; set; }
         public string HostName { get; set; }

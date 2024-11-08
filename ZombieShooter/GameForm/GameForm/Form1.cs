@@ -77,6 +77,89 @@ namespace GameForm
             soundManager.LoadSound("begin", Properties.Resources.begin);
             soundManager.PlaySound("begin");
             name1.Text = GameClient.localPlayer.Name;/////////////////////////
+
+
+            int Playercount = GameClient.joinedLobby.Players.Count;
+            for(int  i = 1; i <= Playercount; i++)
+            {
+                if(GameClient.localPlayer.Name != GameClient.joinedLobby.Players[i - 1].Name)
+                {
+                    switch (i)
+                    {
+                        case 2:
+                            PictureBox player2 = new PictureBox();
+                            player2.Size = new Size(56, 81);
+                            player2.Location = new Point(238, 100);
+                            player2.SizeMode = PictureBoxSizeMode.StretchImage;
+                            player2.Image = currentGun.ImageRight;
+
+                            Label name2 = new Label();
+                            name2.Text = GameClient.joinedLobby.Players[i - 1].Name;
+                            name2.BackColor = Color.FromArgb(0, 28, 32);
+                            //name2.Size = new Size(35, 15);
+                            name2.AutoSize = true;
+                            name2.AutoEllipsis = true;
+                            name2.Location = new Point(238, 100);
+                            name2.ForeColor = SystemColors.ButtonHighlight;
+                            name2.Font = new Font("Courier New", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+
+                            this.Controls.Add(player2);
+                            this.Controls.Add(name2);
+
+                            name2.BringToFront();
+                            player2.SendToBack();
+                            break;
+
+                        case 3:
+                            PictureBox player3 = new PictureBox();
+                            player3.Size = new Size(56, 81);
+                            player3.Location = new Point(238, 400);
+                            player3.SizeMode = PictureBoxSizeMode.StretchImage;
+                            player3.Image = currentGun.ImageRight;
+
+                            Label name3 = new Label();
+                            name3.Text = GameClient.joinedLobby.Players[i - 1].Name;
+                            name3.BackColor = Color.FromArgb(0, 28, 32);
+                            //name3.Size = new Size(35, 15);
+                            name3.AutoSize = true;
+                            name3.AutoEllipsis = true;
+                            name3.Location = new Point(238, 400);
+                            name3.ForeColor = SystemColors.ButtonHighlight;
+                            name3.Font = new Font("Courier New", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+
+                            this.Controls.Add(player3);
+                            this.Controls.Add(name3);
+
+                            name3.BringToFront();
+                            player3.SendToBack();
+                            break;
+
+                        case 4:
+                            PictureBox player4 = new PictureBox();
+                            player4.Size = new Size(56, 81);
+                            player4.Location = new Point(238, 550);
+                            player4.SizeMode = PictureBoxSizeMode.StretchImage;
+                            player4.Image = currentGun.ImageRight;
+
+                            Label name4 = new Label();
+                            name4.Text = GameClient.joinedLobby.Players[i - 1].Name;
+                            //name4.Size = new Size(35, 15);
+                            name4.AutoSize = true;
+                            name4.AutoEllipsis = true;
+                            name4.BackColor = Color.FromArgb(0, 28, 32);
+                            name4.Location = new Point(238, 550);
+                            name4.ForeColor = SystemColors.ButtonHighlight;
+                            name4.Font = new Font("Courier New", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+
+                            this.Controls.Add(player4);
+                            this.Controls.Add(name4);
+
+                            name4.BringToFront();
+                            player4.SendToBack();
+                            break;
+                    }
+                }
+            }
         }
 
 
@@ -160,10 +243,10 @@ namespace GameForm
             txtScore.Text = "Score: " + score;
 
             // Initialize movement flags
-            bool canMoveLeft = goLeft && player.Left > 0;
-            bool canMoveRight = goRight && player.Left + player.Width < this.ClientSize.Width;
-            bool canMoveUp = goUp && player.Top > 45;
-            bool canMoveDown = goDown && player.Top + player.Height < this.ClientSize.Height;
+            bool canMoveLeft = goLeft && player1.Left > 0;
+            bool canMoveRight = goRight && player1.Left + player1.Width < this.ClientSize.Width;
+            bool canMoveUp = goUp && player1.Top > 45;
+            bool canMoveDown = goDown && player1.Top + player1.Height < this.ClientSize.Height;
 
 
             // Check for collisions with obstacles
@@ -172,21 +255,21 @@ namespace GameForm
                 if (obstacle is PictureBox &&
                     ((string)obstacle.Name == "wall"))
                 {
-                    if (player.Bounds.IntersectsWith(obstacle.Bounds))
+                    if (player1.Bounds.IntersectsWith(obstacle.Bounds))
                     {
-                        if (goLeft && player.Left < obstacle.Right && player.Right > obstacle.Right)
+                        if (goLeft && player1.Left < obstacle.Right && player1.Right > obstacle.Right)
                         {
                             canMoveLeft = false;
                         }
-                        if (goRight && player.Right > obstacle.Left && player.Left < obstacle.Left)
+                        if (goRight && player1.Right > obstacle.Left && player1.Left < obstacle.Left)
                         {
                             canMoveRight = false;
                         }
-                        if (goUp && player.Top < obstacle.Bottom && player.Bottom > obstacle.Bottom)
+                        if (goUp && player1.Top < obstacle.Bottom && player1.Bottom > obstacle.Bottom)
                         {
                             canMoveUp = false;
                         }
-                        if (goDown && player.Bottom > obstacle.Top && player.Top < obstacle.Top)
+                        if (goDown && player1.Bottom > obstacle.Top && player1.Top < obstacle.Top)
                         {
                             canMoveDown = false;
                         }
@@ -196,22 +279,22 @@ namespace GameForm
 
             if (canMoveLeft)
             {
-                player.Left -= speed;
+                player1.Left -= speed;
                 name1.Left -= speed;
             }
             if (canMoveRight)
             {
-                player.Left += speed;
+                player1.Left += speed;
                 name1.Left += speed;
             }
             if (canMoveUp)
             {
-                player.Top -= speed;
+                player1.Top -= speed;
                 name1.Top -= speed;
             }
             if (canMoveDown)
             {
-                player.Top += speed;
+                player1.Top += speed;
                 name1.Top += speed;
             }
 
@@ -274,28 +357,28 @@ namespace GameForm
             {                                              
                 goLeft = true;                             
                 facing = "left";                           
-                player.Image = currentGun.ImageLeft;       
+                player1.Image = currentGun.ImageLeft;       
             }                                              
                                                            
             if (e.KeyCode == Keys.Right)                   
             {                                              
                 goRight = true;                            
                 facing = "right";                          
-                player.Image = currentGun.ImageRight;      
+                player1.Image = currentGun.ImageRight;      
             }                                              
                                                            
             if (e.KeyCode == Keys.Up)                      
             {                                              
                 goUp = true;                               
                 facing = "up";                             
-                player.Image = currentGun.ImageUp;         
+                player1.Image = currentGun.ImageUp;         
             }                                              
                                                            
             if (e.KeyCode == Keys.Down)
             {
                 goDown = true;
                 facing = "down";
-                player.Image = currentGun.ImageDown;
+                player1.Image = currentGun.ImageDown;
             }
         }
 
@@ -394,16 +477,16 @@ namespace GameForm
             switch (facing)
             {
                 case "up":
-                    player.Image = currentGun.ImageUp;
+                    player1.Image = currentGun.ImageUp;
                     break;
                 case "down":
-                    player.Image = currentGun.ImageDown;
+                    player1.Image = currentGun.ImageDown;
                     break;
                 case "left":
-                    player.Image = currentGun.ImageLeft;
+                    player1.Image = currentGun.ImageLeft;
                     break;
                 case "right":
-                    player.Image = currentGun.ImageRight;
+                    player1.Image = currentGun.ImageRight;
                     break;
             }
         }
@@ -442,10 +525,10 @@ namespace GameForm
                     soundManager.PlaySound("pistol");
                     Bullet shootPistolBullet = new Bullet(bulletSpeed, bulletRange);
                     shootPistolBullet.direction = direction;
-                    shootPistolBullet.bulletLeft = player.Left + (player.Width / 2);
-                    shootPistolBullet.bulletTop = player.Top + (player.Height / 2);
+                    shootPistolBullet.bulletLeft = player1.Left + (player1.Width / 2);
+                    shootPistolBullet.bulletTop = player1.Top + (player1.Height / 2);
 
-                    shootPistolBullet.bulletTop = player.Top + (player.Height / 2) + offset;
+                    shootPistolBullet.bulletTop = player1.Top + (player1.Height / 2) + offset;
 
                     shootPistolBullet.MakeBullet(this);
                     break;
@@ -462,9 +545,9 @@ namespace GameForm
 
                         int spreadAngle = rand.Next(-60, 61);
 
-                        shootShotgunPellet.bulletLeft = player.Left + (player.Width / 2);
-                        shootShotgunPellet.bulletTop = player.Top + (player.Height / 2);
-                        shootShotgunPellet.bulletTop = player.Top + (player.Height / 2) + offset;
+                        shootShotgunPellet.bulletLeft = player1.Left + (player1.Width / 2);
+                        shootShotgunPellet.bulletTop = player1.Top + (player1.Height / 2);
+                        shootShotgunPellet.bulletTop = player1.Top + (player1.Height / 2) + offset;
 
                         ApplySpread(shootShotgunPellet, spreadAngle);
 
@@ -477,9 +560,9 @@ namespace GameForm
                     soundManager.PlaySound("sniper");
                     Bullet shootSniperBullet = new Bullet(bulletSpeed, bulletRange);
                     shootSniperBullet.direction = direction;
-                    shootSniperBullet.bulletLeft = player.Left + (player.Width / 2);
-                    shootSniperBullet.bulletTop = player.Top + (player.Height / 2);
-                    shootSniperBullet.bulletTop = player.Top + (player.Height / 2) + offset;
+                    shootSniperBullet.bulletLeft = player1.Left + (player1.Width / 2);
+                    shootSniperBullet.bulletTop = player1.Top + (player1.Height / 2);
+                    shootSniperBullet.bulletTop = player1.Top + (player1.Height / 2) + offset;
                     shootSniperBullet.MakeBulletSniper(this);
                     break;
                 default:
@@ -802,7 +885,7 @@ namespace GameForm
 
         private void RestartGame()
         {
-            player.Image = currentGun.ImageRight;
+            player1.Image = currentGun.ImageRight;
 
             foreach (Zombie zombie in zombiesList)
             {
@@ -827,12 +910,12 @@ namespace GameForm
             healthBar.Value = (int)wallHealth;
             txtAmmo.Text = "Ammo: " + currentGun.CurrentAmmo;
 
-            player.Left = wall.Left - player.Width - 10;
-            player.Top = wall.Top + (wall.Height / 2) - (player.Height / 2);
+            player1.Left = wall.Left - player1.Width - 10;
+            player1.Top = wall.Top + (wall.Height / 2) - (player1.Height / 2);
             
             //Initialize the name along with the player
-            name1.Left = wall.Left - player.Width - 10;
-            name1.Top = wall.Top + (wall.Height / 2) - (player.Height / 2);
+            name1.Left = wall.Left - player1.Width - 10;
+            name1.Top = wall.Top + (wall.Height / 2) - (player1.Height / 2);
 
             canFire = true;
 

@@ -76,7 +76,7 @@ namespace GameForm
             }
             else
             {
-                MessageBox.Show($"Phòng {maPhong.Text} chưa được tạo hoặc đã đủ người!", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Phòng {maPhong.Text} chưa được tạo hoặc đã đủ người hoặc đã bắt đầu chơi!", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
