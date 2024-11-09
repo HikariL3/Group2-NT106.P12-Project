@@ -856,6 +856,28 @@ namespace GameForm
             this.Hide();
         }
 
+        private void HandleServerMessage(string message)
+        {
+            string[] parts = message.Split(';');
+            if (parts[0] == "SPAWN_ZOMBIE")
+            {
+                int id = int.Parse(parts[1]);
+                int left = int.Parse(parts[2]);
+                int top = int.Parse(parts[3]);
+
+                Zombie zombie = Zombie.CreateZombie(4);
+                zombie.ZombiePictureBox.Left = left;
+                zombie.ZombiePictureBox.Top = top;
+
+                zombiesList.Add(zombie);
+                this.Controls.Add(zombie.ZombiePictureBox);
+            }
+        }
+        private void OnMessageReceived(string message)
+        {
+            HandleServerMessage(message);
+        }
+
         private void MainGame_FormClosed(object sender, FormClosedEventArgs e)
         {
             GameClient.Disconnect();
