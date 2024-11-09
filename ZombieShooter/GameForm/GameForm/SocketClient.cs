@@ -9,6 +9,7 @@ using System.Threading;
 using System.Windows.Forms;
 using System.Drawing;
 using GameForm;
+using System.Xml;
 
 namespace Client
 {
@@ -16,7 +17,7 @@ namespace Client
     {
         public static Socket clientSocket;
         public static Thread receiveThread;
-        private static bool stopThread = false;    
+        private static bool stopThread = false;
         public static List<Player> players = new List<Player>();
         public static Player localPlayer;
 
@@ -82,7 +83,7 @@ namespace Client
                         joinedLobby = lobby;
                     }
                     break;
-                 //Nhận danh sách người chơi (tên, trạng thái sẵn sàng) từ server và cập nhập vào class Lobby, Player
+                //Nhận danh sách người chơi (tên, trạng thái sẵn sàng) từ server và cập nhập vào class Lobby, Player
                 case "LOBBY_INFO":
                     UpdateLobby(payload);
                     break;
@@ -109,7 +110,7 @@ namespace Client
                     break;
                 //Server thông báo đã xử lý ngắt kết nối của mình
                 case "PLAYER_DISCONNECTED":
-                    HandleDisconnect(payload[1]);  
+                    HandleDisconnect(payload[1]);
                     break;
                 //Xóa lobby vừa chơi xong
                 case "CLEAR_LOBBY":
@@ -122,6 +123,10 @@ namespace Client
                 //Lỗi khi tạo phòng (phòng đã được tạo)
                 case "ERROR_CREATE":
                     isCreateRoom = false;
+                    break;
+
+                case "MOVE":
+                    HandleMoving(payload);
                     break;
             }
         }
@@ -151,7 +156,7 @@ namespace Client
         //Xử lý ngắt kết nối
         private static void HandleDisconnect(string playerName)
         {
-            if(joinedLobby != null && joinedLobby.PlayersName.Contains(playerName))
+            if (joinedLobby != null && joinedLobby.PlayersName.Contains(playerName))
             {
                 joinedLobby.Players.RemoveAll(p => p.Name == playerName);
                 joinedLobby.PlayersName.Remove(playerName);
@@ -178,7 +183,8 @@ namespace Client
                     if (!lobby.PlayersName.Contains(playerList[i]))
                     {
                         lobby.PlayersName.Add(playerList[i]);
-                        lobby.Players.Add(new Player() { 
+                        lobby.Players.Add(new Player()
+                        {
                             Name = playerList[i],
                             IsReady = bool.Parse(readyPlayerList[i])
                         });
@@ -216,7 +222,7 @@ namespace Client
         //Kiểm tra xem còn người chơi khác trong trận không
         public static bool CheckGameOver()
         {
-            if(joinedLobby.IsGameOver)
+            if (joinedLobby.IsGameOver)
                 return true;
             return false;
         }
@@ -225,7 +231,7 @@ namespace Client
         {
             messages.Add(content);
         }
-        
+
         public static string GetMessageFromPlayers()
         {
             if (messages.Count == 0) return null;
@@ -285,13 +291,13 @@ namespace Client
         //Xóa lobby
         public static void ClearLobby()
         {
-            foreach(var lobby in lobbies)
+            foreach (var lobby in lobbies)
             {
                 lobby.Players.Clear();
                 lobby.PlayersName.Clear();
                 lobby.Host = null;
-                lobby.RoomId = null;        
-                lobby.HostName = null;       
+                lobby.RoomId = null;
+                lobby.HostName = null;
                 lobby.IsGameOver = false;
             }
             lobbies.Clear();
@@ -301,7 +307,60 @@ namespace Client
             isJoinRoom = true;
             isStartGame = false;
         }
+
+        public static void SendMoving(string playerName, string direction, int X, int Y)
+        {
+            string message = $"MOVE;{playerName};{direction};{X.ToString()};{Y.ToString()}";
+            SendData(message);
+        }
+        private static void HandleMoving(string[] payload)
+        {
+            string playerName = payload[1];
+            string direction = payload[2];
+            int X = int.Parse(payload[3]);
+            int Y = int.Parse(payload[4]);
+
+        }
+
+        public static void SendSwitchGun(string playerName, string gunType)
+        {
+            string message = $"SWITCH_GUN;{playerName};{gunType}";
+            SendData(message);
+        }
+        private void HandleSwitchGuns(string[] payload)
+        {
+            string playerName = payload[1];
+            string gunType = payload[2];
+        }
+
+        public static void SendReloadGun(string playerName)
+        {
+            string message = $"RELOAD_GUN;{playerName}";
+            SendData(message);
+        }
+        private void HandleReloadRun(string[] payload)
+        {
+            string playerName = payload[1];
+        }
+
+        public static void SendShootBullet(string playerName, string direction, string gunType)
+        {
+            string message = $"SHOOTING;{playerName};{direction};{gunType}";
+            SendData(message);
+        }
+        private void HandleShootBullet(string[] payload)
+        {
+            string playerName = payload[1];
+            string direction = payload[2];
+            string gunType = payload[3];
+        }
+
+        private void HandleWallHealth(string[] payload)
+        {
+
+        }
     }
+
     public class Player
     {
         public string Id { get; set; }

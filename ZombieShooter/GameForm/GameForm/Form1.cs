@@ -35,8 +35,13 @@ namespace GameForm
         private SoundManager soundManager = new SoundManager();
         private bool finalWave = false;
 
+
         private Dictionary<string, PictureBox> playerPictureBoxes = new Dictionary<string, PictureBox>();
         private Dictionary<string, Label> playerLabels = new Dictionary<string, Label>();
+        PictureBox myPlayer;
+        Label myName;
+
+
         public MainGame()
         {
             InitializeComponent();
@@ -64,6 +69,26 @@ namespace GameForm
             txtAmmo.Text = "Ammo: " + currentGun.CurrentAmmo;
         }
 
+        private void MainGame_Load(object sender, EventArgs e)
+        {
+            soundManager.LoadSound("pistol", Properties.Resources.pistolshoot);
+            soundManager.LoadSound("shotgun", Properties.Resources.shotgunshoot);
+            soundManager.LoadSound("sniper", Properties.Resources.snipershoot);
+            soundManager.LoadSound("reload", Properties.Resources.gunload);
+            soundManager.LoadSound("switch", Properties.Resources.gswitch);
+            soundManager.LoadSound("empty", Properties.Resources.empty);
+            soundManager.LoadSound("groan0", Properties.Resources.Groan0);
+            soundManager.LoadSound("groan1", Properties.Resources.Groan1);
+            soundManager.LoadSound("finalwave", Properties.Resources.finalwave);
+            soundManager.LoadSound("bzfinalwave", Properties.Resources.bzfinalwave);
+            soundManager.LoadSound("brain", Properties.Resources.brain);
+            soundManager.LoadSound("begin", Properties.Resources.begin);
+            soundManager.PlaySound("begin");
+
+
+        }
+
+
         private void InitializePositions()
         {
             int xOffset = 20;
@@ -78,11 +103,13 @@ namespace GameForm
                 if (playerName == GameClient.localPlayer.Name)
                 {
                     // Set local player position
-                    player1.Left = playerInitialX;
-                    player1.Top = playerInitialY;
+                    player1.Location = new Point(playerInitialX, playerInitialY);
                     name1.Text = playerName;
-                    name1.Left = player1.Left;
-                    name1.Top = player1.Top - 15;
+                    name1.Location = Location = new Point(playerInitialX, playerInitialY - 15);
+                    name1.AutoEllipsis = true;
+
+                    myPlayer = player1;
+                    myName = name1;
                 }
                 else
                 {
@@ -100,6 +127,7 @@ namespace GameForm
                         Text = playerName,
                         BackColor = Color.FromArgb(0, 28, 32),
                         AutoSize = true,
+                        AutoEllipsis = true,
                         ForeColor = SystemColors.ButtonHighlight,
                         Font = new Font("Courier New", 9F, FontStyle.Regular),
                         Location = new Point(playerInitialX, playerInitialY - 15)
@@ -115,24 +143,6 @@ namespace GameForm
                 }
             }
         }
-
-        private void MainGame_Load(object sender, EventArgs e)
-        {
-            soundManager.LoadSound("pistol", Properties.Resources.pistolshoot);
-            soundManager.LoadSound("shotgun", Properties.Resources.shotgunshoot);
-            soundManager.LoadSound("sniper", Properties.Resources.snipershoot);
-            soundManager.LoadSound("reload", Properties.Resources.gunload);
-            soundManager.LoadSound("switch", Properties.Resources.gswitch);
-            soundManager.LoadSound("empty", Properties.Resources.empty);
-            soundManager.LoadSound("groan0", Properties.Resources.Groan0);
-            soundManager.LoadSound("groan1", Properties.Resources.Groan1);
-            soundManager.LoadSound("finalwave", Properties.Resources.finalwave);
-            soundManager.LoadSound("bzfinalwave", Properties.Resources.bzfinalwave);
-            soundManager.LoadSound("brain", Properties.Resources.brain);
-            soundManager.LoadSound("begin", Properties.Resources.begin);
-            soundManager.PlaySound("begin");
-        }
-
 
         #region CODE FOR HANDLING GAME EVENT
         //BEGIN OF-----------------------------------------------------------------------
@@ -214,10 +224,10 @@ namespace GameForm
             txtScore.Text = "Score: " + score;
 
             // Initialize movement flags
-            bool canMoveLeft = goLeft && player1.Left > 0;
-            bool canMoveRight = goRight && player1.Left + player1.Width < this.ClientSize.Width;
-            bool canMoveUp = goUp && player1.Top > 45;
-            bool canMoveDown = goDown && player1.Top + player1.Height < this.ClientSize.Height;
+            bool canMoveLeft = goLeft && myPlayer.Left > 0;
+            bool canMoveRight = goRight && myPlayer.Left + myPlayer.Width < this.ClientSize.Width;
+            bool canMoveUp = goUp && myPlayer.Top > 45;
+            bool canMoveDown = goDown && myPlayer.Top + myPlayer.Height < this.ClientSize.Height;
 
 
             // Check for collisions with obstacles
@@ -226,21 +236,21 @@ namespace GameForm
                 if (obstacle is PictureBox &&
                     ((string)obstacle.Name == "wall"))
                 {
-                    if (player1.Bounds.IntersectsWith(obstacle.Bounds))
+                    if (myPlayer.Bounds.IntersectsWith(obstacle.Bounds))
                     {
-                        if (goLeft && player1.Left < obstacle.Right && player1.Right > obstacle.Right)
+                        if (goLeft && myPlayer.Left < obstacle.Right && myPlayer.Right > obstacle.Right)
                         {
                             canMoveLeft = false;
                         }
-                        if (goRight && player1.Right > obstacle.Left && player1.Left < obstacle.Left)
+                        if (goRight && myPlayer.Right > obstacle.Left && myPlayer.Left < obstacle.Left)
                         {
                             canMoveRight = false;
                         }
-                        if (goUp && player1.Top < obstacle.Bottom && player1.Bottom > obstacle.Bottom)
+                        if (goUp && myPlayer.Top < obstacle.Bottom && myPlayer.Bottom > obstacle.Bottom)
                         {
                             canMoveUp = false;
                         }
-                        if (goDown && player1.Bottom > obstacle.Top && player1.Top < obstacle.Top)
+                        if (goDown && myPlayer.Bottom > obstacle.Top && myPlayer.Top < obstacle.Top)
                         {
                             canMoveDown = false;
                         }
@@ -250,23 +260,23 @@ namespace GameForm
 
             if (canMoveLeft)
             {
-                player1.Left -= speed;
-                name1.Left -= speed;
+                myPlayer.Left -= speed;
+                myName.Left -= speed;
             }
             if (canMoveRight)
             {
-                player1.Left += speed;
-                name1.Left += speed;
+                myPlayer.Left += speed;
+                myName.Left += speed;
             }
             if (canMoveUp)
             {
-                player1.Top -= speed;
-                name1.Top -= speed;
+                myPlayer.Top -= speed;
+                myName.Top -= speed;
             }
             if (canMoveDown)
             {
-                player1.Top += speed;
-                name1.Top += speed;
+                myPlayer.Top += speed;
+                myName.Top += speed;
             }
 
             foreach (Zombie zombie in zombiesList.ToList())
@@ -319,37 +329,37 @@ namespace GameForm
         private void KeyIsDown(object sender, KeyEventArgs e)
         {
 
-            if (gameOver == true)                          
-            {                                              
-                return;                                    
-            }                                              
-                                                           
-            if (e.KeyCode == Keys.Left)                    
-            {                                              
-                goLeft = true;                             
-                facing = "left";                           
-                player1.Image = currentGun.ImageLeft;       
-            }                                              
-                                                           
-            if (e.KeyCode == Keys.Right)                   
-            {                                              
-                goRight = true;                            
-                facing = "right";                          
-                player1.Image = currentGun.ImageRight;      
-            }                                              
-                                                           
-            if (e.KeyCode == Keys.Up)                      
-            {                                              
-                goUp = true;                               
-                facing = "up";                             
-                player1.Image = currentGun.ImageUp;         
-            }                                              
-                                                           
+            if (gameOver == true)
+            {
+                return;
+            }
+
+            if (e.KeyCode == Keys.Left)
+            {
+                goLeft = true;
+                facing = "left";
+                myPlayer.Image = currentGun.ImageLeft;
+            }
+
+            if (e.KeyCode == Keys.Right)
+            {
+                goRight = true;
+                facing = "right";
+                myPlayer.Image = currentGun.ImageRight;
+            }
+
+            if (e.KeyCode == Keys.Up)
+            {
+                goUp = true;
+                facing = "up";
+                myPlayer.Image = currentGun.ImageUp;
+            }
+
             if (e.KeyCode == Keys.Down)
             {
                 goDown = true;
                 facing = "down";
-                player1.Image = currentGun.ImageDown;
+                myPlayer.Image = currentGun.ImageDown;
             }
         }
 
@@ -448,16 +458,16 @@ namespace GameForm
             switch (facing)
             {
                 case "up":
-                    player1.Image = currentGun.ImageUp;
+                    myPlayer.Image = currentGun.ImageUp;
                     break;
                 case "down":
-                    player1.Image = currentGun.ImageDown;
+                    myPlayer.Image = currentGun.ImageDown;
                     break;
                 case "left":
-                    player1.Image = currentGun.ImageLeft;
+                    myPlayer.Image = currentGun.ImageLeft;
                     break;
                 case "right":
-                    player1.Image = currentGun.ImageRight;
+                    myPlayer.Image = currentGun.ImageRight;
                     break;
             }
         }
@@ -496,10 +506,10 @@ namespace GameForm
                     soundManager.PlaySound("pistol");
                     Bullet shootPistolBullet = new Bullet(bulletSpeed, bulletRange);
                     shootPistolBullet.direction = direction;
-                    shootPistolBullet.bulletLeft = player1.Left + (player1.Width / 2);
-                    shootPistolBullet.bulletTop = player1.Top + (player1.Height / 2);
+                    shootPistolBullet.bulletLeft = myPlayer.Left + (myPlayer.Width / 2);
+                    shootPistolBullet.bulletTop = myPlayer.Top + (myPlayer.Height / 2);
 
-                    shootPistolBullet.bulletTop = player1.Top + (player1.Height / 2) + offset;
+                    shootPistolBullet.bulletTop = myPlayer.Top + (myPlayer.Height / 2) + offset;
 
                     shootPistolBullet.MakeBullet(this);
                     break;
@@ -516,9 +526,9 @@ namespace GameForm
 
                         int spreadAngle = rand.Next(-60, 61);
 
-                        shootShotgunPellet.bulletLeft = player1.Left + (player1.Width / 2);
-                        shootShotgunPellet.bulletTop = player1.Top + (player1.Height / 2);
-                        shootShotgunPellet.bulletTop = player1.Top + (player1.Height / 2) + offset;
+                        shootShotgunPellet.bulletLeft = myPlayer.Left + (myPlayer.Width / 2);
+                        shootShotgunPellet.bulletTop = myPlayer.Top + (myPlayer.Height / 2);
+                        shootShotgunPellet.bulletTop = myPlayer.Top + (myPlayer.Height / 2) + offset;
 
                         ApplySpread(shootShotgunPellet, spreadAngle);
 
@@ -531,9 +541,9 @@ namespace GameForm
                     soundManager.PlaySound("sniper");
                     Bullet shootSniperBullet = new Bullet(bulletSpeed, bulletRange);
                     shootSniperBullet.direction = direction;
-                    shootSniperBullet.bulletLeft = player1.Left + (player1.Width / 2);
-                    shootSniperBullet.bulletTop = player1.Top + (player1.Height / 2);
-                    shootSniperBullet.bulletTop = player1.Top + (player1.Height / 2) + offset;
+                    shootSniperBullet.bulletLeft = myPlayer.Left + (myPlayer.Width / 2);
+                    shootSniperBullet.bulletTop = myPlayer.Top + (myPlayer.Height / 2);
+                    shootSniperBullet.bulletTop = myPlayer.Top + (myPlayer.Height / 2) + offset;
                     shootSniperBullet.MakeBulletSniper(this);
                     break;
                 default:
@@ -856,8 +866,6 @@ namespace GameForm
 
         private void RestartGame()
         {
-            player1.Image = currentGun.ImageRight;
-
             foreach (Zombie zombie in zombiesList)
             {
                 this.Controls.Remove(zombie.ZombiePictureBox);
@@ -880,7 +888,9 @@ namespace GameForm
 
             healthBar.Value = (int)wallHealth;
             txtAmmo.Text = "Ammo: " + currentGun.CurrentAmmo;
+
             InitializePositions();
+
             canFire = true;
 
             GameTimer.Start();

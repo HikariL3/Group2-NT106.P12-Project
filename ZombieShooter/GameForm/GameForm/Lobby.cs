@@ -21,6 +21,10 @@ namespace GameForm
         public Lobby()
         {
             InitializeComponent();
+            namePlayer1.AutoEllipsis = true;
+            namePlayer2.AutoEllipsis = true;
+            namePlayer3.AutoEllipsis = true;
+            namePlayer4.AutoEllipsis = true;
             this.Load += Lobby_Load;
         }
 
