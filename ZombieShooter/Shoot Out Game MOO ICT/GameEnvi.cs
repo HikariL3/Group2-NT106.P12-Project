@@ -787,7 +787,7 @@ namespace Shoot_Out_Game_MOO_ICT
             }
             zombiesList.Clear();
 
-            timeLeft = 20;
+            timeLeft = 120;
 
             goUp = false;
             goDown = false;

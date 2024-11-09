@@ -34,6 +34,9 @@ namespace GameForm
         int timeLeft = 120;
         private SoundManager soundManager = new SoundManager();
         private bool finalWave = false;
+
+        private Dictionary<string, PictureBox> playerPictureBoxes = new Dictionary<string, PictureBox>();
+        private Dictionary<string, Label> playerLabels = new Dictionary<string, Label>();
         public MainGame()
         {
             InitializeComponent();
@@ -61,6 +64,58 @@ namespace GameForm
             txtAmmo.Text = "Ammo: " + currentGun.CurrentAmmo;
         }
 
+        private void InitializePositions()
+        {
+            int xOffset = 20;
+            int initialY = wall.Top + 50;
+
+            for (int i = 0; i < GameClient.joinedLobby.Players.Count; i++)
+            {
+                string playerName = GameClient.joinedLobby.Players[i].Name;
+                int playerInitialX = wall.Left - 100 - (xOffset * i);
+                int playerInitialY = initialY + (i * 100);
+
+                if (playerName == GameClient.localPlayer.Name)
+                {
+                    // Set local player position
+                    player1.Left = playerInitialX;
+                    player1.Top = playerInitialY;
+                    name1.Text = playerName;
+                    name1.Left = player1.Left;
+                    name1.Top = player1.Top - 15;
+                }
+                else
+                {
+                    // Set position for other players
+                    PictureBox playerPictureBox = new PictureBox
+                    {
+                        Size = new Size(56, 81),
+                        SizeMode = PictureBoxSizeMode.StretchImage,
+                        Image = currentGun.ImageRight,
+                        Location = new Point(playerInitialX, playerInitialY)
+                    };
+
+                    Label playerLabel = new Label
+                    {
+                        Text = playerName,
+                        BackColor = Color.FromArgb(0, 28, 32),
+                        AutoSize = true,
+                        ForeColor = SystemColors.ButtonHighlight,
+                        Font = new Font("Courier New", 9F, FontStyle.Regular),
+                        Location = new Point(playerInitialX, playerInitialY - 15)
+                    };
+
+                    this.Controls.Add(playerPictureBox);
+                    this.Controls.Add(playerLabel);
+                    playerLabel.BringToFront();
+                    playerPictureBox.SendToBack();
+
+                    playerPictureBoxes[playerName] = playerPictureBox;
+                    playerLabels[playerName] = playerLabel;
+                }
+            }
+        }
+
         private void MainGame_Load(object sender, EventArgs e)
         {
             soundManager.LoadSound("pistol", Properties.Resources.pistolshoot);
@@ -76,90 +131,6 @@ namespace GameForm
             soundManager.LoadSound("brain", Properties.Resources.brain);
             soundManager.LoadSound("begin", Properties.Resources.begin);
             soundManager.PlaySound("begin");
-            name1.Text = GameClient.localPlayer.Name;/////////////////////////
-
-
-            int Playercount = GameClient.joinedLobby.Players.Count;
-            for(int  i = 1; i <= Playercount; i++)
-            {
-                if(GameClient.localPlayer.Name != GameClient.joinedLobby.Players[i - 1].Name)
-                {
-                    switch (i)
-                    {
-                        case 2:
-                            PictureBox player2 = new PictureBox();
-                            player2.Size = new Size(56, 81);
-                            player2.Location = new Point(238, 100);
-                            player2.SizeMode = PictureBoxSizeMode.StretchImage;
-                            player2.Image = currentGun.ImageRight;
-
-                            Label name2 = new Label();
-                            name2.Text = GameClient.joinedLobby.Players[i - 1].Name;
-                            name2.BackColor = Color.FromArgb(0, 28, 32);
-                            //name2.Size = new Size(35, 15);
-                            name2.AutoSize = true;
-                            name2.AutoEllipsis = true;
-                            name2.Location = new Point(238, 100);
-                            name2.ForeColor = SystemColors.ButtonHighlight;
-                            name2.Font = new Font("Courier New", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-
-                            this.Controls.Add(player2);
-                            this.Controls.Add(name2);
-
-                            name2.BringToFront();
-                            player2.SendToBack();
-                            break;
-
-                        case 3:
-                            PictureBox player3 = new PictureBox();
-                            player3.Size = new Size(56, 81);
-                            player3.Location = new Point(238, 400);
-                            player3.SizeMode = PictureBoxSizeMode.StretchImage;
-                            player3.Image = currentGun.ImageRight;
-
-                            Label name3 = new Label();
-                            name3.Text = GameClient.joinedLobby.Players[i - 1].Name;
-                            name3.BackColor = Color.FromArgb(0, 28, 32);
-                            //name3.Size = new Size(35, 15);
-                            name3.AutoSize = true;
-                            name3.AutoEllipsis = true;
-                            name3.Location = new Point(238, 400);
-                            name3.ForeColor = SystemColors.ButtonHighlight;
-                            name3.Font = new Font("Courier New", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-
-                            this.Controls.Add(player3);
-                            this.Controls.Add(name3);
-
-                            name3.BringToFront();
-                            player3.SendToBack();
-                            break;
-
-                        case 4:
-                            PictureBox player4 = new PictureBox();
-                            player4.Size = new Size(56, 81);
-                            player4.Location = new Point(238, 550);
-                            player4.SizeMode = PictureBoxSizeMode.StretchImage;
-                            player4.Image = currentGun.ImageRight;
-
-                            Label name4 = new Label();
-                            name4.Text = GameClient.joinedLobby.Players[i - 1].Name;
-                            //name4.Size = new Size(35, 15);
-                            name4.AutoSize = true;
-                            name4.AutoEllipsis = true;
-                            name4.BackColor = Color.FromArgb(0, 28, 32);
-                            name4.Location = new Point(238, 550);
-                            name4.ForeColor = SystemColors.ButtonHighlight;
-                            name4.Font = new Font("Courier New", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-
-                            this.Controls.Add(player4);
-                            this.Controls.Add(name4);
-
-                            name4.BringToFront();
-                            player4.SendToBack();
-                            break;
-                    }
-                }
-            }
         }
 
 
@@ -909,14 +880,7 @@ namespace GameForm
 
             healthBar.Value = (int)wallHealth;
             txtAmmo.Text = "Ammo: " + currentGun.CurrentAmmo;
-
-            player1.Left = wall.Left - player1.Width - 10;
-            player1.Top = wall.Top + (wall.Height / 2) - (player1.Height / 2);
-            
-            //Initialize the name along with the player
-            name1.Left = wall.Left - player1.Width - 10;
-            name1.Top = wall.Top + (wall.Height / 2) - (player1.Height / 2);
-
+            InitializePositions();
             canFire = true;
 
             GameTimer.Start();
