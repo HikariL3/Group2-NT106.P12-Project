@@ -481,7 +481,7 @@ namespace Server_ShootOutGame
 
         private void UpdateWallHealth(double health)
         {
-            string updateWallMessage = $"UPDATE_WALL_HEALTH;{health}";
+            string updateWallMessage = $"UPDATE_WALL_HEALTH;{health.ToString()}";
             foreach (var player in connectedPlayers)
             {
                 SendMessageToPlayer(player, updateWallMessage);
