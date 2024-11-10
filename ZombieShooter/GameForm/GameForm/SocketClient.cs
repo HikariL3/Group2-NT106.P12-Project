@@ -125,8 +125,24 @@ namespace Client
                     isCreateRoom = false;
                     break;
 
-                case "MOVE":
-                    HandleMoving(payload);
+                case "UPDATE_POSITION":
+                    HandlePlayerPosition(payload);
+                    break;
+
+                case "PLAYER_COLLISION":
+                    HandlePlayerCollision(payload);
+                    break;
+
+                case "UPDATE_GUN":
+                    HandleSwitchGuns(payload);
+                    break;
+
+                case "PLAYER_SHOOT":
+                    HandleShootBullet(payload); 
+                    break;
+
+                case "UPDATE_WALL_HEALTH":
+                    HandleWallHealth(payload);
                     break;
             }
         }
@@ -308,56 +324,79 @@ namespace Client
             isStartGame = false;
         }
 
-        public static void SendMoving(string playerName, string direction, int X, int Y)
+        public static void SendPlayerPosition(string playerName, string direction, int X, int Y)
         {
-            string message = $"MOVE;{playerName};{direction};{X.ToString()};{Y.ToString()}";
+            string message = $"UPDATE_POSITION;{direction};{X.ToString()};{Y.ToString()}";
             SendData(message);
         }
-        private static void HandleMoving(string[] payload)
+
+        public static void SendSwitchGun(string playerName, string gunName)
+        {
+            string message = $"UPDATE_GUN;{gunName}";
+            SendData(message);
+        }
+
+        public static void SendShootBullet(string playerName, string direction)
+        {
+            string message = $"PLAYER_SHOOT;{direction}";
+            SendData(message);
+        }
+
+        public static void SendWallHealth(string playerName, double health)
+        {
+            string message = $"UPDATE_WALL_HEALTH;{health.ToString()}";
+            SendData(message);
+        }
+
+
+
+        private static void HandlePlayerPosition(string[] payload)
+        {
+            string playerName = payload[1];
+            int X = int.Parse(payload[2]);
+            int Y = int.Parse(payload[3]);
+            string direction = payload[4];
+            //Thiết kế thêm ----
+        }
+
+        private static void HandlePlayerCollision(string[] payload)
+        {
+            string myPlayerName = payload[1]; //player của mình
+            string otherPlayerName = payload[2]; //player mà mình đụng phải
+            //Thiết kế thêm ----
+        }
+
+        private static void HandleSwitchGuns(string[] payload)
+        {
+            string playerName = payload[1];
+            string gunName = payload[2];
+            //Thiết kế thêm ----
+        }
+
+        //public static void SendReloadGun(string playerName)
+        //{
+        //    string message = $"RELOAD_GUN";
+        //    SendData(message);
+        //}
+
+        //private void HandleReloadRun(string[] payload)
+        //{
+        //    string playerName = payload[1];
+        //}
+
+        
+        private static void HandleShootBullet(string[] payload)
         {
             string playerName = payload[1];
             string direction = payload[2];
-            int X = int.Parse(payload[3]);
-            int Y = int.Parse(payload[4]);
-
+            string gunName = payload[3];
+            //Thiết kế thêm ----
         }
 
-        public static void SendSwitchGun(string playerName, string gunType)
+        private static void HandleWallHealth(string[] payload)
         {
-            string message = $"SWITCH_GUN;{playerName};{gunType}";
-            SendData(message);
-        }
-        private void HandleSwitchGuns(string[] payload)
-        {
-            string playerName = payload[1];
-            string gunType = payload[2];
-        }
-
-        public static void SendReloadGun(string playerName)
-        {
-            string message = $"RELOAD_GUN;{playerName}";
-            SendData(message);
-        }
-        private void HandleReloadRun(string[] payload)
-        {
-            string playerName = payload[1];
-        }
-
-        public static void SendShootBullet(string playerName, string direction, string gunType)
-        {
-            string message = $"SHOOTING;{playerName};{direction};{gunType}";
-            SendData(message);
-        }
-        private void HandleShootBullet(string[] payload)
-        {
-            string playerName = payload[1];
-            string direction = payload[2];
-            string gunType = payload[3];
-        }
-
-        private void HandleWallHealth(string[] payload)
-        {
-
+            double currentHealth = double.Parse(payload[1]);
+            //thiết kế thêm ----
         }
     }
 

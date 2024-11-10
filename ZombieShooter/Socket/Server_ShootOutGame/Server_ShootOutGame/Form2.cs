@@ -15,9 +15,11 @@ namespace Server_ShootOutGame
         private static List<Lobby> lobbies = new List<Lobby>();
         private static readonly int port = 8989;
         private TcpListener server;
+
         private const int MAP_WIDTH = 1024;
         private const int MAP_HEIGHT = 768;
         private const int SPAWN_INTERVAL = 30000; // 30 seconds
+
         private Dictionary<string, System.Threading.Timer> lobbyTimers = new Dictionary<string, System.Threading.Timer>();
         private Dictionary<string, System.Threading.Timer> zombieSpawnTimers = new Dictionary<string, System.Threading.Timer>();
 
@@ -158,20 +160,21 @@ namespace Server_ShootOutGame
                     CloseAllGameRooms();
                     break;
                 case "UPDATE_POSITION":
+                    string _direction = arrPayload[1];
                     int x = int.Parse(arrPayload[2]);
                     int y = int.Parse(arrPayload[3]);
-                    UpdatePlayerPosition(player, x, y);
+                    UpdatePlayerPosition(player, x, y, _direction);
                     break;
                 case "UPDATE_GUN":
-                    string gunName = arrPayload[2];
+                    string gunName = arrPayload[1];
                     UpdatePlayerGun(player, gunName);
                     break;
                 case "PLAYER_SHOOT":
-                    string direction = arrPayload[2];
+                    string direction = arrPayload[1];
                     PlayerShoot(player, direction);
                     break;
                 case "UPDATE_WALL_HEALTH":
-                    double health = double.Parse(arrPayload[2]);
+                    double health = double.Parse(arrPayload[1]);
                     UpdateWallHealth(health);
                     break;
                 default:
@@ -411,7 +414,7 @@ namespace Server_ShootOutGame
             }
         }
 
-        private void UpdatePlayerPosition(Player player, int x, int y)
+        private void UpdatePlayerPosition(Player player, int x, int y, string direction)
         {
             if ((DateTime.Now - player.LastPositionUpdate).TotalMilliseconds < 16) // ~60fps
                 return;
@@ -423,7 +426,7 @@ namespace Server_ShootOutGame
             player.Y = y;
 
             player.LastPositionUpdate = DateTime.Now;
-            string positionMessage = $"UPDATE_POSITION;{player.PlayerName};{x};{y}";
+            string positionMessage = $"UPDATE_POSITION;{player.PlayerName};{x};{y};{direction}";
             BroadcastMessage(positionMessage, player);
 
             CheckPlayerCollisions(player);
@@ -437,9 +440,9 @@ namespace Server_ShootOutGame
             {
                 if (otherPlayer == player) continue;
 
-                // Giả sử kích thước hitbox người chơi là 32x32
-                bool collision = Math.Abs(player.X - otherPlayer.X) < 32 &&
-                                 Math.Abs(player.Y - otherPlayer.Y) < 32;
+                // Giả sử kích thước hitbox người chơi là 32x32 --> tui chỉnh lại theo kích thước rồi 56x81
+                bool collision = Math.Abs(player.X - otherPlayer.X) < 56 &&
+                                 Math.Abs(player.Y - otherPlayer.Y) < 81;
 
                 if (collision)
                 {
@@ -525,23 +528,23 @@ namespace Server_ShootOutGame
         public TcpClient PlayerSocket { get; set; }
         public string PlayerName { get; set; }
         public bool IsHost { get; set; }
-        public int KillCount { get; set; }
-        public int Score { get; set; }
-        public bool IsGameOver { get; set; }
+        public int KillCount { get; set; } = 0;
+        public int Score { get; set; } = 0;
+        public bool IsGameOver { get; set; } = false;
         public DateTime LastPositionUpdate { get; set; }
         public int PositionX { get; set; }
         public int PositionY { get; set; }
         public string CurrentGun { get; set; }
         public int X { get; set; }
         public int Y { get; set; }
-        public bool IsReady { get; set; }
+        public bool IsReady { get; set; } = false;
     }
 
     public class Lobby
     {
         public string RoomId { get; set; }
         public Player Host { get; set; }
-        public List<Player> Players { get; set; }
-        public bool IsStart { get; set; }
+        public List<Player> Players { get; set; } = new List<Player>();
+        public bool IsStart { get; set; } = false;  
     }
 }
