@@ -15,6 +15,7 @@ using System.Net.NetworkInformation;
 using System.Diagnostics;
 using Client;
 using Server_ShootOutGame;
+using NAudio.Wave;
 
 namespace GameForm
 {
@@ -78,7 +79,7 @@ namespace GameForm
             switch (gun.Name)
             {
                 case "Pistol":
-                    Bullet pistolBullet = new Bullet(bulletSpeed, bulletRange);
+                    Bullet pistolBullet = new Bullet(bulletSpeed, bulletRange, player.Name);
                     pistolBullet.direction = direction;
                     pistolBullet.bulletLeft = playerPictureBoxes[player.Name].Left + (playerPictureBoxes[player.Name].Width / 2);
                     pistolBullet.bulletTop = playerPictureBoxes[player.Name].Top + (playerPictureBoxes[player.Name].Height / 2);
@@ -89,7 +90,7 @@ namespace GameForm
                     Random rand = new Random();
                     for (int i = 0; i < 8; i++)
                     {
-                        Bullet shotgunPellet = new Bullet(bulletSpeed, bulletRange);
+                        Bullet shotgunPellet = new Bullet(bulletSpeed, bulletRange, player.Name);
                         shotgunPellet.direction = direction;
                         int spreadAngle = rand.Next(-60, 61);
 
@@ -102,7 +103,7 @@ namespace GameForm
                     break;
 
                 case "Sniper":
-                    Bullet sniperBullet = new Bullet(bulletSpeed, bulletRange);
+                    Bullet sniperBullet = new Bullet(bulletSpeed, bulletRange, player.Name);
                     sniperBullet.direction = direction;
                     sniperBullet.bulletLeft = playerPictureBoxes[player.Name].Left + (playerPictureBoxes[player.Name].Width / 2);
                     sniperBullet.bulletTop = playerPictureBoxes[player.Name].Top + (playerPictureBoxes[player.Name].Height / 2);
@@ -163,6 +164,10 @@ namespace GameForm
                     // Update position
                     playerPictureBox.Left = (int)player.Position.X;
                     playerPictureBox.Top = (int)player.Position.Y;
+
+                    var playerLabel = playerLabels[player.Name];
+                    playerLabel.Left = playerPictureBox.Left;
+                    playerLabel.Top = playerPictureBox.Top;
 
                     // Update image based on current gun and direction
 
@@ -408,14 +413,18 @@ namespace GameForm
             {
                 if (zombie.ZombiePictureBox.Bounds.IntersectsWith(bullet.Bounds))
                 {
+                    string shootedPlayerName = bullet.Name;
                     this.Controls.Remove(bullet);
                     bullet.Dispose();
 
                     zombie.Health -= currentGun.Damage;
                     if (zombie.Health <= 0)
                     {
-                        kill++;
-                        score += zombie.Score;
+                        if(shootedPlayerName == $"Bullet_{myName.Text}")
+                        {
+                            kill++;
+                            score += zombie.Score;
+                        }
                         this.Controls.Remove(zombie.ZombiePictureBox);
                         zombiesList.Remove(zombie);
                         break;
@@ -579,7 +588,7 @@ namespace GameForm
                     bulletSpeed = 25;
                     bulletRange = 500;
                     soundManager.PlaySound("pistol");
-                    Bullet shootPistolBullet = new Bullet(bulletSpeed, bulletRange);
+                    Bullet shootPistolBullet = new Bullet(bulletSpeed, bulletRange,myName.Text);
                     shootPistolBullet.direction = direction;
                     shootPistolBullet.bulletLeft = myPlayer.Left + (myPlayer.Width / 2);
                     shootPistolBullet.bulletTop = myPlayer.Top + (myPlayer.Height / 2);
@@ -596,7 +605,7 @@ namespace GameForm
 
                     for (int i = 0; i < 8; i++)
                     {
-                        Bullet shootShotgunPellet = new Bullet(bulletSpeed, bulletRange);
+                        Bullet shootShotgunPellet = new Bullet(bulletSpeed, bulletRange, myName.Text);
                         shootShotgunPellet.direction = direction;
 
                         int spreadAngle = rand.Next(-60, 61);
@@ -614,7 +623,7 @@ namespace GameForm
                     bulletSpeed = 50;
                     bulletRange = 1200;
                     soundManager.PlaySound("sniper");
-                    Bullet shootSniperBullet = new Bullet(bulletSpeed, bulletRange);
+                    Bullet shootSniperBullet = new Bullet(bulletSpeed, bulletRange, myName.Text);
                     shootSniperBullet.direction = direction;
                     shootSniperBullet.bulletLeft = myPlayer.Left + (myPlayer.Width / 2);
                     shootSniperBullet.bulletTop = myPlayer.Top + (myPlayer.Height / 2);

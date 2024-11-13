@@ -11,6 +11,7 @@ namespace GameForm
 {
     class Bullet
     {
+        public string playerName;
         public string direction;
         public int bulletLeft;
         public int bulletTop;
@@ -19,15 +20,17 @@ namespace GameForm
         private PictureBox bullet = new PictureBox();
         private Timer bulletTimer = new Timer();
         private int distanceTraveled = 0;
-        public Bullet(int bulletSpeed, int bulletRange)
+        public Bullet(int bulletSpeed, int bulletRange, string name)
         {
             speed = bulletSpeed;
             range = bulletRange;
+            this.playerName = $"Bullet_{name}";
         }
 
 
         public void MakeBullet(Form form)
         {
+            bullet.Name = playerName;
             bullet.BackColor = Color.White;
             bullet.Size = new Size(7, 7);
             bullet.Tag = "bullet";
@@ -40,48 +43,51 @@ namespace GameForm
                 form.Invoke((MethodInvoker)delegate
                 {
                     form.Controls.Add(bullet);
+                    bulletTimer.Interval = 35;
+                    bulletTimer.Tick += new EventHandler(BulletTimerEvent);
+                    bullet.BringToFront();
+                    bulletTimer.Start();
                 });
             }
             else
             {
                 form.Controls.Add(bullet);
+                bulletTimer.Interval = 35;
+                bulletTimer.Tick += new EventHandler(BulletTimerEvent);
+                bullet.BringToFront();
+                bulletTimer.Start();
             }
-
-            bulletTimer.Interval = 35;
-            bulletTimer.Tick += new EventHandler(BulletTimerEvent);
-            bullet.BringToFront();
-            bulletTimer.Start();
-
         }
 
         public void MakeBulletSniper(Form form)
         {
+            bullet.Name =  playerName;
             bullet.BackColor = Color.White;
             bullet.Size = new Size(28, 7);
             bullet.Tag = "bullet";
             bullet.Left = bulletLeft;
             bullet.Top = bulletTop;
-            bullet.BringToFront();
 
             if (form.InvokeRequired)
             {
                 form.Invoke((MethodInvoker)delegate
                 {
                     form.Controls.Add(bullet);
+                    bulletTimer.Interval = 35;
+                    bulletTimer.Tick += new EventHandler(BulletTimerEvent);
+                    bullet.BringToFront();
+                    bulletTimer.Start();
                 });
             }
             else
             {
                 form.Controls.Add(bullet);
+                bulletTimer.Interval = 35;
+                bulletTimer.Tick += new EventHandler(BulletTimerEvent);
+                bullet.BringToFront();
+                bulletTimer.Start();
             }
-
-            bulletTimer.Interval = 35;
-            bulletTimer.Tick += new EventHandler(BulletTimerEvent);
-            bullet.BringToFront();
-            bulletTimer.Start();
         }
-
-
 
         private void BulletTimerEvent(object sender, EventArgs e)
         {
@@ -105,7 +111,6 @@ namespace GameForm
             {
                 bullet.Top += speed;
             }
-
 
             distanceTraveled += speed;
 

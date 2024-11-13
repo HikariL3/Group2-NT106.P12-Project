@@ -502,7 +502,7 @@ namespace Client
         public int Score { get; set; } = 0;
         public int Kill { get; set; } = 0;
         public string Direction { get; set; } = "right";
-        public Gun CurrentGun { get; set; }
+        public Gun CurrentGun { get; set; } = null;
     }
 
     public class Lobby
