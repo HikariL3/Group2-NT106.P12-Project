@@ -468,7 +468,22 @@ namespace Client
             if (playerToUpdate != null)
             {
                 // Update gun name to sync with other players
-                playerToUpdate.CurrentGun.Name = gunName;
+                if (playerToUpdate.CurrentGun == null)
+                {
+                    switch (gunName)
+                    {
+                        case "Pistol":
+                            playerToUpdate.CurrentGun = new Gun(gunName, 40, 12, 25, 500, 350, 1000, null, null, null, null);
+                            break;
+                        case "Shotgun":
+                            playerToUpdate.CurrentGun = new Gun(gunName, 20, 3, 25, 350, 700, 1400, null, null, null, null);
+                            break;
+                        case "Sniper":
+                            playerToUpdate.CurrentGun = new Gun(gunName, 100, 5, 50, 1200, 1000, 1600, null, null, null, null);
+                            break;
+                    }
+                    
+                }
 
                 // Notify UI to update
                 OnPlayerPositionUpdated?.Invoke(playerToUpdate);

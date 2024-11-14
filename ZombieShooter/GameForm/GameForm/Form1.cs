@@ -47,8 +47,6 @@ namespace GameForm
         private DateTime lastSentPositionTime = DateTime.Now;
         private const int POSITION_UPDATE_INTERVAL_MS = 35;
 
-        
-
         public MainGame()
         {
             InitializeComponent();
@@ -97,6 +95,7 @@ namespace GameForm
             soundManager.LoadSound("begin", Properties.Resources.begin);
             soundManager.PlaySound("begin");
         }
+
         #region CODE FOR ADAPTING MULTIPLAYER
         private void HandleOtherPlayerShoot(Player player, string direction, string gunName)
         {
@@ -120,7 +119,7 @@ namespace GameForm
                     Bullet pistolBullet = new Bullet(bulletSpeed, bulletRange, player.Name);
                     pistolBullet.direction = direction;
                     pistolBullet.bulletLeft = playerPictureBoxes[player.Name].Left + (playerPictureBoxes[player.Name].Width / 2);
-                    pistolBullet.bulletTop = playerPictureBoxes[player.Name].Top + (playerPictureBoxes[player.Name].Height / 2);
+                    pistolBullet.bulletTop = playerPictureBoxes[player.Name].Top + (playerPictureBoxes[player.Name].Height / 2) + offset;
                     pistolBullet.MakeBullet(this);
                     break;
 
@@ -133,7 +132,7 @@ namespace GameForm
                         int spreadAngle = rand.Next(-60, 61);
 
                         shotgunPellet.bulletLeft = playerPictureBoxes[player.Name].Left + (playerPictureBoxes[player.Name].Width / 2);
-                        shotgunPellet.bulletTop = playerPictureBoxes[player.Name].Top + (playerPictureBoxes[player.Name].Height / 2);
+                        shotgunPellet.bulletTop = playerPictureBoxes[player.Name].Top + (playerPictureBoxes[player.Name].Height / 2) + offset;
 
                         ApplySpread(shotgunPellet, spreadAngle);
                         shotgunPellet.MakeBullet(this);
@@ -144,7 +143,7 @@ namespace GameForm
                     Bullet sniperBullet = new Bullet(bulletSpeed, bulletRange, player.Name);
                     sniperBullet.direction = direction;
                     sniperBullet.bulletLeft = playerPictureBoxes[player.Name].Left + (playerPictureBoxes[player.Name].Width / 2);
-                    sniperBullet.bulletTop = playerPictureBoxes[player.Name].Top + (playerPictureBoxes[player.Name].Height / 2);
+                    sniperBullet.bulletTop = playerPictureBoxes[player.Name].Top + (playerPictureBoxes[player.Name].Height / 2) + offset;
                     sniperBullet.MakeBulletSniper(this);
                     break;
             }
@@ -436,7 +435,6 @@ namespace GameForm
                 }
             }
 
-            // Move zombie towards the wall
             if (zombie.ZombiePictureBox.Left > wall.Right)
             {
                 zombie.ZombiePictureBox.Left -= zombie.Speed;
@@ -461,14 +459,40 @@ namespace GameForm
 
         private void KeyIsDown(object sender, KeyEventArgs e)
         {
+            bool hasRotated = false;
             if (gameOver) return;
 
             switch (e.KeyCode)
             {
-                case Keys.Left: goLeft = true; facing = "left"; myPlayer.Image = currentGun.ImageLeft; break;
-                case Keys.Right: goRight = true; facing = "right"; myPlayer.Image = currentGun.ImageRight; break;
-                case Keys.Up: goUp = true; facing = "up"; myPlayer.Image = currentGun.ImageUp; break;
-                case Keys.Down: goDown = true; facing = "down"; myPlayer.Image = currentGun.ImageDown; break;
+                case Keys.Left:
+                    goLeft = true;
+                    facing = "left"; 
+                    myPlayer.Image = currentGun.ImageLeft;
+                    hasRotated = true;
+                    break;
+                case Keys.Right:
+                    goRight = true;
+                    facing = "right";
+                    myPlayer.Image = currentGun.ImageRight;
+                    hasRotated = true;
+                    break;
+                case Keys.Up:
+                    goUp = true;
+                    facing = "up";
+                    myPlayer.Image = currentGun.ImageUp;
+                    hasRotated = true;
+                    break;
+                case Keys.Down:
+                    goDown = true;
+                    facing = "down";
+                    myPlayer.Image = currentGun.ImageDown;
+                    hasRotated = true;
+                    break;
+            }
+            if (hasRotated && (DateTime.Now - lastSentPositionTime).TotalMilliseconds >= POSITION_UPDATE_INTERVAL_MS)
+            {
+                GameClient.SendPlayerPosition(GameClient.localPlayer.Name, facing, myPlayer.Left, myPlayer.Top, currentGun.Name);
+                lastSentPositionTime = DateTime.Now;
             }
         }
 
@@ -595,8 +619,6 @@ namespace GameForm
                     Bullet shootPistolBullet = new Bullet(bulletSpeed, bulletRange,myName.Text);
                     shootPistolBullet.direction = direction;
                     shootPistolBullet.bulletLeft = myPlayer.Left + (myPlayer.Width / 2);
-                    shootPistolBullet.bulletTop = myPlayer.Top + (myPlayer.Height / 2);
-
                     shootPistolBullet.bulletTop = myPlayer.Top + (myPlayer.Height / 2) + offset;
 
                     shootPistolBullet.MakeBullet(this);
@@ -615,7 +637,6 @@ namespace GameForm
                         int spreadAngle = rand.Next(-60, 61);
 
                         shootShotgunPellet.bulletLeft = myPlayer.Left + (myPlayer.Width / 2);
-                        shootShotgunPellet.bulletTop = myPlayer.Top + (myPlayer.Height / 2);
                         shootShotgunPellet.bulletTop = myPlayer.Top + (myPlayer.Height / 2) + offset;
 
                         ApplySpread(shootShotgunPellet, spreadAngle);
@@ -630,7 +651,6 @@ namespace GameForm
                     Bullet shootSniperBullet = new Bullet(bulletSpeed, bulletRange, myName.Text);
                     shootSniperBullet.direction = direction;
                     shootSniperBullet.bulletLeft = myPlayer.Left + (myPlayer.Width / 2);
-                    shootSniperBullet.bulletTop = myPlayer.Top + (myPlayer.Height / 2);
                     shootSniperBullet.bulletTop = myPlayer.Top + (myPlayer.Height / 2) + offset;
                     shootSniperBullet.MakeBulletSniper(this);
                     break;
@@ -670,6 +690,7 @@ namespace GameForm
         //BEGIN OF-----------------------------------------------------------------------
         //---------------THESE LINES OF CODE ARE FOR MAKING ZOMBIES SPAWN----------------
         //-------------------------------------------------------------------------------
+        //THIS HAS BEEN MOVED TO THE SERVER
 
         private void DisplayZombies(string[] a)
         {
