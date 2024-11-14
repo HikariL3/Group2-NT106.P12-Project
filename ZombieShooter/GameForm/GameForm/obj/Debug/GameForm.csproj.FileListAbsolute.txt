@@ -72,3 +72,40 @@ C:\Users\ASUS\Desktop\Group2-NT106.P12-Project\ZombieShooter\GameForm\GameForm\o
 C:\Users\ASUS\Desktop\Group2-NT106.P12-Project\ZombieShooter\GameForm\GameForm\obj\Debug\GameForm.csproj.Up2Date
 C:\Users\ASUS\Desktop\Group2-NT106.P12-Project\ZombieShooter\GameForm\GameForm\obj\Debug\GameForm.exe
 C:\Users\ASUS\Desktop\Group2-NT106.P12-Project\ZombieShooter\GameForm\GameForm\obj\Debug\GameForm.pdb
+E:\NETFramework\Project\Group2-NT106.P12-Project\ZombieShooter\GameForm\GameForm\bin\Debug\GameForm.exe.config
+E:\NETFramework\Project\Group2-NT106.P12-Project\ZombieShooter\GameForm\GameForm\bin\Debug\GameForm.exe
+E:\NETFramework\Project\Group2-NT106.P12-Project\ZombieShooter\GameForm\GameForm\bin\Debug\GameForm.pdb
+E:\NETFramework\Project\Group2-NT106.P12-Project\ZombieShooter\GameForm\GameForm\bin\Debug\NAudio.Asio.dll
+E:\NETFramework\Project\Group2-NT106.P12-Project\ZombieShooter\GameForm\GameForm\bin\Debug\NAudio.Core.dll
+E:\NETFramework\Project\Group2-NT106.P12-Project\ZombieShooter\GameForm\GameForm\bin\Debug\NAudio.dll
+E:\NETFramework\Project\Group2-NT106.P12-Project\ZombieShooter\GameForm\GameForm\bin\Debug\NAudio.Midi.dll
+E:\NETFramework\Project\Group2-NT106.P12-Project\ZombieShooter\GameForm\GameForm\bin\Debug\NAudio.Wasapi.dll
+E:\NETFramework\Project\Group2-NT106.P12-Project\ZombieShooter\GameForm\GameForm\bin\Debug\NAudio.WinForms.dll
+E:\NETFramework\Project\Group2-NT106.P12-Project\ZombieShooter\GameForm\GameForm\bin\Debug\NAudio.WinMM.dll
+E:\NETFramework\Project\Group2-NT106.P12-Project\ZombieShooter\GameForm\GameForm\bin\Debug\Server_ShootOutGame.exe
+E:\NETFramework\Project\Group2-NT106.P12-Project\ZombieShooter\GameForm\GameForm\bin\Debug\Shoot Out Game MOO ICT.exe
+E:\NETFramework\Project\Group2-NT106.P12-Project\ZombieShooter\GameForm\GameForm\bin\Debug\Shoot Out Game MOO ICT.pdb
+E:\NETFramework\Project\Group2-NT106.P12-Project\ZombieShooter\GameForm\GameForm\bin\Debug\Shoot Out Game MOO ICT.exe.config
+E:\NETFramework\Project\Group2-NT106.P12-Project\ZombieShooter\GameForm\GameForm\bin\Debug\Server_ShootOutGame.pdb
+E:\NETFramework\Project\Group2-NT106.P12-Project\ZombieShooter\GameForm\GameForm\bin\Debug\Server_ShootOutGame.exe.config
+E:\NETFramework\Project\Group2-NT106.P12-Project\ZombieShooter\GameForm\GameForm\bin\Debug\NAudio.xml
+E:\NETFramework\Project\Group2-NT106.P12-Project\ZombieShooter\GameForm\GameForm\bin\Debug\NAudio.Asio.xml
+E:\NETFramework\Project\Group2-NT106.P12-Project\ZombieShooter\GameForm\GameForm\bin\Debug\NAudio.Core.xml
+E:\NETFramework\Project\Group2-NT106.P12-Project\ZombieShooter\GameForm\GameForm\bin\Debug\NAudio.Midi.xml
+E:\NETFramework\Project\Group2-NT106.P12-Project\ZombieShooter\GameForm\GameForm\bin\Debug\NAudio.Wasapi.xml
+E:\NETFramework\Project\Group2-NT106.P12-Project\ZombieShooter\GameForm\GameForm\bin\Debug\NAudio.WinForms.xml
+E:\NETFramework\Project\Group2-NT106.P12-Project\ZombieShooter\GameForm\GameForm\bin\Debug\NAudio.WinMM.xml
+E:\NETFramework\Project\Group2-NT106.P12-Project\ZombieShooter\GameForm\GameForm\obj\Debug\GameForm.csproj.AssemblyReference.cache
+E:\NETFramework\Project\Group2-NT106.P12-Project\ZombieShooter\GameForm\GameForm\obj\Debug\GameForm.MainGame.resources
+E:\NETFramework\Project\Group2-NT106.P12-Project\ZombieShooter\GameForm\GameForm\obj\Debug\GameForm.Login.resources
+E:\NETFramework\Project\Group2-NT106.P12-Project\ZombieShooter\GameForm\GameForm\obj\Debug\GameForm.NewRoom.resources
+E:\NETFramework\Project\Group2-NT106.P12-Project\ZombieShooter\GameForm\GameForm\obj\Debug\GameForm.Ranking.resources
+E:\NETFramework\Project\Group2-NT106.P12-Project\ZombieShooter\GameForm\GameForm\obj\Debug\GameForm.Lobby.resources
+E:\NETFramework\Project\Group2-NT106.P12-Project\ZombieShooter\GameForm\GameForm\obj\Debug\GameForm.Lose.resources
+E:\NETFramework\Project\Group2-NT106.P12-Project\ZombieShooter\GameForm\GameForm\obj\Debug\GameForm.Win.resources
+E:\NETFramework\Project\Group2-NT106.P12-Project\ZombieShooter\GameForm\GameForm\obj\Debug\GameForm.Properties.Resources.resources
+E:\NETFramework\Project\Group2-NT106.P12-Project\ZombieShooter\GameForm\GameForm\obj\Debug\GameForm.csproj.GenerateResource.cache
+E:\NETFramework\Project\Group2-NT106.P12-Project\ZombieShooter\GameForm\GameForm\obj\Debug\GameForm.csproj.CoreCompileInputs.cache
+E:\NETFramework\Project\Group2-NT106.P12-Project\ZombieShooter\GameForm\GameForm\obj\Debug\GameForm.csproj.Up2Date
+E:\NETFramework\Project\Group2-NT106.P12-Project\ZombieShooter\GameForm\GameForm\obj\Debug\GameForm.exe
+E:\NETFramework\Project\Group2-NT106.P12-Project\ZombieShooter\GameForm\GameForm\obj\Debug\GameForm.pdb

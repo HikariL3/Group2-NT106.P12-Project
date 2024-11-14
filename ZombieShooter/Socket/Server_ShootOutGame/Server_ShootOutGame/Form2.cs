@@ -77,13 +77,23 @@ namespace Server_ShootOutGame
                     if (stream.DataAvailable)
                     {
                         int bytesRead = stream.Read(buffer, 0, buffer.Length);
-                        string message = Encoding.UTF8.GetString(buffer, 0, bytesRead);
-                        UpdateInfo($"Received message from {client.Client.RemoteEndPoint}: {message}");
+                        string receivedData = Encoding.UTF8.GetString(buffer, 0, bytesRead);
+                        dataBuffer.Append(receivedData);
 
-                        // Thêm thông điệp vào hàng đợi
-                        if (!messageQueue.TryAdd((player, message)))
+                        // Kiểm tra và tách thông điệp dựa trên ký tự phân tách '\n'
+                        while (dataBuffer.ToString().Contains("\n"))
                         {
-                            UpdateInfo("Message queue is full. Dropping message.");
+                            int newlineIndex = dataBuffer.ToString().IndexOf("\n");
+                            string message = dataBuffer.ToString(0, newlineIndex);
+                            dataBuffer.Remove(0, newlineIndex + 1);
+
+                            UpdateInfo($"Received message from {client.Client.RemoteEndPoint}: {message}");
+
+                            // Thêm thông điệp vào hàng đợi
+                            if (!messageQueue.TryAdd((player, message)))
+                            {
+                                UpdateInfo("Message queue is full. Dropping message.");
+                            }
                         }
                     }
                     Thread.Sleep(10); // Giảm tải CPU

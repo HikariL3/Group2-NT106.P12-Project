@@ -60,6 +60,7 @@ namespace Client
         // Gửi dữ liệu đến server
         public static void SendData(string data)
         {
+            data += "\n";
             byte[] sendData = Encoding.UTF8.GetBytes(data);
             clientSocket.Send(sendData);
         }
