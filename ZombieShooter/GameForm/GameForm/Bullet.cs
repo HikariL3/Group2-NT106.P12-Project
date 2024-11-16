@@ -12,6 +12,7 @@ namespace GameForm
     class Bullet
     {
         public string playerName;
+        public string gunName;
         public string direction;
         public int bulletLeft;
         public int bulletTop;
@@ -20,17 +21,18 @@ namespace GameForm
         private PictureBox bullet = new PictureBox();
         private Timer bulletTimer = new Timer();
         private int distanceTraveled = 0;
-        public Bullet(int bulletSpeed, int bulletRange, string name)
+        public Bullet(int bulletSpeed, int bulletRange, string name, string gunName)
         {
             speed = bulletSpeed;
             range = bulletRange;
-            this.playerName = $"Bullet_{name}";
+            this.playerName = name;
+            this.gunName = gunName;
         }
 
 
         public void MakeBullet(Form form)
         {
-            bullet.Name = playerName;
+            bullet.Name = $"{playerName};{gunName}";
             bullet.BackColor = Color.White;
             bullet.Size = new Size(7, 7);
             bullet.Tag = "bullet";
@@ -61,7 +63,7 @@ namespace GameForm
 
         public void MakeBulletSniper(Form form)
         {
-            bullet.Name =  playerName;
+            bullet.Name = $"{playerName};{gunName}"; 
             bullet.BackColor = Color.White;
             bullet.Size = new Size(28, 7);
             bullet.Tag = "bullet";

@@ -44,5 +44,27 @@ namespace GameForm
         {
             CurrentAmmo = MaxAmmo;
         }
+
+        public static int GetDamageByGunName(string name)
+        {
+            switch (name)
+            {
+                case "Pistol":
+                    return 40;
+                    break;
+
+                case "Shotgun":
+                    return 20;
+                    break;
+
+                case "Sniper":
+                    return 100;
+                    break;
+
+                default:
+                    return 0;
+                    break;
+            }
+        }
     }
 }
