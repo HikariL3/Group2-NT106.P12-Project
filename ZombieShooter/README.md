@@ -24,7 +24,7 @@ Facebook: https://www.facebook.com/codename.Hikari/
 | Pictures            | Lê Vĩnh Huy & Nguyễn Quốc Vương          |
 |  Form UI            | Nguyễn Quốc Vương                        |
 | Client              | Nguyễn Quốc Vương & Trần Thị Quỳnh Hương |
-| Server              | Trần Thị Quỳnh Hương                     |
+| Server              | Nguyễn Quốc Vương & Trần Thị Quỳnh Hương |
 | Multiplayer feature | All of us UwU                            |
 
 
