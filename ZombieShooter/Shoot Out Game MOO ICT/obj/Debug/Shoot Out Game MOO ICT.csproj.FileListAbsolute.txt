@@ -235,3 +235,34 @@ C:\Users\ASUS\Desktop\Group2-NT106.P12-Project\ZombieShooter\Shoot Out Game MOO 
 C:\Users\ASUS\Desktop\Group2-NT106.P12-Project\ZombieShooter\Shoot Out Game MOO ICT\obj\Debug\Shoot Out Game MOO ICT.exe
 C:\Users\ASUS\Desktop\Group2-NT106.P12-Project\ZombieShooter\Shoot Out Game MOO ICT\obj\Debug\Shoot Out Game MOO ICT.pdb
 >>>>>>> Stashed changes
+C:\Users\ASUS\Desktop\ZombieShooter\Shoot Out Game MOO ICT\bin\Debug\Shoot Out Game MOO ICT.exe.config
+C:\Users\ASUS\Desktop\ZombieShooter\Shoot Out Game MOO ICT\bin\Debug\Shoot Out Game MOO ICT.exe
+C:\Users\ASUS\Desktop\ZombieShooter\Shoot Out Game MOO ICT\bin\Debug\Shoot Out Game MOO ICT.pdb
+C:\Users\ASUS\Desktop\ZombieShooter\Shoot Out Game MOO ICT\bin\Debug\Microsoft.Win32.Registry.dll
+C:\Users\ASUS\Desktop\ZombieShooter\Shoot Out Game MOO ICT\bin\Debug\NAudio.Asio.dll
+C:\Users\ASUS\Desktop\ZombieShooter\Shoot Out Game MOO ICT\bin\Debug\NAudio.Core.dll
+C:\Users\ASUS\Desktop\ZombieShooter\Shoot Out Game MOO ICT\bin\Debug\NAudio.dll
+C:\Users\ASUS\Desktop\ZombieShooter\Shoot Out Game MOO ICT\bin\Debug\NAudio.Midi.dll
+C:\Users\ASUS\Desktop\ZombieShooter\Shoot Out Game MOO ICT\bin\Debug\NAudio.Wasapi.dll
+C:\Users\ASUS\Desktop\ZombieShooter\Shoot Out Game MOO ICT\bin\Debug\NAudio.WinForms.dll
+C:\Users\ASUS\Desktop\ZombieShooter\Shoot Out Game MOO ICT\bin\Debug\NAudio.WinMM.dll
+C:\Users\ASUS\Desktop\ZombieShooter\Shoot Out Game MOO ICT\bin\Debug\System.Security.AccessControl.dll
+C:\Users\ASUS\Desktop\ZombieShooter\Shoot Out Game MOO ICT\bin\Debug\System.Security.Principal.Windows.dll
+C:\Users\ASUS\Desktop\ZombieShooter\Shoot Out Game MOO ICT\bin\Debug\Microsoft.Win32.Registry.xml
+C:\Users\ASUS\Desktop\ZombieShooter\Shoot Out Game MOO ICT\bin\Debug\NAudio.xml
+C:\Users\ASUS\Desktop\ZombieShooter\Shoot Out Game MOO ICT\bin\Debug\NAudio.Asio.xml
+C:\Users\ASUS\Desktop\ZombieShooter\Shoot Out Game MOO ICT\bin\Debug\NAudio.Core.xml
+C:\Users\ASUS\Desktop\ZombieShooter\Shoot Out Game MOO ICT\bin\Debug\NAudio.Midi.xml
+C:\Users\ASUS\Desktop\ZombieShooter\Shoot Out Game MOO ICT\bin\Debug\NAudio.Wasapi.xml
+C:\Users\ASUS\Desktop\ZombieShooter\Shoot Out Game MOO ICT\bin\Debug\NAudio.WinForms.xml
+C:\Users\ASUS\Desktop\ZombieShooter\Shoot Out Game MOO ICT\bin\Debug\NAudio.WinMM.xml
+C:\Users\ASUS\Desktop\ZombieShooter\Shoot Out Game MOO ICT\bin\Debug\System.Security.AccessControl.xml
+C:\Users\ASUS\Desktop\ZombieShooter\Shoot Out Game MOO ICT\bin\Debug\System.Security.Principal.Windows.xml
+C:\Users\ASUS\Desktop\ZombieShooter\Shoot Out Game MOO ICT\obj\Debug\Shoot Out Game MOO ICT.csproj.AssemblyReference.cache
+C:\Users\ASUS\Desktop\ZombieShooter\Shoot Out Game MOO ICT\obj\Debug\Shoot_Out_Game_MOO_ICT.MainGame.resources
+C:\Users\ASUS\Desktop\ZombieShooter\Shoot Out Game MOO ICT\obj\Debug\Shoot_Out_Game_MOO_ICT.Properties.Resources.resources
+C:\Users\ASUS\Desktop\ZombieShooter\Shoot Out Game MOO ICT\obj\Debug\Shoot Out Game MOO ICT.csproj.GenerateResource.cache
+C:\Users\ASUS\Desktop\ZombieShooter\Shoot Out Game MOO ICT\obj\Debug\Shoot Out Game MOO ICT.csproj.CoreCompileInputs.cache
+C:\Users\ASUS\Desktop\ZombieShooter\Shoot Out Game MOO ICT\obj\Debug\Shoot Ou.FD321561.Up2Date
+C:\Users\ASUS\Desktop\ZombieShooter\Shoot Out Game MOO ICT\obj\Debug\Shoot Out Game MOO ICT.exe
+C:\Users\ASUS\Desktop\ZombieShooter\Shoot Out Game MOO ICT\obj\Debug\Shoot Out Game MOO ICT.pdb

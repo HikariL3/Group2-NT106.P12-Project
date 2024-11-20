@@ -11,6 +11,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Shoot_Out_Game_MOO_ICT;
+using System.Diagnostics;
 
 namespace GameForm
 {
@@ -18,10 +19,13 @@ namespace GameForm
     {
         private CancellationTokenSource _cts;
 
-
         public Lobby()
         {
             InitializeComponent();
+            namePlayer1.AutoEllipsis = true;
+            namePlayer2.AutoEllipsis = true;
+            namePlayer3.AutoEllipsis = true;
+            namePlayer4.AutoEllipsis = true;
             this.Load += Lobby_Load;
         }
 
@@ -32,36 +36,44 @@ namespace GameForm
 
         }
 
-        async Task RunContinuouslyAsync(CancellationToken token)
+        private async Task RunContinuouslyAsync(CancellationToken token)
         {
             GameClient.SendData($"SEND_LOBBY;{GameClient.joinedRoom}");
-            await Task.Delay(1000, token);
+            await Task.Delay(100, token);
 
-            while (!token.IsCancellationRequested) // Kiểm tra trạng thái hủy
+            while (!token.IsCancellationRequested)
             {
                 InitLobby();
-                string s = GameClient.GetMessageFromPlayers();
-                if (s != null)
-                    showMessage.Items.Add(s);
-
 
                 if (GameClient.isStartGame)
                 {
+                    // Synchronize player list from `joinedLobby` to `GameClient.players` once game starts
+                    if (GameClient.players.Count == 0)
+                    {
+                        foreach (var lobbyPlayer in GameClient.joinedLobby.Players)
+                        {
+                            GameClient.players.Add(new Player
+                            {
+                                Name = lobbyPlayer.Name,
+                                Position = new PointF(0, 0) // Set initial spawn point or position
+                            });
+                        }
+                        Debug.WriteLine("All players added to GameClient.players for MainGame start.");
+                    }
+
+                    // Cancel lobby task and start MainGame
                     _cts.Cancel();
                     MainGame mainGame = new MainGame();
                     this.Hide();
                     mainGame.Show();
-                    //this.Close();
                 }
 
                 try
                 {
-                    // Chờ 1 giây trước khi lặp lại
                     await Task.Delay(500, token);
                 }
                 catch (TaskCanceledException)
                 {
-                    // Thoát vòng lặp nếu Task bị hủy
                     break;
                 }
             }

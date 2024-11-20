@@ -11,6 +11,8 @@ namespace GameForm
 {
     class Bullet
     {
+        public string playerName;
+        public string gunName;
         public string direction;
         public int bulletLeft;
         public int bulletTop;
@@ -19,47 +21,75 @@ namespace GameForm
         private PictureBox bullet = new PictureBox();
         private Timer bulletTimer = new Timer();
         private int distanceTraveled = 0;
-        public Bullet(int bulletSpeed, int bulletRange)
+        public Bullet(int bulletSpeed, int bulletRange, string name, string gunName)
         {
             speed = bulletSpeed;
             range = bulletRange;
+            this.playerName = name;
+            this.gunName = gunName;
         }
 
 
         public void MakeBullet(Form form)
         {
+            bullet.Name = $"{playerName};{gunName}";
             bullet.BackColor = Color.White;
             bullet.Size = new Size(7, 7);
             bullet.Tag = "bullet";
             bullet.Left = bulletLeft;
             bullet.Top = bulletTop;
             bullet.BringToFront();
-            form.Controls.Add(bullet);
 
-            bulletTimer.Interval = 20;
-            bulletTimer.Tick += new EventHandler(BulletTimerEvent);
-            bullet.BringToFront();
-            bulletTimer.Start();
-
+            if (form.InvokeRequired)
+            {
+                form.Invoke((MethodInvoker)delegate
+                {
+                    form.Controls.Add(bullet);
+                    bulletTimer.Interval = 35;
+                    bulletTimer.Tick += new EventHandler(BulletTimerEvent);
+                    bullet.BringToFront();
+                    bulletTimer.Start();
+                });
+            }
+            else
+            {
+                form.Controls.Add(bullet);
+                bulletTimer.Interval = 35;
+                bulletTimer.Tick += new EventHandler(BulletTimerEvent);
+                bullet.BringToFront();
+                bulletTimer.Start();
+            }
         }
 
         public void MakeBulletSniper(Form form)
         {
+            bullet.Name = $"{playerName};{gunName}"; 
             bullet.BackColor = Color.White;
             bullet.Size = new Size(28, 7);
             bullet.Tag = "bullet";
             bullet.Left = bulletLeft;
             bullet.Top = bulletTop;
-            bullet.BringToFront();
-            form.Controls.Add(bullet);
 
-            bulletTimer.Interval = 20;
-            bulletTimer.Tick += new EventHandler(BulletTimerEvent);
-            bullet.BringToFront();
-            bulletTimer.Start();
+            if (form.InvokeRequired)
+            {
+                form.Invoke((MethodInvoker)delegate
+                {
+                    form.Controls.Add(bullet);
+                    bulletTimer.Interval = 35;
+                    bulletTimer.Tick += new EventHandler(BulletTimerEvent);
+                    bullet.BringToFront();
+                    bulletTimer.Start();
+                });
+            }
+            else
+            {
+                form.Controls.Add(bullet);
+                bulletTimer.Interval = 35;
+                bulletTimer.Tick += new EventHandler(BulletTimerEvent);
+                bullet.BringToFront();
+                bulletTimer.Start();
+            }
         }
-
-
 
         private void BulletTimerEvent(object sender, EventArgs e)
         {
@@ -84,7 +114,6 @@ namespace GameForm
                 bullet.Top += speed;
             }
 
-
             distanceTraveled += speed;
 
             if (distanceTraveled >= range || bullet.Left < 10 || bullet.Left > 860 || bullet.Top < 10 || bullet.Top > 600)
@@ -95,8 +124,6 @@ namespace GameForm
                 bulletTimer = null;
                 bullet = null;
             }
-
-
         }
     }
 }

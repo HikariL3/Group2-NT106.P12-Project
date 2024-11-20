@@ -8,7 +8,7 @@ using System.Drawing;
 
 namespace GameForm
 {
-    class Gun
+    public class Gun
     {
         public string Name { get; set; }
         public int Damage { get; set; }
@@ -43,6 +43,28 @@ namespace GameForm
         public void Reload()
         {
             CurrentAmmo = MaxAmmo;
+        }
+
+        public static int GetDamage(string name)
+        {
+            switch (name)
+            {
+                case "Pistol":
+                    return 40;
+                    break;
+
+                case "Shotgun":
+                    return 20;
+                    break;
+
+                case "Sniper":
+                    return 100;
+                    break;
+
+                default:
+                    return 0;
+                    break;
+            }
         }
     }
 }
