@@ -75,7 +75,6 @@ namespace Client
                 {
                     int receivedBytes = clientSocket.Receive(buffer);
                     string receivedData = Encoding.UTF8.GetString(buffer, 0, receivedBytes);
-                    Debug.WriteLine($"Received data: {receivedData}");
 
                     // Thêm thông điệp vào hàng đợi và kích hoạt sự kiện xử lý
                     // Kiểm tra kích thước hàng đợi trước khi thêm
@@ -209,7 +208,6 @@ namespace Client
                 {
                     // Add the player to the list if not already present
                     players.Add(new Player { Name = playerName, Position = new PointF(0, 0) });
-                    Debug.WriteLine($"Added player: {playerName}");
                 }
             }
             localPlayer = players.SingleOrDefault(p => p.Name == joinedLobby.Host.Name);
@@ -441,7 +439,7 @@ namespace Client
                 {
                     playerToUpdate.CurrentGun = new Gun(gunName, 40, 12, 25, 500, 350, 1000, null, null, null, null);
                 }
-                playerToUpdate.CurrentGun.Name = gunName; //`error here, CurrentGun is null and cannot be accessed
+                playerToUpdate.CurrentGun.Name = gunName; 
                 OnPlayerPositionUpdated?.Invoke(playerToUpdate);
             }
             else
@@ -450,24 +448,14 @@ namespace Client
             }
 
         }
-
-        private static void HandlePlayerCollision(string[] payload)
-        {
-            string myPlayerName = payload[1]; //player của mình
-            string otherPlayerName = payload[2]; //player mà mình đụng phải
-            //Thiết kế thêm ----
-        }
-
         private static void HandleSwitchGuns(string[] payload)
         {
             string playerName = payload[1];
             string gunName = payload[2];
 
-            // Find the player in the list and update their gun
             var playerToUpdate = players.SingleOrDefault(p => p.Name == playerName);
             if (playerToUpdate != null)
             {
-                // Update gun name to sync with other players
                 if (playerToUpdate.CurrentGun == null)
                 {
                     switch (gunName)
@@ -484,13 +472,7 @@ namespace Client
                     }
                     
                 }
-
-                // Notify UI to update
                 OnPlayerPositionUpdated?.Invoke(playerToUpdate);
-            }
-            else
-            {
-                Debug.WriteLine($"Player not found for gun switch: {playerName}");
             }
         }
 
@@ -505,10 +487,6 @@ namespace Client
             if (playerToUpdate != null)
             {
                 OnPlayerShoot?.Invoke(playerToUpdate, direction, gunName);
-            }
-            else
-            {
-                Debug.WriteLine($"Player not found for shooting: {playerName}");
             }
         }
 

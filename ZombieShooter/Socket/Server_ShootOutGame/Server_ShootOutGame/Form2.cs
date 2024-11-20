@@ -87,7 +87,8 @@ namespace Server_ShootOutGame
                             string message = dataBuffer.ToString(0, newlineIndex);
                             dataBuffer.Remove(0, newlineIndex + 1);
 
-                            UpdateInfo($"Received message from {client.Client.RemoteEndPoint}: {message}");
+                            //ACTIVATE THIS LINE TO TRACK PLAYERS//
+                            //UpdateInfo($"Received message from {client.Client.RemoteEndPoint}: {message}");
 
                             // Thêm thông điệp vào hàng đợi
                             if (!messageQueue.TryAdd((player, message)))
@@ -196,7 +197,7 @@ namespace Server_ShootOutGame
                     break;
                 case "UPDATE_POSITION":
                     string playerName = arrPayload[1];
-                    string direction = arrPayload[2]; //_direction
+                    string direction = arrPayload[2]; 
                     int x = int.Parse(arrPayload[3]);
                     int y = int.Parse(arrPayload[4]);
                     string gunName1 = arrPayload[5];
@@ -478,32 +479,27 @@ namespace Server_ShootOutGame
 
         private void UpdatePlayerPosition(Player player, string direction, int x, int y, string gunName1)
         {
-            if (player == null || player.PlayerSocket == null) return; // Ensure player and socket are initialized
+            if (player == null || player.PlayerSocket == null) return; 
 
-            if ((DateTime.Now - player.LastPositionUpdate).TotalMilliseconds < 35) // Xms interval
+            if ((DateTime.Now - player.LastPositionUpdate).TotalMilliseconds < 35) // interval
                 return;
 
-            if (x < 0 || x > MAP_WIDTH || y < 0 || y > MAP_HEIGHT)
-                return;
-
-            // Update the player's position
             player.X = x;
             player.Y = y;
             player.LastPositionUpdate = DateTime.Now;
             player.CurrentGun = gunName1;
 
-            // Broadcast position to other players in the lobby
             string positionMessage = $"UPDATE_POSITION;{player.PlayerName};{direction};{x};{y};{gunName1}";
             var lobby = FindLobbyByPlayer(player);
 
             if (lobby != null)
             {
+                //UpdateInfo($"Broadcasting position of {player.PlayerName} at ({x}, {y},) {direction} using {gunName1}");
                 foreach (var otherPlayer in lobby.Players)
                 {
                     if (otherPlayer != player && otherPlayer.PlayerSocket != null)
                     {
                         SendMessageToPlayer(otherPlayer, positionMessage);
-                        UpdateInfo($"Broadcasting position of {player.PlayerName} to {otherPlayer.PlayerName} at ({x}, {y},) {direction} using {gunName1}");
                     }
                 }
             }
@@ -598,9 +594,7 @@ namespace Server_ShootOutGame
             }
         }
 
-        private void Form2_Load(object sender, EventArgs e) { }
-
-        #region Make Zombies
+    #region Make Zombies
         private async Task SendMakeZombiesToPlayersAsync(Player player, string type, string positionY, string sound)
         {
             try
@@ -859,6 +853,7 @@ namespace Server_ShootOutGame
         }
     }
     #endregion
+
     #region HELPER CLASSES
     public class Player
     {

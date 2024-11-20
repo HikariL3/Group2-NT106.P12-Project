@@ -189,7 +189,7 @@
             // player1
             // 
             this.player1.Image = ((System.Drawing.Image)(resources.GetObject("player1.Image")));
-            this.player1.Location = new System.Drawing.Point(271, 336);
+            this.player1.Location = new System.Drawing.Point(278, 325);
             this.player1.Margin = new System.Windows.Forms.Padding(4);
             this.player1.Name = "player1";
             this.player1.Size = new System.Drawing.Size(75, 100);
@@ -214,7 +214,7 @@
             this.name1.AutoSize = true;
             this.name1.Font = new System.Drawing.Font("Courier New", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.name1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.name1.Location = new System.Drawing.Point(268, 336);
+            this.name1.Location = new System.Drawing.Point(275, 325);
             this.name1.Name = "name1";
             this.name1.Size = new System.Drawing.Size(44, 17);
             this.name1.TabIndex = 13;
@@ -223,7 +223,7 @@
             // sandbag
             // 
             this.sandbag.Image = global::GameForm.Properties.Resources.sandbag;
-            this.sandbag.Location = new System.Drawing.Point(87, 135);
+            this.sandbag.Location = new System.Drawing.Point(78, 135);
             this.sandbag.Name = "sandbag";
             this.sandbag.Size = new System.Drawing.Size(76, 207);
             this.sandbag.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -269,11 +269,9 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(28)))), ((int)(((byte)(32)))));
-            this.ClientSize = new System.Drawing.Size(1232, 713);
-            this.Controls.Add(this.barrel_lay);
+            this.ClientSize = new System.Drawing.Size(1234, 713);
             this.Controls.Add(this.sandbag);
             this.Controls.Add(this.car);
-            this.Controls.Add(this.barrel_stand);
             this.Controls.Add(this.name1);
             this.Controls.Add(this.txtTimer);
             this.Controls.Add(this.pictureBox2);
@@ -287,6 +285,8 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtKill);
             this.Controls.Add(this.txtAmmo);
+            this.Controls.Add(this.barrel_stand);
+            this.Controls.Add(this.barrel_lay);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "MainGame";

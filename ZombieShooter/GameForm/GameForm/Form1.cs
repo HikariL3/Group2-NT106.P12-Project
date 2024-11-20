@@ -60,7 +60,6 @@ namespace GameForm
 
         private void InitializeGuns()
         {
-            // Load images for the guns
             Gun pistol = new Gun("Pistol", 40, 12, 25, 500, 350, 1000,
                                 Properties.Resources.pistolup, Properties.Resources.pistoldown,
                                 Properties.Resources.pistolleft, Properties.Resources.pistolright);
@@ -74,7 +73,7 @@ namespace GameForm
             guns.Add(pistol);
             guns.Add(shotgun);
             guns.Add(sniper);
-            currentGun = guns[0];// Start with pistol
+            currentGun = guns[0];
             txtGun.Text = "Current Gun: " + currentGun.Name;
             txtAmmo.Text = "Ammo: " + currentGun.CurrentAmmo;
         }
@@ -101,8 +100,6 @@ namespace GameForm
         {
             // Find the appropriate gun for the player
             Gun shootingGun = guns.FirstOrDefault(g => g.Name == gunName) ?? guns[0];
-
-            // Trigger shooting logic with the correct gun and direction
             ShootBulletForOtherPlayer(player, direction, shootingGun);
         }
 
@@ -112,7 +109,6 @@ namespace GameForm
             int bulletRange = gun.Range;
             soundManager.PlaySound(gun.Name.ToLower());
 
-            // Instantiate bullets based on gun type
             switch (gun.Name)
             {
                 case "Pistol":
@@ -160,7 +156,6 @@ namespace GameForm
                 {
                     var playerPictureBox = playerPictureBoxes[player.Name];
 
-                    // Update position
                     playerPictureBox.Left = (int)player.Position.X;
                     playerPictureBox.Top = (int)player.Position.Y;
 
@@ -168,9 +163,6 @@ namespace GameForm
                     playerLabel.Left = playerPictureBox.Left;
                     playerLabel.Top = playerPictureBox.Top;
 
-                    // Update image based on current gun and direction
-
-                    Debug.WriteLine($"Updating {player.Name}'s image to face {player.Direction}");
                     switch (player.CurrentGun.Name)
                     {
                         case "Pistol":
@@ -200,10 +192,6 @@ namespace GameForm
                             break;
                     }
                 }
-                else
-                {
-                    Debug.WriteLine($"No visual element found for player: {player.Name}");
-                }
             }
             
         }
@@ -221,7 +209,6 @@ namespace GameForm
 
                 if (playerName == GameClient.localPlayer.Name)
                 {
-                    // Set local player position
                     player1.Location = new Point(playerInitialX, playerInitialY);
                     name1.Text = playerName;
                     name1.Location = Location = new Point(playerInitialX, playerInitialY - 15);
@@ -232,7 +219,6 @@ namespace GameForm
                 }
                 else
                 {
-                    // Set position for other players
                     PictureBox playerPictureBox = new PictureBox
                     {
                         Size = new Size(56, 81),
@@ -313,13 +299,11 @@ namespace GameForm
         {
             bool hasMoved = false;
 
-            if (timeLeft <= 0)
+            if (timeLeft <= 0 && zombiesList.Count == 0)
             {
-                if (zombiesList.Count == 0)
-                {
-                    gameOver = true;
-                    YouWin();
-                }
+                gameOver = true;
+                YouWin();
+                return;
             }
 
             if (wallHealth > 1)
@@ -330,74 +314,20 @@ namespace GameForm
             {
                 gameOver = true;
                 YouLose();
+                return;
             }
 
-            txtKill.Text = "Kills: " + kill;
-            txtScore.Text = "Score: " + score;
+            txtKill.Text = $"Kills: {kill}";
+            txtScore.Text = $"Score: {score}";
 
-            // Initialize movement flags
-            bool canMoveLeft = goLeft && myPlayer.Left > 0;
-            bool canMoveRight = goRight && myPlayer.Left + myPlayer.Width < this.ClientSize.Width;
-            bool canMoveUp = goUp && myPlayer.Top > 45;
-            bool canMoveDown = goDown && myPlayer.Top + myPlayer.Height < this.ClientSize.Height;
+            Rectangle playerBounds = myPlayer.Bounds;
 
+            bool canMoveLeft = goLeft && myPlayer.Left > 0 && !CheckCollision(playerBounds, "left");
+            bool canMoveRight = goRight && myPlayer.Right < this.ClientSize.Width && !CheckCollision(playerBounds, "right");
+            bool canMoveUp = goUp && myPlayer.Top > 45 && !CheckCollision(playerBounds, "up");
+            bool canMoveDown = goDown && myPlayer.Bottom < this.ClientSize.Height && !CheckCollision(playerBounds, "down");
 
-            // Check for collisions with obstacles
-            foreach (Control obstacle in this.Controls)
-            {
-                if (obstacle is PictureBox &&
-                    ((string)obstacle.Name == "car" ||
-                    (string)obstacle.Name == "barrel_stand" ||
-                    (string)obstacle.Name == "barrel_lay" ||
-                    (string)obstacle.Name == "wall" ||
-                    (string)obstacle.Name == "sandbag"))
-                {
-                    if (myPlayer.Bounds.IntersectsWith(obstacle.Bounds))
-                    {
-                        if (goLeft && myPlayer.Left < obstacle.Right && myPlayer.Right > obstacle.Right)
-                        {
-                            canMoveLeft = false;
-                        }
-                        if (goRight && myPlayer.Right > obstacle.Left && myPlayer.Left < obstacle.Left)
-                        {
-                            canMoveRight = false;
-                        }
-                        if (goUp && myPlayer.Top < obstacle.Bottom && myPlayer.Bottom > obstacle.Bottom)
-                        {
-                            canMoveUp = false;
-                        }
-                        if (goDown && myPlayer.Bottom > obstacle.Top && myPlayer.Top < obstacle.Top)
-                        {
-                            canMoveDown = false;
-                        }
-                    }
-                }
-            }
-
-            if (canMoveLeft)
-            {
-                myPlayer.Left -= speed;
-                myName.Left -= speed;
-                hasMoved = true;
-            }
-            if (canMoveRight)
-            {
-                myPlayer.Left += speed;
-                myName.Left += speed;
-                hasMoved = true;
-            }
-            if (canMoveUp)
-            {
-                myPlayer.Top -= speed;
-                myName.Top -= speed;
-                hasMoved = true;
-            }
-            if (canMoveDown)
-            {
-                myPlayer.Top += speed;
-                myName.Top += speed;
-                hasMoved = true;
-            }
+            hasMoved = MovePlayer(canMoveLeft, canMoveRight, canMoveUp, canMoveDown);
 
             if (hasMoved && (DateTime.Now - lastSentPositionTime).TotalMilliseconds >= POSITION_UPDATE_INTERVAL_MS)
             {
@@ -410,6 +340,83 @@ namespace GameForm
                 ProcessZombie(zombie);
             }
         }
+
+        private bool CheckCollision(Rectangle playerBounds, string direction)
+        {
+            foreach (Control obstacle in this.Controls)
+            {
+                if (obstacle is PictureBox && IsObject(obstacle.Name))
+                {
+                    Rectangle obstacleBounds = obstacle.Bounds;
+
+                    switch (direction)
+                    {
+                        case "left":
+                            if (playerBounds.Left < obstacleBounds.Right && playerBounds.Right > obstacleBounds.Right &&
+                                playerBounds.IntersectsWith(obstacleBounds))
+                                return true;
+                            break;
+
+                        case "right":
+                            if (playerBounds.Right > obstacleBounds.Left && playerBounds.Left < obstacleBounds.Left &&
+                                playerBounds.IntersectsWith(obstacleBounds))
+                                return true;
+                            break;
+
+                        case "up":
+                            if (playerBounds.Top < obstacleBounds.Bottom && playerBounds.Bottom > obstacleBounds.Bottom &&
+                                playerBounds.IntersectsWith(obstacleBounds))
+                                return true;
+                            break;
+
+                        case "down":
+                            if (playerBounds.Bottom > obstacleBounds.Top && playerBounds.Top < obstacleBounds.Top &&
+                                playerBounds.IntersectsWith(obstacleBounds))
+                                return true;
+                            break;
+                    }
+                }
+            }
+            return false;
+        }
+
+        private bool IsObject(string name)
+        {
+            return name == "car" || name == "barrel_stand" || name == "barrel_lay" || name == "wall" || name == "sandbag";
+        }
+
+        private bool MovePlayer(bool canMoveLeft, bool canMoveRight, bool canMoveUp, bool canMoveDown)
+        {
+            bool moved = false;
+
+            if (canMoveLeft)
+            {
+                myPlayer.Left -= speed;
+                myName.Left -= speed;
+                moved = true;
+            }
+            if (canMoveRight)
+            {
+                myPlayer.Left += speed;
+                myName.Left += speed;
+                moved = true;
+            }
+            if (canMoveUp)
+            {
+                myPlayer.Top -= speed;
+                myName.Top -= speed;
+                moved = true;
+            }
+            if (canMoveDown)
+            {
+                myPlayer.Top += speed;
+                myName.Top += speed;
+                moved = true;
+            }
+
+            return moved;
+        }
+
         private void ProcessZombie(Zombie zombie)
         {
             foreach (PictureBox bullet in this.Controls.OfType<PictureBox>().Where(b => b.Tag?.ToString() == "bullet").ToList())
@@ -452,7 +459,6 @@ namespace GameForm
         private void DamageWall(Zombie zombie)
         {
             wallHealth -= zombie.Damage * 0.01;
-            //wallHealth -= 0;
             if (wallHealth <= 0)
             {
                 gameOver = true;
@@ -747,28 +753,6 @@ namespace GameForm
             Lose loseForm = new Lose();
             loseForm.ShowDialog();
             this.Hide();
-        }
-
-        private void HandleServerMessage(string message)
-        {
-            string[] parts = message.Split(';');
-            if (parts[0] == "SPAWN_ZOMBIE")
-            {
-                int id = int.Parse(parts[1]);
-                int left = int.Parse(parts[2]);
-                int top = int.Parse(parts[3]);
-
-                Zombie zombie = Zombie.CreateZombie(4);
-                zombie.ZombiePictureBox.Left = left;
-                zombie.ZombiePictureBox.Top = top;
-
-                zombiesList.Add(zombie);
-                this.Controls.Add(zombie.ZombiePictureBox);
-            }
-        }
-        private void OnMessageReceived(string message)
-        {
-            HandleServerMessage(message);
         }
 
         private void MainGame_FormClosed(object sender, FormClosedEventArgs e)

@@ -51,7 +51,6 @@
             this.Name = "Form2";
             this.Text = "Server";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ServerForm_FormClosing);
-            this.Load += new System.EventHandler(this.Form2_Load);
             this.ResumeLayout(false);
 
         }
