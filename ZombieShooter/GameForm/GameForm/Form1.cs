@@ -60,7 +60,7 @@ namespace GameForm
 
         private void InitializeGuns()
         {
-            Gun pistol = new Gun("Pistol", 40, 12, 25, 500, 350, 1000,
+            Gun pistol = new Gun("Pistol", 50, 12, 25, 500, 350, 1000,
                                 Properties.Resources.pistolup, Properties.Resources.pistoldown,
                                 Properties.Resources.pistolleft, Properties.Resources.pistolright);
             Gun shotgun = new Gun("Shotgun", 20, 3, 25, 350, 700, 1400,
@@ -306,7 +306,7 @@ namespace GameForm
                 return;
             }
 
-            if (wallHealth > 1)
+            if (wallHealth > 0)
             {
                 healthBar.Value = (int)wallHealth;
             }
@@ -425,7 +425,7 @@ namespace GameForm
                 {
                     string[] bulletInfo = bullet.Name.Split(';');
                     string playerName = bulletInfo[0];
-                    int damageGun = Gun.GetDamageByGunName(bulletInfo[1]); 
+                    int damageGun = Gun.GetDamage(bulletInfo[1]); 
 
                     this.Controls.Remove(bullet);
                     bullet.Dispose();
@@ -662,10 +662,6 @@ namespace GameForm
                     shootSniperBullet.bulletLeft = myPlayer.Left + (myPlayer.Width / 2);
                     shootSniperBullet.bulletTop = myPlayer.Top + (myPlayer.Height / 2) + offset;
                     shootSniperBullet.MakeBulletSniper(this);
-                    break;
-                default:
-                    bulletSpeed = 20;
-                    bulletRange = 500;
                     break;
             }
 

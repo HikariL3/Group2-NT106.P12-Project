@@ -45,7 +45,7 @@ namespace GameForm
             CurrentAmmo = MaxAmmo;
         }
 
-        public static int GetDamageByGunName(string name)
+        public static int GetDamage(string name)
         {
             switch (name)
             {

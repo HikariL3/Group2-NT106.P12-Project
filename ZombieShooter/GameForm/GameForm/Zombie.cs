@@ -45,13 +45,13 @@ namespace GameForm
                     return new Zombie(240, 2, 30, 75, "left", zombiePic,
                         Properties.Resources.bzleft); // variant 1 images
                 case 2:
-                    return new Zombie(40, 6, 14, 27, "left", zombiePic,
+                    return new Zombie(40, 7, 14, 27, "left", zombiePic,
                         Properties.Resources.szleft); // variant 2 images
                 case 3:
                     return new Zombie(100, 3, 16, 32, "left", zombiePic,
                         Properties.Resources.tzleft); // variant 3 images
                 case 4:
-                    return new Zombie(40, 3, 12, 20, "left", zombiePic,
+                    return new Zombie(40, 4, 12, 20, "left", zombiePic,
                         Properties.Resources.zleft); // variant 4 images (default)
                 default:
                     return null;

@@ -494,6 +494,7 @@ namespace Server_ShootOutGame
 
             if (lobby != null)
             {
+                //ACTIVATE THIS LINE TO TRACK MESSAGE
                 //UpdateInfo($"Broadcasting position of {player.PlayerName} at ({x}, {y},) {direction} using {gunName1}");
                 foreach (var otherPlayer in lobby.Players)
                 {
@@ -501,26 +502,6 @@ namespace Server_ShootOutGame
                     {
                         SendMessageToPlayer(otherPlayer, positionMessage);
                     }
-                }
-            }
-        }
-        private void CheckPlayerCollisions(Player player)
-        {
-            var lobby = FindLobbyByPlayer(player);
-            if (lobby == null) return;
-
-            foreach (var otherPlayer in lobby.Players)
-            {
-                if (otherPlayer == player) continue;
-
-                // Giả sử kích thước hitbox người chơi là 32x32 --> tui chỉnh lại theo kích thước rồi 56x81
-                bool collision = Math.Abs(player.X - otherPlayer.X) < 56 &&
-                                 Math.Abs(player.Y - otherPlayer.Y) < 81;
-
-                if (collision)
-                {
-                    string collisionMsg = $"PLAYER_COLLISION;{player.PlayerName};{otherPlayer.PlayerName}";
-                    BroadcastToLobby(lobby, collisionMsg); // Sử dụng BroadcastToLobby
                 }
             }
         }
@@ -594,8 +575,8 @@ namespace Server_ShootOutGame
             }
         }
 
-    #region Make Zombies
-        private async Task SendMakeZombiesToPlayersAsync(Player player, string type, string positionY, string sound)
+    #region MAKE ZOMBIES
+        private async Task SendMakeZombiesAsync(Player player, string type, string positionY, string sound)
         {
             try
             {
@@ -628,7 +609,7 @@ namespace Server_ShootOutGame
             if (spawnChance <= 65)
             {
                 Zombie zombie = Zombie.CreateZombie(4);
-                int minSpawnHeight = 100;
+                int minSpawnHeight = 70;
                 int maxSpawnHeight = fixedHeight - zombie.ZombiePictureBox.Height - 100;
                 int Y = rand.Next(minSpawnHeight, maxSpawnHeight);
                 type = "4";
@@ -637,14 +618,14 @@ namespace Server_ShootOutGame
             else if (spawnChance <= 100)
             {
                 Zombie zombie = Zombie.CreateZombie(3);
-                int minSpawnHeight = 100;
+                int minSpawnHeight = 70;
                 int maxSpawnHeight = fixedHeight - zombie.ZombiePictureBox.Height - 100;
                 int Y = rand.Next(minSpawnHeight, maxSpawnHeight);
                 type = "3";
                 positionY = Y.ToString();
             }
 
-            await SendMakeZombiesToPlayersAsync(player, type, positionY, "NONE");
+            await SendMakeZombiesAsync(player, type, positionY, "NONE");
         }
 
         private async void MakeZombies2(string height, Player player)
@@ -655,7 +636,7 @@ namespace Server_ShootOutGame
             if (spawnChance <= 40)
             {
                 Zombie zombie = Zombie.CreateZombie(4);
-                int minSpawnHeight = 100;
+                int minSpawnHeight = 70;
                 int maxSpawnHeight = fixedHeight - zombie.ZombiePictureBox.Height - 100;
                 int Y = rand.Next(minSpawnHeight, maxSpawnHeight);
                 type = "4";
@@ -664,7 +645,7 @@ namespace Server_ShootOutGame
             else if (spawnChance <= 80)
             {
                 Zombie zombie = Zombie.CreateZombie(3);
-                int minSpawnHeight = 100;
+                int minSpawnHeight = 70;
                 int maxSpawnHeight = fixedHeight - zombie.ZombiePictureBox.Height - 100;
                 int Y = rand.Next(minSpawnHeight, maxSpawnHeight);
                 type = "3";
@@ -674,14 +655,14 @@ namespace Server_ShootOutGame
             else if (spawnChance <= 100)
             {
                 Zombie zombie = Zombie.CreateZombie(2);
-                int minSpawnHeight = 100;
+                int minSpawnHeight = 70;
                 int maxSpawnHeight = fixedHeight - zombie.ZombiePictureBox.Height - 100;
                 int Y = rand.Next(minSpawnHeight, maxSpawnHeight);
                 type = "2";
                 positionY = Y.ToString();
             }
 
-            await SendMakeZombiesToPlayersAsync(player, type, positionY, "NONE");
+            await SendMakeZombiesAsync(player, type, positionY, "NONE");
         }
 
         private async void MakeZombies3(string height, Player player)
@@ -692,7 +673,7 @@ namespace Server_ShootOutGame
             if (spawnChance <= 25)
             {
                 Zombie zombie = Zombie.CreateZombie(4);
-                int minSpawnHeight = 100;
+                int minSpawnHeight = 70;
                 int maxSpawnHeight = fixedHeight - zombie.ZombiePictureBox.Height - 100;
                 int Y = rand.Next(minSpawnHeight, maxSpawnHeight);
                 type = "4";
@@ -701,7 +682,7 @@ namespace Server_ShootOutGame
             else if (spawnChance <= 65)
             {
                 Zombie zombie = Zombie.CreateZombie(3);
-                int minSpawnHeight = 100;
+                int minSpawnHeight = 70;
                 int maxSpawnHeight = fixedHeight - zombie.ZombiePictureBox.Height - 100;
                 int Y = rand.Next(minSpawnHeight, maxSpawnHeight);
                 type = "3";
@@ -710,14 +691,14 @@ namespace Server_ShootOutGame
             else if (spawnChance <= 100)
             {
                 Zombie zombie = Zombie.CreateZombie(2);
-                int minSpawnHeight = 100;
+                int minSpawnHeight = 70;
                 int maxSpawnHeight = fixedHeight - zombie.ZombiePictureBox.Height - 100;
                 int Y = rand.Next(minSpawnHeight, maxSpawnHeight);
                 type = "2";
                 positionY = Y.ToString();
             }
 
-            await SendMakeZombiesToPlayersAsync(player, type, positionY, "NONE");
+            await SendMakeZombiesAsync(player, type, positionY, "NONE");
         }
 
         private async void MakeZombies4(string height, Player player)
@@ -728,7 +709,7 @@ namespace Server_ShootOutGame
             if (spawnChance <= 45)
             {
                 Zombie zombie = Zombie.CreateZombie(3);
-                int minSpawnHeight = 100;
+                int minSpawnHeight = 70;
                 int maxSpawnHeight = fixedHeight - zombie.ZombiePictureBox.Height - 100;
                 int Y = rand.Next(minSpawnHeight, maxSpawnHeight);
                 type = "3";
@@ -737,7 +718,7 @@ namespace Server_ShootOutGame
             else if (spawnChance <= 85)
             {
                 Zombie zombie = Zombie.CreateZombie(2);
-                int minSpawnHeight = 100;
+                int minSpawnHeight = 70;
                 int maxSpawnHeight = fixedHeight - zombie.ZombiePictureBox.Height - 100;
                 int Y = rand.Next(minSpawnHeight, maxSpawnHeight);
                 type = "2";
@@ -746,17 +727,17 @@ namespace Server_ShootOutGame
             else if (spawnChance <= 100)
             {
                 Zombie zombie = Zombie.CreateZombie(1);
-                int minSpawnHeight = 100;
+                int minSpawnHeight = 70;
                 int maxSpawnHeight = fixedHeight - zombie.ZombiePictureBox.Height - 100;
                 int Y = rand.Next(minSpawnHeight, maxSpawnHeight);
                 type = "1";
                 positionY = Y.ToString();
             }
 
-            await SendMakeZombiesToPlayersAsync(player, type, positionY, "NONE");
+            await SendMakeZombiesAsync(player, type, positionY, "NONE");
         }
 
-        private void SendFinalWaveToPlayers(Player player, string type, string positionY, string sound)
+        private void SendFinalWave(Player player, string type, string positionY, string sound)
         {
             try
             {
@@ -791,14 +772,14 @@ namespace Server_ShootOutGame
             for (int i = 0; i < 3; i++)
             {
                 Zombie zombie = Zombie.CreateZombie(4);
-                int minSpawnHeight = 100;
+                int minSpawnHeight = 70;
                 int maxSpawnHeight = fixedHeight - zombie.ZombiePictureBox.Height - 100;
                 int Y = rand.Next(minSpawnHeight, maxSpawnHeight);
 
                 type = "4";
                 positionY = Y.ToString();
 
-                SendFinalWaveToPlayers(player, type, positionY, "NONE");
+                SendFinalWave(player, type, positionY, "NONE");
 
                 //await Task.Delay(500);
             }
@@ -808,14 +789,14 @@ namespace Server_ShootOutGame
             for (int i = 0; i < 2; i++)
             {
                 Zombie zombie = Zombie.CreateZombie(3);
-                int minSpawnHeight = 100;
+                int minSpawnHeight = 70;
                 int maxSpawnHeight = fixedHeight - zombie.ZombiePictureBox.Height - 100;
                 int Y = rand.Next(minSpawnHeight, maxSpawnHeight);
 
                 type = "3";
                 positionY = Y.ToString();
 
-                SendFinalWaveToPlayers(player, type, positionY, "NONE");
+                SendFinalWave(player, type, positionY, "NONE");
                 //await Task.Delay(500);
             }
 
@@ -824,14 +805,14 @@ namespace Server_ShootOutGame
             for (int i = 0; i < 3; i++)
             {
                 Zombie zombie = Zombie.CreateZombie(2);
-                int minSpawnHeight = 100;
+                int minSpawnHeight = 70;
                 int maxSpawnHeight = fixedHeight - zombie.ZombiePictureBox.Height - 100;
                 int Y = rand.Next(minSpawnHeight, maxSpawnHeight);
 
                 type = "2";
                 positionY = Y.ToString();
 
-                SendFinalWaveToPlayers(player, type, positionY, "NONE");
+                SendFinalWave(player, type, positionY, "NONE");
                 //await Task.Delay(1000);
             }
 
@@ -840,14 +821,14 @@ namespace Server_ShootOutGame
             for (int i = 0; i < 3; i++)
             {
                 Zombie zombie = Zombie.CreateZombie(1);
-                int minSpawnHeight = 100;
+                int minSpawnHeight = 70;
                 int maxSpawnHeight = fixedHeight - zombie.ZombiePictureBox.Height - 100;
                 int Y = rand.Next(minSpawnHeight, maxSpawnHeight);
 
                 type = "1";
                 positionY = Y.ToString();
 
-                SendFinalWaveToPlayers(player, type, positionY, "bzfinalwave");
+                SendFinalWave(player, type, positionY, "bzfinalwave");
                 //await Task.Delay(1500);
             }
         }
