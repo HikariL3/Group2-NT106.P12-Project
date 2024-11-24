@@ -301,8 +301,8 @@ namespace GameForm
 
             if (timeLeft <= 0 && zombiesList.Count == 0)
             {
-                gameOver = true;
                 YouWin();
+                gameOver = true;
                 return;
             }
 
@@ -312,8 +312,8 @@ namespace GameForm
             }
             else
             {
-                gameOver = true;
                 YouLose();
+                gameOver = true;
                 return;
             }
 
