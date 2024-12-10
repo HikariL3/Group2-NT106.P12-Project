@@ -37,6 +37,8 @@ namespace Client
         public static event Action<Player> OnPlayerPositionUpdated;
         public static event Action<Player, string, string> OnPlayerShoot;
         public static event Action<string[]> OnMakeZombies;
+        public static event Action<string> OnReceiveMessage;
+
         private static Gun defaultGun;
 
         // Thêm hàng đợi an toàn luồng để lưu trữ thông điệp
@@ -139,6 +141,7 @@ namespace Client
                     break;
                 //Nhận message trong lobby từ các client khác
                 case "SEND_MESSAGE":
+                    OnReceiveMessage?.Invoke(payload[1]);
                     UpdateMessage(payload[1]);
                     break;
                 //Nhận thông báo bắt đầu vào game từ server
