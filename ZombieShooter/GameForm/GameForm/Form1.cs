@@ -306,7 +306,7 @@ namespace GameForm
                 return;
             }
 
-            if (wallHealth > 0)
+            if (wallHealth >= 1)
             {
                 healthBar.Value = (int)wallHealth;
             }
@@ -726,8 +726,8 @@ namespace GameForm
         private async void YouWin()
         {
             await Task.Delay(5);
-            GameTimer.Stop();
             ActualTime.Stop();
+            GameTimer.Stop();
             MessageBox.Show("Game Over! You defeated all the zombies!", "You win!",
                 MessageBoxButtons.OK, MessageBoxIcon.Information);
 
@@ -740,8 +740,8 @@ namespace GameForm
         private async void YouLose()
         {
             await Task.Delay(5);
-            GameTimer.Stop();
             ActualTime.Stop();
+            GameTimer.Stop();
             MessageBox.Show("Game Over! You are dead, the zombies destroyed your wall", "You lose!",
                 MessageBoxButtons.OK, MessageBoxIcon.Information);
 
