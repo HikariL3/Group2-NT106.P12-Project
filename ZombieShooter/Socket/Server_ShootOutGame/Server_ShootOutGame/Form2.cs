@@ -216,9 +216,9 @@ namespace Server_ShootOutGame
                     string shootMessage = $"PLAYER_SHOOT;{shooterName};{shootDirection};{gunName2}";
                     BroadcastMessage(shootMessage, player);
                     break;
-                case "UPDATE_WALL_HEALTH":
+                case "UPDATE_WALL_HEALTH": //Not used
                     double health = double.Parse(arrPayload[1]);
-                    UpdateWallHealth(health);
+                    //UpdateWallHealth(health);
                     break;
 
                 case "MAKE_ZOMBIES1":
@@ -531,15 +531,6 @@ namespace Server_ShootOutGame
 
             string shootMessage = $"PLAYER_SHOOT;{player.PlayerName};{direction};{player.CurrentGun}";
             BroadcastMessage(shootMessage, player);
-        }
-
-        private void UpdateWallHealth(double health)
-        {
-            string updateWallMessage = $"UPDATE_WALL_HEALTH;{health.ToString()}";
-            foreach (var player in connectedPlayers)
-            {
-                SendMessageToPlayer(player, updateWallMessage);
-            }
         }
 
         private void ServerForm_FormClosing(object sender, FormClosingEventArgs e)

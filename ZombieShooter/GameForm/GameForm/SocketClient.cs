@@ -108,21 +108,15 @@ namespace Client
             }
         }
 
-
-        // Xử lý dữ liệu nhận được từ server
         private static void ProcessReceivedData(string data)
         {
-            //Tách thông điệp để phân tích
             string[] payload = data.Split(';');
             string messageType = payload[0];
-            //Phân loại thông điệp nhận từ server
             switch (messageType)
             {
-                //Nhận danh sách phòng mà server gửi cho
                 case "ROOMLIST":
                     AddRoomList(payload);
                     break;
-                //server thông báo lại là đã vào phòng hoặc không
                 case "JOINED":
                     joinedRoom = payload[1];
                     var lobby = lobbies.SingleOrDefault(r => r.RoomId == payload[1]);
@@ -131,46 +125,36 @@ namespace Client
                         joinedLobby = lobby;
                     }
                     break;
-                //Nhận danh sách người chơi (tên, trạng thái sẵn sàng) từ server và cập nhập vào class Lobby, Player
                 case "LOBBY_INFO":
                     UpdateLobby(payload);
                     break;
-                //Nhận từ server xem các người chơi khác sẵn sàng hay chưa
                 case "READY_INFO":
                     UpdateReadyInfo(payload);
                     break;
-                //Nhận message trong lobby từ các client khác
                 case "SEND_MESSAGE":
                     OnReceiveMessage?.Invoke(payload[1]);
                     UpdateMessage(payload[1]);
                     break;
-                //Nhận thông báo bắt đầu vào game từ server
                 case "START":
                     UpdatePlayInfo(payload);
                     isStartGame = true;
                     break;
-                //Nhận thông số (kill, score) từ player khác
                 case "UPDATE_STATS":
                     UpdateStats(payload);
                     break;
-                //Kiểm tra xem các người chơi khác đã xong trận chưa
                 case "GAMEOVER":
                     if (payload[1] == "True")
                         joinedLobby.IsGameOver = true;
                     break;
-                //Server thông báo đã xử lý ngắt kết nối của mình
                 case "PLAYER_DISCONNECTED":
                     HandleDisconnect(payload[1]);
                     break;
-                //Xóa lobby vừa chơi xong
                 case "CLEAR_LOBBY":
                     ClearLobby();
                     break;
-                //Lỗi khi tham gia vào phòng (phòng muốn vào ko tồn tại hoặc đủ người hoặc đã vào trận)
                 case "ERROR_JOIN":
                     isJoinRoom = false;
                     break;
-                //Lỗi khi tạo phòng (phòng đã được tạo)
                 case "ERROR_CREATE":
                     isCreateRoom = false;
                     break;
@@ -187,8 +171,8 @@ namespace Client
                     HandleShootBullet(payload);
                     break;
 
-                case "UPDATE_WALL_HEALTH":
-                    HandleWallHealth(payload);
+                case "UPDATE_WALL_HEALTH": //Not used
+                    //HandleWallHealth(payload);
                     break;
 
                 case "MAKE_ZOMBIES":
@@ -201,15 +185,12 @@ namespace Client
         {
             if (payload.Length < 4) return;
             players.Clear();
-            // Extract player names from payload
             string[] playerNames = payload[3].Split(',');
 
             foreach (string playerName in playerNames)
             {
-                // Check if player already exists in the list
                 if (players.All(p => p.Name != playerName))
                 {
-                    // Add the player to the list if not already present
                     players.Add(new Player { Name = playerName, Position = new PointF(0, 0) });
                 }
             }
@@ -361,12 +342,11 @@ namespace Client
                 }
                 catch (SocketException ex)
                 {
-                    // Xử lý lỗi nếu cần
                     Console.WriteLine($"Error disconnecting: {ex.Message}");
                 }
                 finally
                 {
-                    clientSocket = null; // Đặt lại clientSocket về null
+                    clientSocket = null; 
                 }
             }
             stopThread = false;
@@ -493,12 +473,6 @@ namespace Client
             }
         }
 
-        private static void HandleWallHealth(string[] payload)
-        {
-            double currentHealth = double.Parse(payload[1]);
-            //thiết kế thêm ----
-        }
-
         public static void SendMakeZombies(string name, string type, int height)
         {
             if (name != joinedLobby.Host.Name) return;
@@ -561,10 +535,9 @@ namespace Client
             this.FormClosing += GameForm_FormClosing; 
         }
 
-        // Xử lý sự kiện khi form đóng
         private void GameForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            GameClient.Disconnect(); // Gọi Disconnect trước khi form đóng
+            GameClient.Disconnect();
         }
     }
 }
