@@ -6,8 +6,8 @@ using NAudio.Wave;
 
 public class SoundManager
 {
-    private Dictionary<string, byte[]> soundResources;  // Store byte arrays of sounds
-    private List<WaveOutEvent> activeSounds;  // Keep track of active sounds for concurrent playback
+    private Dictionary<string, byte[]> soundResources;  
+    private List<WaveOutEvent> activeSounds;  
 
     public SoundManager()
     {
@@ -15,7 +15,6 @@ public class SoundManager
         activeSounds = new List<WaveOutEvent>();
     }
 
-    // Load sound from Resources (as byte array)
     public void LoadSound(string name, Stream resourceStream)
     {
         using (MemoryStream ms = new MemoryStream())
@@ -25,14 +24,12 @@ public class SoundManager
         }
     }
 
-    // Play sound by name, independently, without interrupting other sounds
     public void PlaySound(string name)
     {
         if (soundResources.ContainsKey(name))
         {
             Task.Run(() =>
             {
-                // Create new instances for each playback
                 var soundStream = new MemoryStream(soundResources[name]);
                 var waveProvider = new WaveFileReader(soundStream);
                 var waveOut = new WaveOutEvent();
@@ -40,7 +37,7 @@ public class SoundManager
                 waveOut.Init(waveProvider);
                 lock (activeSounds)
                 {
-                    activeSounds.Add(waveOut);  // Add to list of active sounds
+                    activeSounds.Add(waveOut); 
                 }
 
                 waveOut.Play();
@@ -53,7 +50,7 @@ public class SoundManager
                     soundStream.Dispose();
                     lock (activeSounds)
                     {
-                        activeSounds.Remove(waveOut);  // Remove from active sounds
+                        activeSounds.Remove(waveOut);  
                     }
                 };
             });

@@ -27,6 +27,8 @@ namespace GameForm
             namePlayer3.AutoEllipsis = true;
             namePlayer4.AutoEllipsis = true;
             this.Load += Lobby_Load;
+
+            GameClient.OnReceiveMessage += UpdateMessage;
         }
 
         private async void Lobby_Load(object sender, EventArgs e)
@@ -210,6 +212,18 @@ namespace GameForm
             else
             {
                 MessageBox.Show("Các người chơi khác vẫn chưa sẵn sàng!", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void UpdateMessage(string message)
+        {
+            if(showMessage.InvokeRequired)
+            {
+                showMessage.Invoke(new Action(() => UpdateMessage(message)));
+            }
+            else
+            {
+                showMessage.Items.Add(message.ToString());
             }
         }
 

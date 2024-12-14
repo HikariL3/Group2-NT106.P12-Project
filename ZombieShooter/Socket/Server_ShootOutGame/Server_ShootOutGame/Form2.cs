@@ -197,7 +197,7 @@ namespace Server_ShootOutGame
                     break;
                 case "UPDATE_POSITION":
                     string playerName = arrPayload[1];
-                    string direction = arrPayload[2]; 
+                    string direction = arrPayload[2];
                     int x = int.Parse(arrPayload[3]);
                     int y = int.Parse(arrPayload[4]);
                     string gunName1 = arrPayload[5];
@@ -216,9 +216,9 @@ namespace Server_ShootOutGame
                     string shootMessage = $"PLAYER_SHOOT;{shooterName};{shootDirection};{gunName2}";
                     BroadcastMessage(shootMessage, player);
                     break;
-                case "UPDATE_WALL_HEALTH":
+                case "UPDATE_WALL_HEALTH": //Not used
                     double health = double.Parse(arrPayload[1]);
-                    UpdateWallHealth(health);
+                    //UpdateWallHealth(health);
                     break;
 
                 case "MAKE_ZOMBIES1":
@@ -479,7 +479,7 @@ namespace Server_ShootOutGame
 
         private void UpdatePlayerPosition(Player player, string direction, int x, int y, string gunName1)
         {
-            if (player == null || player.PlayerSocket == null) return; 
+            if (player == null || player.PlayerSocket == null) return;
 
             if ((DateTime.Now - player.LastPositionUpdate).TotalMilliseconds < 35) // interval
                 return;
@@ -531,15 +531,6 @@ namespace Server_ShootOutGame
 
             string shootMessage = $"PLAYER_SHOOT;{player.PlayerName};{direction};{player.CurrentGun}";
             BroadcastMessage(shootMessage, player);
-        }
-
-        private void UpdateWallHealth(double health)
-        {
-            string updateWallMessage = $"UPDATE_WALL_HEALTH;{health.ToString()}";
-            foreach (var player in connectedPlayers)
-            {
-                SendMessageToPlayer(player, updateWallMessage);
-            }
         }
 
         private void ServerForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -598,7 +589,6 @@ namespace Server_ShootOutGame
                 UpdateInfo($"Error in SendMakeZombiesToPlayersAsync: {ex.Message}");
             }
         }
-
 
         private async void MakeZombies1(string height, Player player)
         {
@@ -737,34 +727,7 @@ namespace Server_ShootOutGame
             await SendMakeZombiesAsync(player, type, positionY, "NONE");
         }
 
-        private void SendFinalWave(Player player, string type, string positionY, string sound)
-        {
-            try
-            {
-                var lobby = FindLobbyByPlayer(player);
-                string message = $"MAKE_ZOMBIES;{type};{positionY};{sound}";
-
-                if (lobby != null)
-                {
-                    foreach (var _player in lobby.Players)
-                    {
-                        SendMessageToPlayer(_player, message);
-                        UpdateInfo($"Message sent to player {_player.PlayerName}: {message}");
-                    }
-                }
-                else
-                {
-                    UpdateInfo("Lobby not found for player.");
-                }
-                UpdateInfo(message);
-            }
-            catch (Exception ex)
-            {
-                UpdateInfo($"Error in SendMakeZombiesToPlayersAsync: {ex.Message}");
-            }
-        }
-
-        private void FinalWave(string height, Player player) //when timer reaches 0s
+        private async void FinalWave(string height, Player player) //when timer reaches 0s
         {
             Random rand = new Random();
             string type = null, positionY = null;
@@ -779,7 +742,7 @@ namespace Server_ShootOutGame
                 type = "4";
                 positionY = Y.ToString();
 
-                SendFinalWave(player, type, positionY, "NONE");
+                await SendMakeZombiesAsync(player, type, positionY, "NONE");
 
                 //await Task.Delay(500);
             }
@@ -796,7 +759,7 @@ namespace Server_ShootOutGame
                 type = "3";
                 positionY = Y.ToString();
 
-                SendFinalWave(player, type, positionY, "NONE");
+                await SendMakeZombiesAsync(player, type, positionY, "NONE");
                 //await Task.Delay(500);
             }
 
@@ -812,7 +775,7 @@ namespace Server_ShootOutGame
                 type = "2";
                 positionY = Y.ToString();
 
-                SendFinalWave(player, type, positionY, "NONE");
+                await SendMakeZombiesAsync(player, type, positionY, "NONE");
                 //await Task.Delay(1000);
             }
 
@@ -828,7 +791,7 @@ namespace Server_ShootOutGame
                 type = "1";
                 positionY = Y.ToString();
 
-                SendFinalWave(player, type, positionY, "bzfinalwave");
+                await SendMakeZombiesAsync(player, type, positionY, "bzfinalwave");
                 //await Task.Delay(1500);
             }
         }
