@@ -27,6 +27,5 @@
 - Và nhiều tính năng khác.
 
 # 🔗 KHÁC
-#### Đây là assignments môn học của nhóm:
-[Group 2 - NT106.P12 Assignments](https://github.com/HikariL3/Group_2-NT106.P12-Assignments.git)
+#### Đây là assignments môn học của nhóm: [Group 2 - NT106.P12 Assignments](https://github.com/HikariL3/Group_2-NT106.P12-Assignments.git)
 
