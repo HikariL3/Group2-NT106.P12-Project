@@ -12,7 +12,7 @@
 | 23520590 | Trần Thị Quỳnh Hương  | wnhhuong      |
 | 23521823 | Nguyễn Quốc Vương     | ngquocvuong23 |
 
-## 🔮 GIỚI THIỆU TRÒ CHƠI
+## 🧟‍♂️ GIỚI THIỆU TRÒ CHƠI
 
 - Zombie Shooter là một trò chơi hành động sinh tồn được thiết kế để mang lại trải nghiệm kịch tính và hấp dẫn cho người chơi. Trò chơi có thể chơi cá nhân hoặc theo nhóm, với số lượng người tham gia từ 1-4.
 
